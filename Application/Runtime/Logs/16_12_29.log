@@ -1,0 +1,188 @@
+[ 2016-12-29T08:57:46+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/5
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000560s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000967s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.003424s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 5 ) [ RunTime:0.058982s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001188s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001291s ]
+
+[ 2016-12-29T09:14:48+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/10
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000665s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001110s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.006024s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 10 ) [ RunTime:0.028605s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000964s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001051s ]
+
+[ 2016-12-29T09:15:39+08:00 ] 127.0.0.1 /index.php/Admin/Admin/add
+ERR: 无法加载控制器:Admin
+
+[ 2016-12-29T09:31:16+08:00 ] 127.0.0.1 /index.php/Admin/Role/lst
+ERR: 非法操作:lst
+
+[ 2016-12-29T09:31:18+08:00 ] 127.0.0.1 /index.php/Admin/Role/add
+ERR: 非法操作:add
+
+[ 2016-12-29T09:31:20+08:00 ] 127.0.0.1 /index.php/Admin/Role/lst
+ERR: 非法操作:lst
+
+[ 2016-12-29T09:34:31+08:00 ] 127.0.0.1 /index.php/Admin/Role/lst
+ERR: 模板不存在:./Application/Admin/View/Role/lst.html
+
+[ 2016-12-29T09:40:51+08:00 ] 127.0.0.1 /index.php/Admin/Role/
+ERR: 非法操作:index
+
+[ 2016-12-29T09:54:12+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001287s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002075s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.005501s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 9 ) [ RunTime:0.030872s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000765s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000826s ]
+
+[ 2016-12-29T10:05:55+08:00 ] 127.0.0.1 /index.php/Home/Plastic/index.html
+ERR: 无法加载控制器:Plastic
+
+[ 2016-12-29T10:08:35+08:00 ] 127.0.0.1 /index.php/Home/Esafe/index.html
+ERR: 无法加载控制器:Esafe
+
+[ 2016-12-29T11:18:44+08:00 ] 127.0.0.1 /index.php/Admin/Test
+ERR: 无法加载控制器:Test
+
+[ 2016-12-29T11:23:58+08:00 ] 127.0.0.1 /index.php/Admin/Test
+ERR: 无法加载控制器:Test
+
+[ 2016-12-29T11:24:47+08:00 ] 127.0.0.1 /index.php/Admin/Test/index
+ERR: 无法加载控制器:Test
+
+[ 2016-12-29T11:28:09+08:00 ] 127.0.0.1 /index.php/Admin/Test/index
+ERR: 无法加载控制器:Test
+
+[ 2016-12-29T11:29:38+08:00 ] 127.0.0.1 /index.php/Admin/Test/index
+ERR: 无法加载控制器:Test
+
+[ 2016-12-29T12:10:52+08:00 ] 127.0.0.1 /index.php/Admin/Admin/lst
+ERR: Think\Model:getJoin方法不存在！
+
+[ 2016-12-29T12:44:37+08:00 ] 127.0.0.1 /index.php/Admin/Admin/lst
+ERR: Think\Model:getJoin方法不存在！
+
+[ 2016-12-29T13:27:16+08:00 ] 127.0.0.1 /index.php/Admin/Admin/lst
+ERR: Think\Model:getJoin方法不存在！
+
+[ 2016-12-29T13:27:17+08:00 ] 127.0.0.1 /index.php/Admin/Admin/lst
+ERR: Think\Model:getJoin方法不存在！
+
+[ 2016-12-29T13:27:23+08:00 ] 127.0.0.1 /index.php/Admin/Admin/lst
+ERR: Think\Model:getJoin方法不存在！
+
+[ 2016-12-29T13:30:47+08:00 ] 127.0.0.1 /index.php/Admin/Admin/lst
+ERR: Think\Model:getJoin方法不存在！
+
+[ 2016-12-29T13:31:03+08:00 ] 127.0.0.1 /index.php/Admin/Admin/lst
+ERR: Think\Model:getJoin方法不存在！
+
+[ 2016-12-29T13:31:04+08:00 ] 127.0.0.1 /index.php/Admin/Admin/lst
+ERR: Think\Model:getJoin方法不存在！
+
+[ 2016-12-29T13:31:09+08:00 ] 127.0.0.1 /index.php/Admin/Admin/lst
+ERR: Think\Model:getJoin方法不存在！
+
+[ 2016-12-29T15:14:42+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/17
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000575s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001036s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.006389s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 17 ) [ RunTime:0.028143s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000902s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000987s ]
+
+[ 2016-12-29T15:14:48+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/18
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000567s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000981s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.004559s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 18 ) [ RunTime:0.014637s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000732s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000790s ]
+
+[ 2016-12-29T15:16:15+08:00 ] 127.0.0.1 /index.php/Admin/Admin/del/id/3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000565s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000980s ]
+SQL: SHOW COLUMNS FROM `emp_admin` [ RunTime:0.005426s ]
+SQL: DELETE FROM `emp_admin` WHERE ( `id` = 3 ) [ RunTime:0.027481s ]
+
+[ 2016-12-29T15:17:20+08:00 ] 127.0.0.1 /index.php/Admin/Admin/del/id/2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000704s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001309s ]
+SQL: SHOW COLUMNS FROM `emp_admin` [ RunTime:0.004869s ]
+SQL: DELETE FROM `emp_admin` WHERE ( `id` = 2 ) [ RunTime:0.019368s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000744s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000805s ]
+
+[ 2016-12-29T15:57:08+08:00 ] 127.0.0.1 /index.php/Admin/Test/index
+ERR: Think\Model:getInfo方法不存在！
+
+[ 2016-12-29T16:37:42+08:00 ] 127.0.0.1 /index.php/Admin/Admin/edit/id/1.html
+ERR: 错误的查询条件:[id=>1]
+
+[ 2016-12-29T16:41:43+08:00 ] 127.0.0.1 /index.php/Admin/Admin/edit/id/1.html
+ERR: 错误的查询条件:[id=>1]
+
+[ 2016-12-29T17:38:50+08:00 ] 127.0.0.1 /index.php/Admin/Admin/del/id/6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000849s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001528s ]
+SQL: SHOW COLUMNS FROM `emp_admin` [ RunTime:0.004547s ]
+SQL: SHOW COLUMNS FROM `emp_admin_role` [ RunTime:0.004443s ]
+SQL: DELETE FROM `emp_admin` WHERE ( `id` = 6 ) [ RunTime:0.019753s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000759s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000821s ]
+
+[ 2016-12-29T17:39:12+08:00 ] 127.0.0.1 /index.php/Admin/Admin/del/id/7
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000608s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001189s ]
+SQL: SHOW COLUMNS FROM `emp_admin` [ RunTime:0.005278s ]
+SQL: SHOW COLUMNS FROM `emp_admin_role` [ RunTime:0.005407s ]
+SQL: DELETE FROM `emp_admin` WHERE ( `id` = 7 ) [ RunTime:0.031128s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000973s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001077s ]
+
+[ 2016-12-29T17:42:37+08:00 ] 127.0.0.1 /index.php/Admin/Admin/del/id/5
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000610s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001093s ]
+SQL: SHOW COLUMNS FROM `emp_admin` [ RunTime:0.005152s ]
+
+[ 2016-12-29T17:42:49+08:00 ] 127.0.0.1 /index.php/Admin/Admin/del/id/5
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000776s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001367s ]
+SQL: SHOW COLUMNS FROM `emp_admin` [ RunTime:0.006245s ]
+
+[ 2016-12-29T17:47:43+08:00 ] 127.0.0.1 /index.php/Admin/Admin/del/id/5
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000643s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001161s ]
+SQL: SHOW COLUMNS FROM `emp_admin` [ RunTime:0.004897s ]
+SQL: SHOW COLUMNS FROM `emp_admin_role` [ RunTime:0.005389s ]
+SQL: DELETE FROM `emp_admin_role` WHERE ( `admin_id` = 5 ) [ RunTime:0.022187s ]
+SQL: DELETE FROM `emp_admin` WHERE ( `id` = 5 ) [ RunTime:0.020715s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000834s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000898s ]
+

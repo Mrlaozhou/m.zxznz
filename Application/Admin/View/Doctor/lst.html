@@ -1,0 +1,124 @@
+<layout name="layout" />
+<form method="post" action="__SELF__" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>ID</th>
+                <th>医院Id</th>
+                <th>医生姓名</th>
+                <th>医生照片</th>
+                <th>职务</th>
+                <th>职称</th>
+                <th>擅长技术</th>
+                <th>显示状态</th>
+                <th>显示到主页</th>
+                <th width="160">操作</th>
+            </tr>
+		<?php foreach($infos as $k => $v):?>
+    		<tr>
+                <td><?php echo $v['id'];?></td>
+                <td><?php echo $v['hos_id'];?></td>
+                <td><?php echo $v['name'];?></td>
+                <td><img src="__PUBLIC__/Uploads/<?php echo $v['picture'];?>" width="50"></td>
+                <td><?php echo $v['duty'];?></td>
+                <td><?php echo $v['title'];?></td>
+                <td><?php echo $v['good'];?></td>
+                <td>
+                    <?php if($v['is_show'] == '是'):?>
+                        <span style="color:red;">是</span>
+                    <?php else:?>
+                        否
+                    <?php endif;?>
+                </td>
+                <td>
+                    <?php if($v['is_index']):?>
+                        <span style="color:red;">是</span>
+                    <?php else:?>
+                        否
+                    <?php endif;?>
+                </td>
+
+                <td>
+                	<input type="button" onclick="ajaxDelDoctor(this)" did="<?php echo $v['id'];?>" value="删除"> | 
+                    <a href="<?php echo U('edit?id='.$v['id']);?>">修改</a>
+                	<a onclick="refreshDocToTop(this);" docId="<?php echo $v['id'];?>" href="javascript:;">点击刷新</a>
+                </td>
+            </tr>
+		<?php endforeach;?>
+            <tr>
+                <td align="right" nowrap="true" colspan="9">
+                    <div id="turn-page">
+                       <?php echo $page;?>
+                        <p style="clean:both;"></p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>   
+</form>
+
+<script>
+function addTr(btn)
+{
+	var tr = $(btn).parent().parent();
+	if($(btn).val() == '+')
+	{
+		var newTr = tr.clone();
+		newTr.find(":button").val('-');
+		$("table").append(newTr);
+	}
+	else
+		tr.remove();
+}
+
+function ajaxDelDoctor(ipt)
+{
+    if( window.confirm("你确定要删除？") )
+    {
+        var id = $(ipt).attr('did');
+        $.ajax({
+            url:"/index.php/Admin/Doctor/ajaxDelDoctor/id/"+id,
+            type:"GET",
+            dataType:'json',
+            success:function(data)
+            {
+                if( data.result == 1 )
+                {
+                    alert("删除成功！");
+                    $(ipt).parent().parent().remove();
+                }
+                else
+                {
+                    alert("删除失败！");
+                }
+            }
+        });
+    }
+}
+function refreshDocToTop(a)
+{
+    if( window.confirm('点击确定，刷新置顶！') )
+    {
+        var id = $(a).attr('docId');
+        $.ajax({
+            url:"/index.php/Admin/Doctor/ajaxRefreshDocTop/id/"+id,
+            type:"GET",
+            dataType:'json',
+            success:function(data){
+                if( data.result )
+                {
+                    $(a).html("<span style='color:red;'>刷新成功</span>");
+                }
+                else
+                {
+                    $(a).html("<span style='color:blue;'>刷新失败</span>");
+                }
+            }
+        })
+    }
+    else
+    {
+        
+    }
+}
+</script>

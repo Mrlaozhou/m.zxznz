@@ -1,0 +1,77 @@
+<layout name="layout" />
+<div class="form-div">
+
+</div>
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>编号（id）</th>
+                <th>活动标题</th>
+                <th>活动地址</th>
+                <th>活动照片</th>
+                <th>时间</th>
+                <th>项目</th>
+                <th>是否置顶</th>
+                <th>是否显示</th>
+                <th>活动状态</th>
+                <th>活动介绍</th>
+                <th>添加时间</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($data as $k => $v): ?>
+            <tr>
+                <td align="center"><?php echo $v['id']; ?></td>
+                <td align="center"><?php echo $v['title'];?></td>
+                <td align="center"><?php echo $v['location'];?></td>
+                <td align="center">
+                    <img style="width:55px;height:30px;" src="__PUBLIC__/Uploads/<?php echo $v['pic'];?>"></td></td>
+                <td align="center">
+                    <?php echo date('Y.m.d',$v['start_time']).'-'.date('Y.m.d',$v['end_time']);?>
+                    
+                </td>
+                <td align="center"><?php echo $v['object'];?></td>
+                <td align="center">
+                    <?php if($v['is_top'] == 1):?>
+                        是
+                    <?php else:?>
+                        否
+                    <?php endif;?>
+                </td>
+                <td align="center">
+                    <?php if($v['is_show'] == 1):?>
+                        是
+                    <?php else:?>
+                        否
+                    <?php endif;?>
+                </td>
+                <td align="center">
+                    <?php if($v['status'] == 1):?>
+                        <span style="color:red;">正在进行</span>
+                    <?php else:?>
+                        <span style="color:blue;">即将开始</span>
+                    <?php endif;?>
+                </td>
+                <td align="center">
+                    略。。
+                </td>
+                <td align="center">
+                    <?php echo date('Y-m-d H:i:s',$v['create_time']);?>
+                </td>
+                <td align="center"> 
+                    <a href="<?php echo U('edit?id='.$v['id']); ?>" title="编辑">编辑</a> |
+                    <a onclick="return confirm('确定要删除吗？');" href="<?php echo U('del?id='.$v['id']); ?>" title="移除">移除</a> 
+                </td>
+            </tr>
+            <?php endforeach; ?>
+            <tr>
+                <td align="right" nowrap="true" colspan="13">
+                    <div id="turn-page">
+                       <?php echo $page;?>
+                        <p style="clean:both;"></p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

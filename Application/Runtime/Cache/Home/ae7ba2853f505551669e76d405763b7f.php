@@ -1,0 +1,126 @@
+<?php if (!defined('THINK_PATH')) exit(); require_once('/Public/Home/header.html');?>
+
+
+
+
+
+
+
+
+
+<div class="h-content">
+	<div class="h-top">
+		<img style="width:100%;height:230px;" src="/Public/Home/images/h-bg.jpg">
+	</div>
+	<div class="h-box">
+		<div class="h-box-top">
+			<img src="/Public/Home/images/h-box-top.jpg">
+		</div>
+		<div class="h-box-content">
+			<ul>
+			<?php foreach( $data['data'] as $k => $v ):?>
+				<li <?php if( ($k+2)%3 === 0 ){ echo "style='margin:0 50px;'";}?>>
+					<a href="<?php echo U('Hospital/detial?navNum=3&hos_id='.$v['id']);?>"  target="_blank">
+						<img style="width:300px;height:300px;" src="/Public/Uploads/<?php echo $v['logo'];?>"></a>
+					<div class="name" style="width:298px;height:50px;line-height:50px;text-align:center;">
+						<span><?php echo $v['name'];?></span>
+					</div>
+				</li>
+			<?php endforeach;?>
+<!--
+				<li>
+					<a href="<?php ?>"><img src="/Public/Home/images/hos-1.jpg"></a>
+					<div class="name" style="width:298px;height:50px;line-height:50px;text-align:center;">
+						<span>上海港华医院</span>
+					</div>
+				</li>
+				<li style="margin:0 50px;">
+					<a href="<?php ?>"><img src="/Public/Home/images/hos-2.jpg"></a>
+					<div class="name" style="width:298px;height:50px;line-height:50px;text-align:center;">
+						<span>上海华美医疗美容医院</span>
+					</div>
+				</li>
+				<li>
+					<a href="<?php ?>"><img src="/Public/Home/images/hos-3.jpg"></a>
+					<div class="name" style="width:298px;height:50px;line-height:50px;text-align:center;">
+						<span>上海嘉人医疗美容院门诊部</span>
+					</div>
+				</li>
+				<li>
+					<a href="<?php ?>"><img src="/Public/Home/images/hos-2.jpg"></a>
+					<div class="name" style="width:298px;height:50px;line-height:50px;text-align:center;">
+						<span>上海港华医院</span>
+					</div>
+				</li>
+				<li style="margin:0 50px;">
+					<a href="<?php ?>"><img src="/Public/Home/images/hos-3.jpg"></a>
+					<div class="name" style="width:298px;height:50px;line-height:50px;text-align:center;">
+						<span>上海华美医疗美容医院</span>
+					</div>
+				</li>
+				<li>
+					<a href="<?php ?>"><img src="/Public/Home/images/hos-1.jpg"></a>
+					<div class="name" style="width:298px;height:50px;line-height:50px;text-align:center;">
+						<span>上海嘉人医疗美容院门诊部</span>
+					</div>
+				</li>
+-->
+				<p class="clear"></p>
+			</ul>
+<style type="text/css">
+.hos-page>div a,span{
+	padding:0 15px ;
+	color:#C40000;
+}
+.hos-page .current{
+	color:#000000;
+}
+
+.hos-page .prev{
+	color:blue;
+}
+.hos-page .next{
+	position: none;
+	color:#C40000;
+}
+
+.hos-page div{
+	text-align:center;
+}
+
+</style>
+			<div class="hos-page" style="">
+				<?php echo $data['page'];?>
+			</div>
+				
+<!--
+			<div class="h-page">
+				<ul style="color:#000;">
+					<li><a href="javascript:void(0)"><img src="/Public/Home/images/bl.jpg" alt=""> PREV</a></li>
+					<li><a href="javascript:void(0)">1</a></li>
+					<li><a style="color:red;" href="javascript:void(0)"><b>2</b></a></li>
+					<li><a href="javascript:void(0)">3</a></li>
+					<li><a href="javascript:void(0)">...</a></li>
+					<li><a href="javascript:void(0)">20</a></li>
+					<li><a style="color:red;" href="javascript:void(0)">NEXT <img src="/Public/Home/images/rr.jpg" alt=""></a></li>
+					<p class="clear"></p>
+				</ul>			
+			</div>
+-->
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php require_once('/Public/Home/footer.html');?>

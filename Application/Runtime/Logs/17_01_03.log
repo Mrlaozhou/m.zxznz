@@ -1,0 +1,279 @@
+[ 2017-01-03T10:02:32+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/44
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001341s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002134s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.003668s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000200s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000158s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 45 ) [ RunTime:0.026672s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000320s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 46 ) [ RunTime:0.019390s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 44 ) [ RunTime:0.012957s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000811s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000875s ]
+
+[ 2017-01-03T10:07:59+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/47
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001106s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001965s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.003855s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000269s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000295s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 48 ) [ RunTime:0.032269s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 47 ) [ RunTime:0.012923s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001315s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001436s ]
+
+[ 2017-01-03T10:09:46+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/49
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000607s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001069s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.003674s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000199s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000159s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 50 ) [ RunTime:0.021276s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000329s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 51 ) [ RunTime:0.019327s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 49 ) [ RunTime:0.013051s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001208s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001314s ]
+
+[ 2017-01-03T10:12:41+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/52
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000664s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001117s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.003622s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000223s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000161s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 53 ) [ RunTime:0.021358s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000617s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 54 ) [ RunTime:0.010952s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 52 ) [ RunTime:0.020008s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001269s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001353s ]
+
+[ 2017-01-03T10:17:26+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/58
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000551s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000964s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.003768s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000584s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000635s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 59 ) [ RunTime:0.025864s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000339s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 60 ) [ RunTime:0.012494s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 58 ) [ RunTime:0.019874s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000764s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000823s ]
+
+[ 2017-01-03T10:24:48+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/61
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001104s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.005187s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000249s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000197s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 62 ) [ RunTime:0.032896s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000493s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 63 ) [ RunTime:0.011352s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 61 ) [ RunTime:0.019820s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000837s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000909s ]
+
+[ 2017-01-03T10:26:09+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/66
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000685s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001392s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.004709s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000311s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 66 ) [ RunTime:0.021727s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000909s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000988s ]
+
+[ 2017-01-03T10:26:15+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/64
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000672s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001143s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.003739s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000239s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000181s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 65 ) [ RunTime:0.029123s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 64 ) [ RunTime:0.013135s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000852s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000911s ]
+
+[ 2017-01-03T10:26:49+08:00 ] 127.0.0.1 /index.php/Admin/Privilege/del/id/67
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000622s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001150s ]
+SQL: SHOW COLUMNS FROM `emp_privilege` [ RunTime:0.003552s ]
+SQL: SELECT * FROM `emp_privilege`  [ RunTime:0.000202s ]
+SQL: DELETE FROM `emp_privilege` WHERE ( `id` = 67 ) [ RunTime:0.015474s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000749s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000807s ]
+
+[ 2017-01-03T10:38:24+08:00 ] 127.0.0.1 /index.php/Admin/Comment/index
+ERR: 无法加载控制器:Comment
+
+[ 2017-01-03T10:38:25+08:00 ] 127.0.0.1 /index.php/Admin/Wed/index
+ERR: 无法加载控制器:Wed
+
+[ 2017-01-03T10:53:16+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:04:42+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:07:14+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:08:56+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:14:02+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:14:08+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:15:51+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:15:52+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:15:52+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:15:52+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:15:53+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:16:13+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:16:14+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:18:49+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:19:28+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T11:37:41+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:10:37+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:10:40+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:10:41+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:10:44+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:10:45+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:10:46+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:10:46+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:10:46+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:10:47+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:11:54+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:11:57+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:11:58+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:11:58+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:11:58+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:12:45+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:13:15+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:13:58+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:14:35+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:14:56+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:16:57+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:18:42+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:19:04+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:19:29+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:19:42+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:20:40+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:22:24+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T12:22:48+08:00 ] 127.0.0.1 /index.php/Admin/Login/chk_code.html
+ERR: 非法操作:chk_code
+
+[ 2017-01-03T15:03:23+08:00 ] 127.0.0.1 /index.php/Admin
+ERR: Think\Controller:_construct方法不存在！
+
+[ 2017-01-03T15:37:50+08:00 ] 127.0.0.1 /index.php/Admin/Wed/index
+ERR: 无法加载控制器:Wed
+
+[ 2017-01-03T15:37:51+08:00 ] 127.0.0.1 /index.php/Admin/Comment/index
+ERR: 无法加载控制器:Comment
+
+[ 2017-01-03T15:37:52+08:00 ] 127.0.0.1 /index.php/Admin/Wed/index
+ERR: 无法加载控制器:Wed
+
+[ 2017-01-03T15:37:52+08:00 ] 127.0.0.1 /index.php/Admin/Comment/index
+ERR: 无法加载控制器:Comment
+
+[ 2017-01-03T16:32:58+08:00 ] 127.0.0.1 /index.php/Admin/Wed/index
+ERR: 无法加载控制器:Wed
+
+[ 2017-01-03T16:32:59+08:00 ] 127.0.0.1 /index.php/Admin/Comment/index
+ERR: 无法加载控制器:Comment
+

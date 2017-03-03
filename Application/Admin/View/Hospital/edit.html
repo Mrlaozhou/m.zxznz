@@ -1,0 +1,305 @@
+<layout name="layout" />
+
+	<link href="__PUBLIC__/umeditor1_2_2-utf8-php/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/third-party/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/lang/zh-cn/zh-cn.js"></script>
+    
+<div class="tab-div">
+    <div id="tabbar-div">
+        <p>
+            <span class="tab-front">基本信息</span>
+            <span class="tab-back">医院介绍</span>
+            <span class="tab-back">医院相册</span>
+        </p>
+    </div>
+    <div id="tabbody-div">
+	    <form method="post" action="__SELF__" enctype="multipart/form-data" >
+	    	<!-- 基本信息 -->
+	        <table class="tab_content" cellspacing="1" cellpadding="3" width="100%">
+	            <tr>
+	                <td class="label">医院名称</td>
+	                <td>
+	                    <input type="text" name="name" size="60" maxlength="60" value="<?php echo $info['name'];?>" />
+	                    <span class="require-field">*</span>
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            
+	            <tr>
+	                <td class="label">医院地址</td>
+	                <td>
+						<?php echo $info['address'];?><br /><br />
+
+	                    <select name="province" now="<?php echo $address[0];?>">
+	                    	<option value="">请选择省份</option>
+	                    	<?php foreach($smp->province as $k => $v):?>
+	                    	<option value="<?php echo $v['name'];?>" 
+	                    		<?php if($address[0] == $v['name']){echo "selected='selected'";};?>>
+	                    		<?php echo $v['name'];?>
+	                    	</option>
+	                    	<?php endforeach;?>
+	                    </select>
+
+	        			<select name="city" now="<?php echo $address[1];?>">
+	                    	<option value="">请选择城市</option>
+	                    </select><br /><br />
+
+	                    请填写详细地址：<input type="text" name="detial" size='40' placeholder="区县、街道、号" value='<?php echo $address[2];?>'>
+	                    <span class="require-field">*</span>
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">医院分类</td>
+	                <td>
+					<?php foreach($types as $k => $v):?>
+						<input name="type_ids[]" type="checkbox" value="<?php echo $v['id'];?>"  
+							<?php if( in_array($v['id'],$typeIds) ){ echo "checked='checked'"; }?>
+						 />
+						<?php echo $v['type_name'];?>
+					<?php endforeach;?>
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">医院照片</td>
+	                <td>
+	                    <input type="file" name="logo" />
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            <tr>
+		            <td></td>
+	                <td>
+	                	<img src="__PUBLIC__/Uploads/<?php echo $info['logo'];?>" width='60' />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">医院电话</td>
+	                <td>
+	                    <input type="text" name="tel" size='30' value="<?php echo $info['tel'];?>" />
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            
+	            <tr>
+	                <td class="label">是否显示</td>
+	                <td>
+	                    <input type="radio" name="is_show" value="1" <?php if($info['is_show'] == 1){echo "checked='checked'";}?>/> 是
+	                    <input type="radio" name="is_show" value="0"  <?php if($info['is_show'] == 0){echo "checked='checked'";}?> /> 否
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">显示到主页</td>
+	                <td>
+	                    <input type="radio" name="is_index" value="1" <?php if($info['is_index'] == 1){echo "checked='checked'";}?>/> 是
+	                    <input type="radio" name="is_index" value="0"  <?php if($info['is_index'] == 0){echo "checked='checked'";}?> /> 否
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">是否置顶</td>
+	                <td>
+	                    <input type="radio" name="is_top" value="<?php echo time();?>" <?php if($info['is_top'] != 0){echo "checked='checked'";}?>/> 是
+	                    <input type="radio" name="is_top" value="0"  <?php if($info['is_top'] == 0){echo "checked='checked'";}?> /> 否
+	                    <br /><br />
+	                </td>
+	            </tr>
+
+	        </table>
+	        <!-- 医院描述 -->
+	        <table style="display:none;" class="tab_content" cellspacing="1" cellpadding="3" width="100%">
+	        	<tr>
+	                <td><textarea id="intro" name="intro" cols="60" rows="4" ><?php echo $info['intro'];?></textarea></td>
+	            </tr>
+	        </table>
+	        <!-- 医院相册 -->
+	        <table id="table_pic_list" style="display:none;" class="tab_content" cellspacing="1" cellpadding="3" width="100%">
+	        	<tr>
+	                <td><input id="btn_add_pic" type="button" value="添加一张" /></td>
+	            </tr>
+
+	            <tr>
+	            	<td>
+	            		<ul style="list-style:none;">
+			            	<?php foreach($imgs as $k => $v):?>
+			            	<li style="margin:10px 5px 10px 5px;float:left;">
+			            		<img src="__PUBLIC__/Uploads/<?php echo $v['path'];?>" width='60'>
+			            		<input onclick="delPic(this)" picId="<?php echo $v['id'];?>" type="button" value="删除" >
+			            	</li>
+			            	<?php endforeach;?>	            			
+	            		</ul>
+	            	</td>
+	            </tr>
+	            <tr>
+		            <td><input type="file" name="pic[]" /></td>
+	            </tr>
+	        </table>
+	        <!-- 提交按钮 -->
+	        <table cellspacing="1" cellpadding="3" width="100%">
+	        	<tr>
+	                <td colspan="2" align="center"><br />
+	                <input type="hidden" name="id" value="<?php echo $info['id'];?>">
+	                    <input type="submit" class="button" value=" 确定 " />
+	                    <input type="reset" class="button" value=" 重置 " />
+	                </td>
+	            </tr>
+	        </table>
+	    </form>
+    </div>
+</div>
+
+<script>
+UM.getEditor('intro', {
+	initialFrameWidth : "80%"
+});
+function addNewExtCat(btn)
+{
+	// 选择后面的下拉框并克隆一个
+	var newSel = $(btn).next("select").clone();
+	// 把新的下拉框添加到当前TD的最后
+	$(btn).parent().append(newSel);
+}
+// 为类型绑定change事件
+$("select[name=province]").change(function(){
+	// 先取出选择的类型ID
+	var province = $(this).val();
+	province = encodeURI(encodeURI(province));
+	var html = '';
+	$.ajax({
+		type : "GET",
+		url : "<?php echo U('ajaxGetCitys', '', FALSE); ?>/province/"+province,
+		dataType : "json",
+		success : function(data)
+		{
+			//拼接代码
+			$(data).each(function(k,v){
+
+				html += "<option value='"+v+"'>"+v;
+				html += "</option>";	
+
+			});
+			//把代码追加到select[name='city']
+			$("select[name=city]").html(html);
+		}
+	});
+});
+function onloadAjax()
+{
+	var province = $("select[name=province]").val();
+	var now = $("select[name=city]").attr('now');
+	province = encodeURI(encodeURI(province));
+	var html = '';
+	if( province )
+	{
+		$.ajax({
+			type : "GET",
+			url : "<?php echo U('ajaxGetCitys', '', FALSE); ?>/province/"+province,
+			dataType : "json",
+			success : function(data)
+			{
+				$(data).each(function(k,v){
+					//拼接代码
+					if(v == now)
+					{
+						html += "<option value='"+v+"' selected='selected'>"+v;
+						html += "</option>";					
+					}
+					else
+					{
+						html += "<option value='"+v+"'>"+v;
+						html += "</option>";	
+					}
+					//把代码追加到select[name='city']
+					$("select[name=city]").html(html);					
+				})
+
+			}
+		});		
+	}
+	else
+	{
+		html = "<option valuse=''>请选择城市</option>";
+		//把代码追加到select[name='city']
+		$("select[name=city]").html(html);
+	}
+}
+//网页加载完成  调用
+onloadAjax();
+
+
+
+// +号的事件
+function addRow(a)
+{
+	// 先选中所在的LI标签
+	var li = $(a).parent();
+	if(li.find('a').html() == '[+]')
+	{
+		// 克隆一个新的LI
+		var newLi = li.clone();
+		// 变成-号
+		newLi.find('a').html('[-]');
+		// 新LI放到LI后面
+		li.after(newLi);
+	}
+	else
+		li.remove();
+}
+$("#tabbar-div p span").click(function(){
+	// 获取点击的是第几个
+	var i = $(this).index();
+	// 先隐藏所有的table
+	$(".tab_content").hide();
+	// 显示第i个
+	$(".tab_content").eq(i).show();
+	$(".tab-front").removeClass("tab-front").addClass('tab-back');
+	$(this).removeClass("tab-back").addClass('tab-front');
+});
+
+$("#btn_add_pic").click(function(){
+	$("#table_pic_list").append('<tr><td><input type="file" name="pic[]" /></td></tr>');
+});
+
+function delPic(ipt)
+{
+	var imgId = $(ipt).attr('picId');
+	if(window.confirm('你确定要删除这张照片吗？'))
+	{
+		$.ajax({
+			url:"/index.php/Admin/Hospital/ajaxDelPic/id/"+imgId,
+			type:'GET',
+			dataType:'json',
+			success:function(data){
+				if(data.result == 1)
+				{
+					alert("删除成功！！");
+					$(ipt).parent().remove();
+				}
+				else
+				{
+					alert("删除失败！！请联系开发者");
+				}
+			}
+		});
+	}
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

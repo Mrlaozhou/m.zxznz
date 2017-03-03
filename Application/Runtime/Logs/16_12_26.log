@@ -1,0 +1,24 @@
+[ 2016-12-26T09:17:34+08:00 ] 127.0.0.1 /index.php/Home/Index/login
+ERR: 模板不存在:./Application/Home/View/Index/login.html
+
+[ 2016-12-26T09:18:24+08:00 ] 127.0.0.1 /index.php/Home/Index/login
+ERR: 没有定义数据库配置
+
+[ 2016-12-26T11:58:33+08:00 ] 127.0.0.1 /index.php/Comment/Index/index.html
+ERR: 无法加载控制器:Index
+
+[ 2016-12-26T14:09:57+08:00 ] 127.0.0.1 /index.php/Home/Index/register
+ERR: Think\Model:getFields方法不存在！
+
+[ 2016-12-26T14:11:02+08:00 ] 127.0.0.1 /index.php/Home/Index/register
+ERR: Think\Model:getFields方法不存在！
+
+[ 2016-12-26T17:33:50+08:00 ] 127.0.0.1 /index.php/Home/Index/login.html
+ERR: Think\Model:checkLogin方法不存在！
+
+[ 2016-12-26T17:34:55+08:00 ] 127.0.0.1 /index.php/Home/Index/login.html
+ERR: 模板不存在:./Application/Home/View/Index/login.html
+
+[ 2016-12-26T17:40:05+08:00 ] 127.0.0.1 /index.php/Home/Index/login.html
+ERR: 模板不存在:./Application/Home/View/Index/login.html
+
