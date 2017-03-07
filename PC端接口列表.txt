@@ -7,6 +7,9 @@
 
 http://www.zxznz.cn/index.php/Home/Index/sendMsg
 
+校验验证码
+
+http://www.zxznz.cn/index.php/Home/Index/checkCode
 
 
 用户别名（昵称）验证
