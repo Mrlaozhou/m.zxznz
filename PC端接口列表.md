@@ -1,0 +1,17 @@
+注册页面
+用户名（手机号）是否被注册		http://www.zxznz.cn/index.php/home/index/checkExists
+
+给用户发送验证短信
+http://www.zxznz.cn/index.php/Home/Index/sendMsg
+
+用户别名（昵称）验证
+www.zxznz.cn/index.php/Home/Index/checkAlias
+
+首次密码验证
+www.zxznz.cn/index.php/Home/Index/checkPwd
+
+密码核实
+www.zxznz.cn/index.php/Home/Index/confirmPwd
+
+
+
