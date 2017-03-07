@@ -29,4 +29,6 @@ www.zxznz.cn/index.php/Home/Index/checkPwd
 www.zxznz.cn/index.php/Home/Index/confirmPwd
 
 
+注册
 
+www.zxznz.cn/index.php/Home/Index/register_user
