@@ -305,7 +305,7 @@ function remove_dir($rootDir)
 
 	foreach($list as $k => $v)
 	{
-		if( is_file($item = $rootDir.'/'.$v) )
+		if( is_file($item = $rootDir.'/'.$v) && $v != '.' && $v = '..' )
 			@unlink($item) or die('function _ remove_dir is eroor !');;
 	}
 	$result = rmdir($rootDir) ?  TRUE : FALSE;
