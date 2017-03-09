@@ -282,3 +282,73 @@ function Post($curlPost,$url)
 		curl_close($curl);
 		return $return_str;
 }
+
+/**
+ * [remove_dir 删除非空文件夹（不是递归）]
+ * @param  [type] $rootDir [文件夹路径]
+ * @return [type]          [TRUE FALSE]
+ */
+function remove_dir($rootDir)
+{
+	$rootDir = trim($rootDir);
+	//判断是否是目录
+	if( !is_dir($rootDir) )
+		return FALSE;
+
+	//打开目录列表
+	$list = scandir($rootDir);
+
+	/********禁止删除********/
+	array_shift($list);
+	array_shift($list);
+	/******禁止删除 end******/
+
+	foreach($list as $k => $v)
+	{
+		if( is_file($item = $rootDir.'/'.$v) )
+			@unlink($item) or die('function _ remove_dir is eroor !');;
+	}
+	$result = rmdir($rootDir) ?  TRUE : FALSE;
+	return $result;
+}
+
+/**
+ * [UnRar 解压 .rar压缩包]
+ * @param [type] $filename [压缩包路径]
+ * @param [type] $savepath [解压路径]
+ * @param [type] $del 	   [是否删除包文件]
+ */
+function UnRar($filename,$savepath,$del=FALSE)
+{
+	//转换编码
+	$filename = iconv('utf-8','gb2312',$filename);
+	//打开rar资源
+	$res = rar_open($filename) or die('function _ UnRar 1');
+	$list = rar_list($res) or die('function _ UnRar 2');
+
+	$savepath = trim($savepath);
+	$pattern = '/\".*\"/';
+
+	foreach($list as $file)
+	{
+		preg_match($pattern, $file, $matches, PREG_OFFSET_CAPTURE);
+		$pathStr=$matches[0][0];
+		$pathStr=str_replace("\"",'',$pathStr);
+		// echo "<pre>";
+		// print_r($pathStr);
+		$entry = rar_entry_get($res, $pathStr) or die('function _ UnRar 3');
+		$entry->extract($savepath); // extract to the current dir
+	}
+	rar_close($res); 
+
+	if($del === TRUE)
+		@unlink($filename);
+}
+
+
+
+
+
+
+
+

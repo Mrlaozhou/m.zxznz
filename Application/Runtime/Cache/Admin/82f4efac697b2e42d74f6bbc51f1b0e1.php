@@ -62,6 +62,6 @@
 <script>
 </script>
 
-<div id="footer"> e美评 后台管理系统</div>
+<div id="footer"> ZXZNZ 后台管理系统</div>
 </body>
 </html>

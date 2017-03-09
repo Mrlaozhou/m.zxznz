@@ -1,0 +1,229 @@
+<layout name="layout" />
+
+	<link href="__PUBLIC__/umeditor1_2_2-utf8-php/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/third-party/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/lang/zh-cn/zh-cn.js"></script>
+    
+<div class="tab-div">
+    <div id="tabbar-div">
+        <p>
+            <span class="tab-front">发布基本信息</span>
+            <!-- <span class="tab-back">发布介绍</span> -->
+            <!-- <span class="tab-back">活动照片</span> -->
+        </p>
+    </div>
+    <div id="tabbody-div">
+	    <form method="post" action="__SELF__" enctype="multipart/form-data" >
+	    	<!-- 基本信息 -->
+	        <table class="tab_content" cellspacing="1" cellpadding="3" width="100%">
+	            <tr>
+	                <td class="label">发布标题</td>
+	                <td>
+	                    <input type="text" name="title" size="60" maxlength="60" value="" placeholder="建议言简意赅" />
+	                    <span class="require-field">*</span>
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">行为</td>
+	                <td>
+	                    <input type="text" name="action" value="" />
+	                    <span class="require-field">* (英文与数字组合，英文字母开头)</span>
+	                    <br /><br />
+	                </td>
+	            </tr>
+	        
+	            <tr>
+	                <td class="label">上传页面</td>
+	                <td>
+	                    <input type="file" name="html" />
+	                    <span class="require-field">*</span>
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">上传背景图</td>
+	                <td>
+	                    <input type="file" name="bg" />
+	                    <span class="require-field">*</span>
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">上传图片压缩包</td>
+	                <td>
+	                    <input type="file" name="imgRar" />
+	                    <span class="require-field">*</span>
+	                    <br /><br />
+	                </td>
+	            </tr>
+				<tr>
+					<td class="label">背景类型</td>
+					<td>
+	                    <input type="radio" name="bg_type" value="1" /> 1
+	                    <input type="radio" name="bg_type" value="2" /> 2
+	                    <input type="radio" name="bg_type" value="3" /> 3
+	                    <input type="radio" name="bg_type" value="4" /> 4
+	                    &nbsp;&nbsp;&nbsp;
+	                    <img style="width:50px;" src="/Public/Admin/Images/bg_type.png">
+	                    <br /><br />
+	                </td>
+				</tr>
+	            <tr>
+	                <td class="label">时间</td>
+	                <td>
+	                	<script language="javascript" type="text/javascript" src="__PUBLIC__/date/WdatePicker.js"></script>
+	                    <input class="Wdate" type="text" name="begin" onClick="WdatePicker()">
+	                    <span class="require-field">*</span>          
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">发布介绍</td>
+	                <td>
+	                	<textarea name="intro" style="width:400px;height:80px;"></textarea>
+	                    <span class="require-field">*</span>
+	                    <br /><br />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">是否显示</td>
+	                <td>
+	                    <input type="radio" name="is_show" value="1"  checked="checked" /> 是
+	                    <input type="radio" name="is_show" value="0" /> 否
+	                    <br /><br />
+	                </td>
+	            </tr>
+	          
+	        </table>
+	        
+	        <!-- 提交按钮 -->
+	        <table cellspacing="1" cellpadding="3" width="100%">
+	        	<tr>
+	                <td colspan="2" align="center"><br />
+	                    <input type="submit" class="button" value=" 确定 " />
+	                    <input type="reset" class="button" value=" 重置 " />
+	                </td>
+	            </tr>
+	        </table>
+	    </form>
+    </div>
+</div>
+
+<script>
+UM.getEditor('intro', {
+	initialFrameWidth : "80%"
+});
+function addNewExtCat(btn)
+{
+	// 选择后面的下拉框并克隆一个
+	var newSel = $(btn).next("select").clone();
+	// 把新的下拉框添加到当前TD的最后
+	$(btn).parent().append(newSel);
+}
+// 为类型绑定change事件
+$("select[name=province]").change(function(){
+	// 先取出选择的类型ID
+	var province = $(this).val();
+	province = encodeURI(encodeURI(province));
+	var html = '';
+	$.ajax({
+		type : "GET",
+		url : "<?php echo U('ajaxGetCitys', '', FALSE); ?>/province/"+province,
+		dataType : "json",
+		success : function(data)
+		{
+			//拼接代码
+			$(data).each(function(k,v){
+				html += "<option value='"+v+"'>"+v;
+				html += "</option>";
+			});
+			//把代码追加到select[name='city']
+			$("select[name=city]").html(html);
+		}
+	});
+});
+function onloadAjax()
+{
+	var province = $("select[name=province]").val();
+	province = encodeURI(encodeURI(province));
+	var html = '';
+	if( province )
+	{
+		$.ajax({
+			type : "GET",
+			url : "<?php echo U('ajaxGetCitys', '', FALSE); ?>/province/"+province,
+			dataType : "json",
+			success : function(data)
+			{
+				//拼接代码
+				$(data).each(function(k,v){
+					html += "<option value='"+v+"'>"+v;
+					html += "</option>";
+				});
+				//把代码追加到select[name='city']
+				$("select[name=city]").html(html);
+			}
+		});		
+	}
+	else
+	{
+		html = "<option valuse=''>请选择城市</option>";
+		//把代码追加到select[name='city']
+		$("select[name=city]").html(html);
+	}
+}
+//网页加载完成  调用
+onloadAjax();
+
+
+
+// +号的事件
+function addRow(a)
+{
+	// 先选中所在的LI标签
+	var li = $(a).parent();
+	if(li.find('a').html() == '[+]')
+	{
+		// 克隆一个新的LI
+		var newLi = li.clone();
+		// 变成-号
+		newLi.find('a').html('[-]');
+		// 新LI放到LI后面
+		li.after(newLi);
+	}
+	else
+		li.remove();
+}
+$("#tabbar-div p span").click(function(){
+	// 获取点击的是第几个
+	var i = $(this).index();
+	// 先隐藏所有的table
+	$(".tab_content").hide();
+	// 显示第i个
+	$(".tab_content").eq(i).show();
+	$(".tab-front").removeClass("tab-front").addClass('tab-back');
+	$(this).removeClass("tab-back").addClass('tab-front');
+});
+
+$("#btn_add_pic").click(function(){
+	$("#table_pic_list").append('<tr><td><input type="file" name="pic[]" /></td></tr>');
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

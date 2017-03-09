@@ -45,8 +45,8 @@ class ActiveModel extends Model
 
     			//修改图片尺寸
     			//changeImage($img,$path,$width,$height,$saveName,$type = 6)
-                $oldPic = $data['pic'];
-                $data['pic'] = changeImage(__UPLOADS__.$oldPic,__UPLOADS__,550,300,$oldPic);
+                //$oldPic = $data['pic'];
+                //$data['pic'] = changeImage(__UPLOADS__.$oldPic,__UPLOADS__,550,300,$oldPic);
     		}else
     		{
     			$this->error = $upload->getError();
@@ -87,8 +87,8 @@ class ActiveModel extends Model
 
                 //修改图片尺寸
                 //changeImage($img,$path,$width,$height,$saveName,$type = 6)
-                $oldPic = $data['pic'];
-                $data['pic'] = changeImage(__UPLOADS__.$oldPic,__UPLOADS__,550,300,$oldPic);
+                // $oldPic = $data['pic'];
+                // $data['pic'] = changeImage(__UPLOADS__.$oldPic,__UPLOADS__,550,300,$oldPic);
             }else
             {
                 $this->error = $upload->getError();

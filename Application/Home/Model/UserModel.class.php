@@ -4,13 +4,9 @@ use Think\Model;
 
 class UserModel extends Model
 {
-	protected $insertFields = array('username','password','e-mail','create_time');
-	protected $updateFields = array('id','username','password','last_time');
-	protected $_validate = array(
-		array('username' , 'require' , '用户名不能为空' , 1),
-		array('username' , 'checkUser' , '用户名已经存在' , 2,'callback'),
-		array('e-mail' , 'email' , '邮箱格式不正确' , 1),
-		);
+	protected $insertFields = array('username','password','alias','create_time','last_time');
+	protected $updateFields = array('id','username','password','alias','create_time','last_time');
+	protected $_validate = array();
 
 	protected function _before_insert(&$data,$options)
 	{
@@ -37,26 +33,6 @@ class UserModel extends Model
 			  ["create_time"] => int(1482742177)
 			}
 		*/
-		
-		//获得随机密码
-		$password = getRandStr(6,1);
-
-		//把密码发送给用户
-		$result = sendEmail('上海纽珀' , '您的六位数密码为：&nbsp;&nbsp;&nbsp;'.$password , $data['e-mail']);
-
-		//判断如果发送成功 , 把用户信息存入数据库
-		if ( $result === true )
-		{
-			$data['create_time'] = time();
-			$data['last_time'] 	 = time();
-			$data['password']	 = md5(trim($password));
-		}
-		else
-		{
-			//定义错误信息
-			$this->error = $result;
-			return false;
-		}
 	}
 	protected function _after_insert($data,$options)
 	{}
@@ -115,4 +91,5 @@ class UserModel extends Model
 			return 0;
 		}
 	}
+
 } 

@@ -2,15 +2,11 @@
 namespace Admin\Controller;
 use Think\Controller;
 class TestController extends BaseController{
-	public function index(){
-		$a = 3;
-		$b = 3;
-		if( $a=5 || $b=5 )
-		{
-			$a++;
-			$b++;
-		}
-		echo "$a,$b";
+	public function index()
+	{
+		//UnRar(__UPLOADS__.'/Publish_img/2017-03-08.rar',__UPLOADS__.'/Publish_img',TRUE);
+		
+		//rename(__UPLOADS__.'Publish_img/test8',__UPLOADS__.'Publish_img/test9');
 	}
 }
 
