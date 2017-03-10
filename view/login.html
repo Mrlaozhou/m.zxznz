@@ -18,7 +18,7 @@
 	<script src="../js/jquery-1.11.3.min.js"></script>
 	<!-- <script src="http://libs.baidu.com/jqueryui/1.8.22/jquery-ui.min.js "></script> -->
 	<!-- <script src="../js/jquery.fullpage.js"></script> -->
-	<!-- <script src="../js/jquery.touchSwipe.min.js"></script> -->
+     	<!-- <script src="../js/jquery.touchSwipe.min.js"></script> -->
 	<script>
 		$('html').attr('style','font-size:'+$(window).width()/10+'px');
 	</script>
@@ -32,11 +32,26 @@
 		</div>
 	</div>
 
-	<!-- login form group -->
+ 	<!-- login form group -->
 	<div class="form-group">
 		<div class="input-group">
-			<input type="text" placeholder="手机号或用户名">
-			<input type="password" placeholder="密码">
+			<input id='username' name='username' type="text" placeholder="手机号或用户名">
+			<input id='password' name='password' type="password" placeholder="密码">
+			<script>
+				$('#username').blur(function(){
+					var username = $(this).val();
+					$.ajax({
+						url:'www.zxznz.cn/api.php/home/index/checkUser',
+						type:'GET',
+						dataType:'JSON',
+						data:{'username':username},
+						success:function(data)
+						{
+							console.log(data);
+						}
+					})
+				});
+			</script>
 		</div>
 		<div class="error-msg">
 			糟糕！密码错了 <a href="javascript:void(0)">修改密码</a>
@@ -49,6 +64,6 @@
 		</div>
 	</div>
 
-
+ 
 </body>
 </html>
