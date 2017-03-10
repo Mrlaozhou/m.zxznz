@@ -1,0 +1,163 @@
+/*
+*
+*	活动专场
+*
+*/
+
+/*********   top nav  *********/
+/*#####　top-logo  ####*/
+.top-fixed
+{
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 100;
+	transition: top 1s;
+}
+.hide-top
+{
+	top: -80px;
+}
+.top-logo
+{
+	text-align: center;
+	width: 100%;
+	height: 80px;
+	box-sizing: border-box;
+	padding: 20px;
+	background: #fff;
+}
+.top-logo img
+{
+	width: 70px;
+}
+
+
+/*########  nav ############*/
+.nav
+{
+	width: 100%;
+	height: 32px;
+	background: #141413;
+	text-align: center;
+	position: relative;
+}
+.icon-fold
+{
+	width: 20px;
+	height: 20px;
+	background: url(../images/icon-fold.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin-top: 10px;
+	vertical-align: top;
+}
+.fold-content
+{
+	background: #141413;
+	position: absolute;
+	top: 32px;
+	width: 100%;
+	border-top: 1px solid #fff;
+	display: none;
+}
+.fold-content a
+{
+	color: #fff;
+	font-size: 0.375rem;
+	line-height: 40px;
+}
+.icon-close
+{
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background: url(../images/icon-close.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 30px 0 15px;
+}
+
+/********  activity-sub-banner   **********/
+
+.activity-sub-banner
+{
+	width: 9.7rem;
+	padding: 0.3rem 0.15rem 0;
+	margin-top: 112px;
+}
+
+
+/**** activity description ******/
+.product-desc
+{
+	width: 9.7rem;
+	padding: 0.3rem 0.15rem;
+}
+.desc-title
+{
+	font-size: 0.3125rem;
+	color: #333;
+	font-weight: bold;
+}
+.desc-info
+{
+	font-size: 0.3125rem;
+	color: #666;
+}
+
+
+/**** product detail ******/
+.product-detail
+{
+	width: 9.7rem;
+	margin: 0 auto;
+	text-align: center;
+}
+.detail-item
+{
+	padding: 15px 0;
+	border-bottom: 1px solid #ddd;
+}
+.detail-title
+{
+	color: #ff0141;
+	font-size: 0.375rem;
+	font-weight: bold;
+}
+.detail-info
+{
+	color: #666;
+	font-size: 0.3125rem;
+}
+
+
+
+/**** footer *****/
+.footer
+{
+	width: 100%;
+	height: 1.5625rem;
+	font-size: 0;
+}
+.product-price
+{
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+	font-size: 20px;
+	background: #000;
+	color: #fff;
+	text-align: center;
+}
+.notice-btn
+{
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+	font-size: 20px;
+	background: #ff0141;
+	color: #fff;
+	text-align: center;
+	vertical-align: top;
+}

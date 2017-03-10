@@ -1,0 +1,157 @@
+/*#####　top-logo  ####*/
+.top-fixed
+{
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 100;
+	transition: top 1s;
+}
+.hide-top
+{
+	top: -80px;
+}
+.top-logo
+{
+	text-align: center;
+	width: 100%;
+	height: 80px;
+	box-sizing: border-box;
+	padding: 20px;
+	background: #fff;
+}
+.top-logo img
+{
+	width: 70px;
+}
+
+
+/*########  nav ############*/
+.nav
+{
+	width: 100%;
+	height: 32px;
+	background: #141413;
+	text-align: center;
+	position: relative;
+}
+.icon-fold
+{
+	width: 20px;
+	height: 20px;
+	background: url(../images/icon-fold.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin-top: 10px;
+	vertical-align: top;
+}
+.fold-content
+{
+	background: #141413;
+	position: absolute;
+	top: 32px;
+	width: 100%;
+	border-top: 1px solid #fff;
+	display: none;
+}
+.fold-content li
+{
+	height: 30px;
+	line-height: 30px;
+}
+.fold-content a
+{
+	color: #fff;
+	font-size: 0.375rem;
+	/*line-height: 40px;*/
+}
+.icon-close
+{
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background: url(../images/icon-close.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 30px 0 15px;
+}
+
+/************ full-screen-banner************/
+.full-screen-banner
+{
+	margin-top: 112px;
+	position: relative;
+	font-size: 0;
+}
+.show-new-activity
+{
+	width: 100%;
+	height: 25px;
+	background: #2b2a2f;
+	color: #fff;
+	font-size: 10px;
+	text-align: center;
+	line-height: 25px;
+}
+
+
+
+/**** doctor introduction ****/
+.doctor-introduction
+{
+	width: 8.6rem;
+	margin: 25px auto;
+}
+.doctor-detail-title img{
+	width: 5.468rem;
+}
+.doctor-img{
+	width: 3.75rem;
+	height: 3.75rem;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0.47rem 0 0;
+}
+
+.info-title
+{
+	font-size: 0.47rem;
+	color: #333;
+	font-weight: bold;
+	margin: 0.47rem 0;
+}
+.base-info,.duty-info,.hospital-info
+{
+	font-size: 0.31rem;
+}
+.base-info p,.duty-info p,.hospital-info p
+{
+	line-height: 0.625rem;
+}
+.base-info .key,.duty-info .key
+{
+	color: #333;
+	vertical-align: top;
+}
+.base-info .val
+{
+	color: #666;
+}
+.duty-info .key
+{
+	display: inline-block;
+	width: 2rem;
+}
+.duty-info .val
+{
+	display: inline-block;
+	width: 6.6rem;
+}
+
+
+
+
+
+
+
+
