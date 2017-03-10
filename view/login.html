@@ -42,7 +42,7 @@
 					var username = $(this).val();
 					$.ajax({
 						url:'http://www.zxznz.cn/api.php/home/index/checkUser',
-						type:'GET',
+						type:'POST',
 						dataType:'JSON',
 						data:{'username':username},
 						success:function(data)
