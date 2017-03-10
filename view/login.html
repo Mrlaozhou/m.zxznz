@@ -41,7 +41,7 @@
 				$('#username').blur(function(){
 					var username = $(this).val();
 					$.ajax({
-						url:'www.zxznz.cn/api.php/home/index/checkUser',
+						url:'http://www.zxznz.cn/api.php/home/index/checkUser',
 						type:'GET',
 						dataType:'JSON',
 						data:{'username':username},
