@@ -5,6 +5,7 @@ class Base
 	public function __construct()
 	{
 		$this->init_func();
+		$this->init_header();
 	}
 
 	private function init_func()

@@ -7,5 +7,4 @@ class Doctor extends Base
 		$sql = "DESC zxznz_doctor";
 		dump($doctor->All($sql));
 	}
-
 }
