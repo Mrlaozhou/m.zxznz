@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="screen-orientation" content="portrait">
+	<meta name="browsermode" content="application">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="x5-orientation" content="portrait">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="x5-page-mode" content="app">
+	<title>注册</title>
+	<link rel="stylesheet" href="/Html/style/global.css">
+	<link rel="stylesheet" href="/Html/style/register.css">
+	<script src="/Html/js/jquery-1.11.3.min.js"></script>
+	<!-- <script src="http://libs.baidu.com/jqueryui/1.8.22/jquery-ui.min.js "></script> -->
+	<!-- <script src="/Html/js/jquery.fullpage.js"></script> -->
+	<!-- <script src="/Html/js/jquery.touchSwipe.min.js"></script> -->
+	<script>
+		$('html').attr('style','font-size:'+$(window).width()/10+'px');
+	</script>
+</head>
+<body>
+	<div class="dialog">
+		验证码发送失败
+	</div>
+	<!-- header avatar && background -->
+	<div class="header-bg">
+		<div class="page-info">注册</div>
+		<div class="avatar">
+			<img src="/Html/images/avatar-register.png" alt="">
+		</div>
+	</div>
+
+	<!-- register form group is get cpatcha -->
+	<div class="form-group active">
+		<div class="input-group">
+			<input type="text" placeholder="手机号" class="bottom-e input-user" id="user-tel">
+			<a href="javascript:void(0)" class="get-captcha" id="get-captcha">获取</a>
+			<input type="text" placeholder="验证码" class="input-code" id="captcha">
+		</div>
+		<div class="error-msg jvc-error-msg-1">
+			
+		</div>
+		<div class="agree-msg">
+			注册即代表同意 <a href="javascript:void(0)">《用户协议》</a>
+		</div>
+		<div class="next-btn">
+			<a href="javascript:void(0)" id="one-step-next">下一步</a>
+		</div>
+		<div class="register-link">
+			<a href="login.html">直接登录</a>
+		</div>
+	</div>
+
+	<!-- register form group is set nickname && password -->
+	<div class="form-group">
+		<div class="input-group input-group-register">
+			<input type="text" placeholder="会员名称" class="input-user bottom-e" id="nick">
+			<input type="password" placeholder="设置密码" class="bottom-e" id="pwd">
+			<input type="password" placeholder="确认密码" id="pwd_re">
+		</div>
+		<div class="error-msg jvc-error-msg-2">
+			
+		</div>
+		<div class="agree-msg">
+			注册即代表同意 <a href="javascript:void(0)">《用户协议》</a>
+		</div>
+		<div class="next-btn">
+			<a href="javascript:void(0)" id="register">注册</a>
+		</div>
+		<div class="register-link">
+			<a href="login.html">直接登录</a>
+		</div>
+	</div>
+
+	<!-- register success container -->
+	<div class="form-group register-success">
+		<div class="register-success-img">
+			<img src="/Html/images/register-success-img.png" alt="">
+		</div>
+		<div class="register-success-msg">
+			恭喜您，注册成功
+		</div>
+		<div class="login-btn">
+			<a href="login.html">立即登录</a>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	$(function(){
+		$('#user-tel').blur(function(){
+			var phone=$('#user-tel').val();
+			checkExists(phone);	
+		})
+		$('#get-captcha').click(function(){
+			var phone=$('#user-tel').val();
+			getCaptcha(phone);
+		});
+
+		// check user telephone exists
+		function checkExists(phone){
+			if(!isNaN(phone)&&phone.length==11)
+			{
+				$.ajax({
+					url:"http://192.168.0.107/index.php/Home/Index/checkExists",
+					type:"POST",
+					data:{'phone':phone},
+					success:function(res){
+						var result=JSON.parse(res);
+						if(result.status==true)
+						{
+							$('.jvc-error-msg-1').css({'visibility':'hidden'});
+						}
+						else if(result.info==003)
+						{
+							$('.jvc-error-msg-1').css({'visibility':'visible'}).html('手机号已注册');
+						}
+						else
+						{
+							$('.jvc-error-msg-1').css({'visibility':'visible'}).html('手机号不合法');
+						}
+					}
+				})
+			}
+			else
+			{
+				$('.jvc-error-msg-1').css({'visibility':'visible'}).html('手机号不合法');
+			}
+		}
+
+
+		// get telephone captcha ajax
+		function getCaptcha(phone)
+		{
+			$.ajax({
+				url:"http://192.168.0.107/index.php/Home/Index/sendMsg",
+				type:'POST',
+				data:{'mobile':phone},
+				dataType:'json',
+				success:function(res){
+					console.log(res);
+					if(res.status==true)
+					{
+						$('.dialog').html('验证码发送成功').fadeIn(500);
+						setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+					}
+					else if(res.info=='003&!007')
+					{
+						$('.dialog').html('验证码已发送').fadeIn(500);
+						setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+					}
+					else
+					{
+						$('.dialog').html('验证码发送失败').fadeIn(500);
+						setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+					}
+				}
+			})
+		}
+
+		// check telephone captcha ajax
+		$('#one-step-next').click(function()
+		{
+			var captcha=$('#captcha').val();
+			var phone=$('#user-tel').val();
+			checkCaptcha(captcha,phone);	
+		})
+
+		function checkCaptcha(captcha,phone)
+		{
+			$.ajax({
+				url:'http://192.168.0.107/index.php/Home/Index/checkCode',
+				type:'POST',
+				data:{'code':captcha,'mobile':phone},
+				dataType:'json',
+				success:function(res){
+					console.log(res);
+					if(res.status==true)
+					{ 
+						$('.jvc-error-msg-1').css({'visibility':'visible'}).html('验证码正确');
+						$('.form-group').eq(0).removeClass('active');
+						$('.form-group').eq(1).addClass('active');
+					}
+					else if(res.info==007)
+					{
+						$('.jvc-error-msg-1').css({'visibility':'visible'}).html('验证码已过期');
+					}
+					else
+					{
+						$('.jvc-error-msg-1').css({'visibility':'visible'}).html('验证码错误');
+					}
+				}
+			})
+		}
+
+
+		$("#nick").blur(function() {
+			var nick=$('#nick').val();
+			checkNick(nick);
+		});
+		$("#pwd").blur(function() {
+			var pwd=$('#pwd').val();
+			checkPwd(pwd);
+		});
+		$("#pwd_re").blur(function(){
+			var pwd_new=$('#pwd_re').val();
+			var pwd_old=$('#pwd').val();
+			checkConsistency(pwd_new,pwd_old);
+		})
+		$('#register').click(function(){
+			var phone=$('#user-tel').val();
+			var pwd_new=$('#pwd_re').val();
+			var pwd_old=$('#pwd').val();
+			var nick=$('#nick').val();
+			// checkConsistency(pwd_new,pwd_old);
+			register(phone,pwd_old,pwd_new,nick);
+		})
+		// check user nick name is legal
+		function checkNick(nick)
+		{
+			$.ajax({
+				url:'http://192.168.0.107/index.php/Home/Index/checkAlias',
+				type:'POST',
+				data:{'alias':nick},
+				success:function(res)
+				{
+					var result=JSON.parse(res);
+					if(result.status==true)
+					{
+						$('.jvc-error-msg-2').css({'visibility':'hidden'})
+					}
+					else
+					{
+						$('.jvc-error-msg-2').css({'visibility':'visible'}).html('名称不合法');
+					}
+				}
+			})
+		}
+
+		// check password format is legal
+		function checkPwd(pwd)
+		{
+			$.ajax({
+				url:'http://192.168.0.107/index.php/Home/Index/checkPwd',
+				type:'POST',
+				data:{'pwd':pwd},
+				success:function(res)
+				{
+					var result=JSON.parse(res);
+					if(result.status==true)
+					{
+						$(".jvc-error-msg-2").css({'visibility':'hidden'})
+					}
+					else if(result.info==005)
+					{
+						$(".jvc-error-msg-2").css({'visibility':'visible'}).html('密码长度不合法');
+					}
+					else
+					{
+						$(".jvc-error-msg-2").css({'visibility':'visible'}).html('密码不合法');
+					}
+				}
+			})
+		}
+
+
+		// check twice password consistency
+		function checkConsistency(pwd_new,pwd_old)
+		{
+			$.ajax({
+				url:'http://192.168.0.107/index.php/Home/Index/confirmPwd',
+				type:'POST',
+				data:{'new':pwd_new,'old':pwd_old},
+				dataType:'json',
+				success:function(res)
+				{
+					if(res.status==true)
+					{
+						$(".jvc-error-msg-2").css({'visibility':'hidden'}).html('两次输入密码一致')
+					}
+					else
+					{
+						$(".jvc-error-msg-2").css({'visibility':'visible'}).html('两次输入密码不一致');
+					}
+				}
+			})
+		}
+
+
+
+		// do register
+		function register(phone,pwd_old,pwd_new,nick)
+		{
+			$.ajax({
+				url:'http://192.168.0.107/index.php/home/index/register_user',
+				type:'POST',
+				data:{'phone':phone,'old':pwd_old,'new':pwd_new,'alias':nick},
+				dataType:'json',
+				success:function(res){
+					console.log(res);
+					if(res.status==true)
+					{
+						$('.form-group').eq(1).removeClass('active');
+						$('.form-group').eq(2).addClass('active');
+					}
+				}
+			})
+		}
+
+
+
+
+
+
+	})
+</script>

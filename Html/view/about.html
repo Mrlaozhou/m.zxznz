@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -12,21 +12,23 @@
 	<meta name="x5-orientation" content="portrait">
 	<meta name="x5-fullscreen" content="true">
 	<meta name="x5-page-mode" content="app">
-	<title>医院详情</title>
-	<link rel="stylesheet" href="../style/global.css">
-	<link rel="stylesheet" href="../style/hospital-detail.css">
-	<script src="../js/jquery-1.11.3.min.js"></script>
+	<title>关于我们</title>
+	<link rel="stylesheet" href="/Html/style/global.css">
+	<link rel="stylesheet" href="/Html/style/about.css">
+	<script src="/Html/js/jquery-1.11.3.min.js"></script>
 	<!-- <script src="http://libs.baidu.com/jqueryui/1.8.22/jquery-ui.min.js "></script> -->
-	<!-- <script src="../js/jquery.fullpage.js"></script> -->
-	<!-- <script src="../js/jquery.touchSwipe.min.js"></script> -->
+	<!-- <script src="/Html/js/jquery.fullpage.js"></script> -->
+	<!-- <script src="/Html/js/jquery.touchSwipe.min.js"></script> -->
 	<script>
 		$('html').attr('style','font-size:'+$(window).width()/10+'px');
 	</script>
 </head>
 <body>
+
+	<!-- header nav -->
 	<div class="top-fixed">
 		<div class="top-logo">
-			<img src="../images/logo.png" alt="">
+			<img src="/Html/images/logo.png" alt="">
 		</div>
 		<div class="nav">
 			<span class="icon icon-fold" id="open-fold"></span>
@@ -48,33 +50,37 @@
 		</div>
 	</div>
 
+	<!-- about list full screen banner -->
 	<div class=full-screen-banner>
-		<img src="../images/banner-hospital.jpg" alt="">
+		<img src="/Html/images/banner-about.jpg" alt="">
 		<div class="show-new-activity">Show you new activities</div>
 	</div>
-	
-	<div class="hospital-introduction">
-		<div class="hospital-detail-title">
-			<img src="../images/title-hospital-detail.png">
-		</div>
 
-		<div class="hospital-img">
-			<img src="" class="jvc-hospital-img">
+	<div class="about-info">
+		<div class="about-info-title">
+			<div class="about-img">
+				<img src="/Html/images/about-img.jpg" alt="">
+			</div>
+			<div class="about-title-img">
+				<img src="/Html/images/about-title-img.png" alt="">
+			</div>			
 		</div>
-
-		<div class="hospital-name jvc-hospital-name">
-			
-		</div>
-
-		<div class="hospital-info jvc-hospital-info">
-			
+		<div class="about-info-msg">
+			<p>整形指南针VenusCampass成立于2009年，隶属于纽珀（中国）有限公司。</p>
+       		<p>整形指南针VenusCampass是一个专门做高端医美活动的折扣平台，顾客通过参加整形指南针定期举行的大型活动，在保质保量完成蜕变过程的同时还可以享受最大力度的折扣和最优惠的价格。</p>
+       		<p>整形指南针作为E合联盟成员之一，强强联手，将手里多年积攒的资源结合E合联盟的高端平台达到最大程度让利给顾客的目的。</p>
+       		<p整形指南针旨在把各家实体医院打造成有互联网思维的医院></p>
+			<br>
+      		<p>特点：</p>
+       		<p>1）一直让利给顾客 打折优惠</p>
+      		<p>2）方便利民，方方面面站在顾客的角度考虑问题</p>
+       		<p>3）服务好</p>
 		</div>
 	</div>
 </body>
 </html>
 <script>
 	$(function(){
-		$('.template').hide();
 		//定义导航栏展开
 		function openFold()
 		{
@@ -106,7 +112,7 @@
 			closeFold();
 		});
 
-		// 顶部导航动画效果
+		// top navbar run animation when window is scroll
 		var initTop=0;
 		$(window).scroll(function(){
 			if($(this).scrollTop()>initTop)
@@ -121,21 +127,6 @@
 			}
 		})
 
-		var id=location.search.substring(4);//获取查询串
 
-		$.ajax({
-			url: 'http://www.zxznz.cn/api.php/api/Hospital/detial',
-			type: 'POST',
-			data: {'id':id},
-			dataType: 'json',
-			success: function(res){
-				if(res.status==true)
-				{
-					$('.jvc-hospital-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+res.info.logo);
-					$('.jvc-hospital-name').html(res.info.name);
-					$('.jvc-hospital-info').html(res.info.intro);
-				}
-			}
-		})
 	})
 </script>
