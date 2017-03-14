@@ -51,3 +51,14 @@ function jsonTo($config)
 	echo json_encode($config);
 	exit;
 }
+
+
+
+/*******************************/
+function U($config,$type=1)
+{
+	if($typr === 1)
+		echo "index.php?a=".$config;
+	else
+		echo "index.php?c=".$config;
+}
