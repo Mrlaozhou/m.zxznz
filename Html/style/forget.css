@@ -1,0 +1,158 @@
+/*
+*	page login styles
+*
+*/
+
+/**** header avatar && background ****/
+body
+{
+	background: #f5f5f5;
+}
+.header-bg
+{
+	width: 100%;
+	height: 4.0625rem;
+	background: url(../images/bg-login-header.jpg);
+	background-size: 100% 100%;
+	position: relative;
+}
+.avatar
+{
+	width: 2.22rem;
+	height: 2.22rem;
+	border-radius: 1.11rem;
+	box-sizing: border-box;
+	background: rgba(250,250,250,0.8);
+	position: absolute;
+	bottom: -1.11rem;
+	left: 50%;
+	margin-left: -1.11rem;
+	padding: 0.2rem;
+}
+.avatar img
+{
+	border-radius: 50%;
+}
+
+
+/****  login form group ****/
+
+.form-group
+{
+	width: 8.8125rem;
+	margin: 1.7187rem auto 0;
+}
+.input-group
+{
+	width: 100%;
+	height: 3.4375rem;
+	background: #fff;
+	border-radius: 6px;
+	padding: 0.4687rem;
+	box-sizing: border-box;
+	font-size: 0;
+}
+.input-group-register
+{
+	height: 4.6875rem;
+}
+.input-group input
+{
+	width: 100%;
+	height: 1.25rem;
+	box-sizing: border-box;
+	border: none;
+	font-size: 0.5rem;
+	outline: none;
+	text-align: center;
+}
+input:focus::-webkit-input-placeholder{
+    color:transparent;
+}
+.input-group input[type='text']
+{
+	border-bottom: 1px solid #eee;
+	background: url(../images/icon/icon-user.png);
+	background-size: 0.375rem 0.4687rem;
+	background-repeat: no-repeat;
+	background-position: 0.1rem 0.3906rem;
+	padding-left: 0.8rem;
+}
+.input-group input[type='password']
+{
+	background: url(../images/icon/icon-password.png);
+	background-size: 0.375rem 0.4687rem;
+	background-repeat: no-repeat;
+	background-position: 0.1rem 0.3906rem;
+	padding-left: 0.8rem;
+	border-bottom: 1px solid #eee;
+}
+.input-group .no-bottom
+{
+	border: none;
+}
+.agree-msg
+{
+	width: 7.8125rem;
+	height: 0.7182rem;
+	line-height: 0.7182rem;
+	text-align: center;
+	font-size: 0.4rem;
+	/*background: #e2e4e3;*/
+	margin: 0.4rem auto;
+	border-radius: 0 0 6px 6px;
+	/*color: #d11337;*/
+	box-sizing: border-box;
+	padding-left: 0.8rem;
+}
+.agree-msg a
+{
+	color: #0dc5a1;
+}
+.next-btn a
+{
+	display: inline-block;
+	width: 100%;
+	height: 1.5625rem;
+	border-radius: 6px;
+	font-size: 0.7rem;
+	color: #fff;
+	text-align: center;
+	line-height: 1.5625rem;
+	background: -webkit-linear-gradient(#1ccc9e, #00c0a3);
+	margin-top: 0.2rem;
+}
+.register-link
+{
+	text-align: center;
+}
+.register-link a
+{
+	color: #999;
+	font-size: 0.4rem;
+}
+.register-success
+{
+	text-align: center;
+}
+.register-success img
+{
+	width: 2.1875rem;
+}
+.register-success-msg
+{
+	font-size: 0.4687rem;
+	color: #03c1a2;
+	line-height: 1.25rem;
+}
+.login-btn a
+{
+	display: inline-block;
+	width: 2.8125rem;
+	height: 0.9375rem;
+	color: #fff;
+	line-height: 0.9375rem;
+	background: -webkit-linear-gradient(#ffaa2d, #ff953d);
+	border-radius: 6px;
+	font-size: 0.4rem;
+}
