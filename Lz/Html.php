@@ -16,11 +16,9 @@ defined('ACTION') or define('ACTION',isset($_GET['a']) ? trim($_GET['a']) : 'ind
 
 //加载函数文件
 find('./Config/functions.php');
-echo 'haha';
-
 
 if( CREATE )
-	@require_once('/Lz/Base/InitMake.php');
+	require_once('./Lz/Base/InitMake.php');
 if( CONTROLLER )
 	find(SRC_PATH.CONTROLLER.'.php');
 if( ACTION )

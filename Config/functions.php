@@ -57,7 +57,7 @@ function jsonTo($config)
 /*******************************/
 function U($config,$type=1)
 {
-	if($typr === 1)
+	if($type === 1)
 		echo "index.php?a=".$config;
 	else
 		echo "index.php?c=".$config;

@@ -15,6 +15,7 @@
 	<title>首页</title>
 	<link rel="stylesheet" href="/Html/style/global.css">
 	<link rel="stylesheet" href="/Html/style/index.css">
+	<link rel="stylesheet" href="/Html/style/<?php echo ACTION;?>.css">
 	<script src="/Html/js/jquery-1.11.3.min.js"></script>
 	<script src="http://libs.baidu.com/jqueryui/1.8.22/jquery-ui.min.js "></script>
 	<script src="/Html/js/jquery.fullpage.js"></script>
@@ -38,7 +39,7 @@
 						<img src="/Html/images/avatar-default.png" alt="">
 					</div>
 					<div class="user-nick">
-						zhengxingzhinanzhn
+						<!-- zhengxingzhinanzhn -->
 					</div>
 				</div>
 			</div>
@@ -48,13 +49,13 @@
 			<div class="fold-content" id="fold-content">
 				<ul>
 					<li><a href="<?php echo U('index');?>">首页</a></li>
-					<li><a href="about.html">关于我们</a></li>
-					<li><a href="fashion.html">前沿发布</a></li>
-					<li><a href="activity.html">活动专场</a></li>
-					<li><a href="doctor-list.html">专家库</a></li>
-					<li><a href="hospital-list.html">医院专区</a></li>
-					<li><a href="guide.html">整形助手</a></li>
-					<li><a href="contact.html">联系我们</a></li>
+					<li><a href="<?php echo U('about');?>">关于我们</a></li>
+					<li><a href="<?php echo U('fashion');?>">前沿发布</a></li>
+					<li><a href="<?php echo U('activity');?>">活动专场</a></li>
+					<li><a href="<?php echo U('doctor-list');?>">专家库</a></li>
+					<li><a href="<?php echo U('hospital');?>">医院专区</a></li>
+					<li><a href="<?php echo U('guide');?>">整形助手</a></li>
+					<li><a href="<?php echo U('contact');?>">联系我们</a></li>
 				</ul>
 				<div>
 					<a href="javascript:void(0)" class="icon icon-close" id="close-fold"></a>

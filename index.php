@@ -8,5 +8,6 @@ header("Content-Type:text/html;Charset=utf-8");
 
 //是否自动创建
 define('CREATE',TRUE);
+define('DB_NAME','root');
 
 require_once('/Lz/Html.php');
