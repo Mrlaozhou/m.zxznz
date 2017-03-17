@@ -4,7 +4,8 @@
 
 //定义路劲常量
 defined('DS') or define('DS',DIRECTORY_SEPARATOR);
-defined('ROOT_PATH') or define('ROOT_PATH',getcwd().DS);
+// defined('ROOT_PATH') or define('ROOT_PATH',getcwd().DS);
+defined('ROOT_PATH') or define('ROOT_PATH','.'.DS);
 defined('HTML_PATH') or define('HTML_PATH',ROOT_PATH.'Html'.DS);
 defined('SRC_PATH') or define('SRC_PATH',HTML_PATH.'src'.DS);
 defined('VIEW_PATH') or define('VIEW_PATH',HTML_PATH.'view'.DS);

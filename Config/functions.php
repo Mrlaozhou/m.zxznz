@@ -46,10 +46,9 @@ function SQL($config)
 	return is_array($config) ? array_map('SQL',$config) : addcslashes($config);
 }
 
-function jsonTo($config)
+function echoJson($config)
 {
-	echo json_encode($config);
-	exit;
+	exit(json_encode($config));
 }
 
 
@@ -61,4 +60,17 @@ function U($config,$type=1)
 		echo "index.php?a=".$config;
 	else
 		echo "index.php?c=".$config;
+}
+
+function G($config=null)
+{
+	if( $config )
+		return $_GET["{$config}"];
+	return $_GET;
+}
+function P($config)
+{
+	if( $config )
+		return $_POST["{$config}"];
+	return $_POST;
 }
