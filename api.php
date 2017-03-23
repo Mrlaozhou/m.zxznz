@@ -12,5 +12,7 @@ defined('DB_ROOT') or define('DB_ROOT','root');
 defined('DB_PASS') or define('DB_PASS','laozhou');
 defined('ALLOW_HOST') or define('ALLOW_HOST','*');
 
+if( !isset($_SESSION) )
+	session_start();
 
 require_once("Lz/lz.php");

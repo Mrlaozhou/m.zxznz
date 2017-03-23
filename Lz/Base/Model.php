@@ -49,13 +49,13 @@ class Model
 	public function One($sql)
 	{
 		$ps = self::$_db->query($sql);
-		return $ps->fetch();
+		return $ps->fetch(PDO::FETCH_ASSOC);
 	}
 
 	public function All($sql)
 	{
 		$ps = self::$_db->query($sql);
-		return $ps->fetchAll();
+		return $ps->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	public function insert($config)

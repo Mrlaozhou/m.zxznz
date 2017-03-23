@@ -3,22 +3,28 @@ class Doctor extends Base
 {
 	public function index()
 	{
-		/*需求介绍*///提取符合的所有信息
+		/*需求介绍*/// 提取符合的所有信息http://www.mzxznz.cn/api.php?u=a3JxYXZebiZlYmdwYnFeeg%3D%3D
 		$doctor = M('doctor');
-		$sql = "SELECT * FROM
+		$pagesize = 8;
+		//接受参数
+		$page = P('p') ? P('p') : 1;
+		$start = ($page-1)*$pagesize;
+		
+		$sql = "SELECT d.id,d.name,(h.name)hos_name FROM
 					zxznz_doctor AS d 
 					LEFT JOIN zxznz_hospital AS h 
 					ON d.hos_id = h.id
 					WHERE d.is_show = '是' 
 					AND h.is_show = '1'
 					ORDER BY d.id DESC
-					";
+					LIMIT ".$start.",".$pagesize;
+		//dump($doctor);
 		$data = $doctor->All($sql);
 		echoJson($data);
 	}
 	public function detial()
 	{
-		/*需求介绍*///提取单条
+		/*需求介绍*///提取单条 http://www.mzxznz.cn/api.php?u=eW52Z3JxXm4mZWJncGJxXno%3D
 		$id = G('id');
 		if( $id )
 		{
