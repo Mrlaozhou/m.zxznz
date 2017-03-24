@@ -74,3 +74,8 @@ function P($config)
 		return $_POST["{$config}"];
 	return $_POST;
 }
+
+function A($route)
+{
+	return 'api.php?u='.$route;
+}

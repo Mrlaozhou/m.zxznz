@@ -18,7 +18,7 @@ class Active extends Base
 		/*需求介绍*///提取单条 http://www.mzxznz.cn/api.php?u=eW52Z3JxXm4mZWJncGJxXno%3D
 		$model = M('active');
 
-		$id = G('id');
+		$id = P('id');
 		if( $id )
 			exit('冇ID.');
 		$sql = "SELECT * FROM `zxznz_active` WHERE `id` = {$id}";

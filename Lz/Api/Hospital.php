@@ -16,7 +16,7 @@ class Hospital extends Base
 						LIMIT {$start},{$pagesize}";
 		$data = $hospital->All($sql);
 		//dump($data,2);
-		echoJson($data);
+		echoJson(array('status'=>TRUE,'hospital'=>$data));
 	}
 	public function detial()
 	{
@@ -29,7 +29,8 @@ class Hospital extends Base
 		$sql = "SELECT * FROM `zxznz_hospital`
 							 WHERE `id` = {$id}";
 		$info = $model->One($sql);
+		$info['intro'] = htmlspecialchars_decode($info['intro']);
 		//dump($info,2);
-		echoJson($info);
+		echoJson(array('status'=>TRUE,'info'=>$info));
 	}
 }
