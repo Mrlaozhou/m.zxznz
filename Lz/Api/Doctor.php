@@ -10,7 +10,7 @@ class Doctor extends Base
 		$page = P('p') ? P('p') : 1;
 		$start = ($page-1)*$pagesize;
 		
-		$sql = "SELECT d.id,d.name,(h.name)hos_name FROM
+		$sql = "SELECT d.id,d.name,d.picture,(h.name)hos_name FROM
 					zxznz_doctor AS d 
 					LEFT JOIN zxznz_hospital AS h 
 					ON d.hos_id = h.id
@@ -20,16 +20,16 @@ class Doctor extends Base
 					LIMIT ".$start.",".$pagesize;
 		//dump($doctor);
 		$data = $doctor->All($sql);
-		echoJson($data);
+		echoJson(array('status'=>TRUE,'doctor'=>$data));
 	}
 	public function detial()
 	{
 		/*需求介绍*///提取单条 http://www.mzxznz.cn/api.php?u=eW52Z3JxXm4mZWJncGJxXno%3D
-		$id = G('id');
+		$id = P('id');
 		if( $id )
 		{
 			$doctor = M('doctor');
-			$sql = "SELECT d.id,d.name,d.title,d.edu,d.sex,d.name,d.picture,d.duty,d.good,d.intro,d.pass,d.start,(h.name)hos_name,h.intro FROM 
+			$sql = "SELECT d.id,d.name,d.title,d.edu,d.sex,d.name,d.picture,d.duty,d.good,d.intro,d.pass,d.start,(h.name)hos_name,(h.intro)hos_intro FROM 
 						zxznz_doctor AS d 
 						LEFT JOIN zxznz_hospital AS h 
 						ON d.hos_id = h.id 
@@ -37,9 +37,11 @@ class Doctor extends Base
 						AND h.is_show = '1' 
 						AND d.id = {$id} ";
 			$info = $doctor->One($sql);
+			$info['intro'] = htmlspecialchars_decode($info['intro']);
+			$info['hos_intro'] = htmlspecialchars_decode($info['hos_intro']);
 			if( $info )
 			{
-				echoJson($info);			
+				echoJson(array('status'=>TRUE,'info'=>$info));			
 			}
 			else
 			{

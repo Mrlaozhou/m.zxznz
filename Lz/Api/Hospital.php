@@ -29,7 +29,8 @@ class Hospital extends Base
 		$sql = "SELECT * FROM `zxznz_hospital`
 							 WHERE `id` = {$id}";
 		$info = $model->One($sql);
+		$info['intro'] = htmlspecialchars_decode($info['intro']);
 		//dump($info,2);
-		echoJson($info);
+		echoJson(array('status'=>TRUE,'info'=>$info));
 	}
 }

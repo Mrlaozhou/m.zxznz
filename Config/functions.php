@@ -75,7 +75,7 @@ function P($config)
 	return $_POST;
 }
 
-public function A($route)
+function A($route)
 {
 	return 'api.php?u='.$route;
 }
