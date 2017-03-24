@@ -1,7 +1,14 @@
-<?php require_once(HTML_PATH.'public'.DS.'header.html');?>
+<!DOCTYPE html>
+<html lang="en">
+<?php require_once(__ROOT__.'/Html/template/head.php');?>
 
+<?php template_head('关于我们',array('activity-detail.css'),array());?>
+
+<body>
+	<?php require_once(__ROOT__.'/Html/template/header.html')?>
+	
 	<div class="activity-sub-banner">
-		<div><img src="/Html/images/section-2-1.jpg" alt=""></div>
+		<div><img src="../images/section-2-1.jpg" alt=""></div>
 	</div>
 
 	<!-- activity product description -->
@@ -12,7 +19,7 @@
 	</div>
 
 	<div>
-		<img src="/Html/images/sub-banner-5.jpg" alt="">
+		<img src="../images/sub-banner-5.jpg" alt="">
 	</div>
 
 	<!-- product details -->
@@ -50,4 +57,54 @@ B：主动彻底激活皮肤细胞的生命活力， 刺激皮肤胶原蛋白的
 		</div>
 		<div class="notice-btn">预约抢购</div>
 	</div>
-<?php require_once(HTML_PATH.'public'.DS.'footer.html');?>
+</body>
+</html>
+<script>
+	$(function(){
+		//定义导航栏展开
+		function openFold()
+		{
+			$('#fold-content').slideDown(500);
+		}
+
+
+		//定义导航栏收起
+		function closeFold()
+		{
+			$('#fold-content').slideUp(500);
+		}
+
+		//监听展开事件
+		$('#open-fold').click(function(){
+			if($('#fold-content').is(':hidden'))
+			{
+				openFold();
+			}
+			else
+			{
+				closeFold();
+			}
+		});
+
+
+		//监听关闭事件
+		$('#close-fold').click(function(){
+			closeFold();
+		});
+
+		// 顶部导航动画效果
+		var initTop=0;
+		$(window).scroll(function(){
+			if($(this).scrollTop()>initTop)
+			{
+				initTop=$(this).scrollTop();
+				$('.top-fixed').addClass('hide-top')
+			}
+			else if($(this).scrollTop()<initTop)
+			{
+				initTop=$(this).scrollTop();
+				$('.top-fixed').removeClass('hide-top')
+			}
+		})
+	})
+</script>

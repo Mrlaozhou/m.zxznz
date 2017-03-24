@@ -16,14 +16,16 @@ class Hospital extends Base
 						LIMIT {$start},{$pagesize}";
 		$data = $hospital->All($sql);
 		//dump($data,2);
-		echo json_encode($data);
+		echoJson($data);
 	}
 	public function detial()
 	{
 		/*需求介绍*///提取单条 http://www.mzxznz.cn/api.php?u=eW52Z3JxXm4meW5ndmNmYnVeeg%3D%3D
+
 		$model = M('hospital');
 		$id = P('id');
-		
+		if( !$id )
+			exit('冇ID.');
 		$sql = "SELECT * FROM `zxznz_hospital`
 							 WHERE `id` = {$id}";
 		$info = $model->One($sql);

@@ -1,4 +1,36 @@
-<?php require_once(HTML_PATH.'public'.DS.'header.html');?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="screen-orientation" content="portrait">
+	<meta name="browsermode" content="application">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="x5-orientation" content="portrait">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="x5-page-mode" content="app">
+	<title>登陆</title>
+	<link rel="stylesheet" href="../style/global.css">
+	<link rel="stylesheet" href="../style/login.css">
+	<script src="../js/jquery-1.11.3.min.js"></script>
+	<!-- <script src="http://libs.baidu.com/jqueryui/1.8.22/jquery-ui.min.js "></script> -->
+	<!-- <script src="../js/jquery.fullpage.js"></script> -->
+	<!-- <script src="../js/jquery.touchSwipe.min.js"></script> -->
+	<script>
+		$('html').attr('style','font-size:'+$(window).width()/10+'px');
+	</script>
+</head>
+<body>
+
+	<!-- header avatar && background -->
+	<div class="header-bg">
+		<div class="avatar">
+			<img src="../images/avatar-default.png" alt="">
+		</div>
+	</div>
 
 	<!-- login form group -->
 	<div class="form-group">
@@ -16,4 +48,7 @@
 			<a href="javascript:void(0)">先去注册</a>
 		</div>
 	</div>
-<?php require_once(HTML_PATH.'public'.DS.'footer.html');?>
+
+
+</body>
+</html>

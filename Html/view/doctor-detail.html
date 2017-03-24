@@ -1,6 +1,9 @@
-<?php require_once(HTML_PATH.'public'.DS.'header.html');?>
-
-
+<!DOCTYPE html>
+<html lang="en">
+<?php require_once(__ROOT__.'/Html/template/head.php');?>
+<?php template_head('专家详情',array('doctor-detail.css'),array());?>
+<body>
+	<?php require_once(__ROOT__.'/Html/template/header.html')?>
 
 	<div class=full-screen-banner>
 		<img src="/Html/images/banner-doctor-list.jpg" alt="">
@@ -51,4 +54,85 @@
 			</div>
 		</div>
 	</div>
-<?php require_once(HTML_PATH.'public'.DS.'footer.html');?>
+</body>
+</html>
+<script>
+	$(function(){
+		$('.template').hide();
+		//定义导航栏展开
+		function openFold()
+		{
+			$('#fold-content').slideDown(500);
+		}
+
+
+		//定义导航栏收起
+		function closeFold()
+		{
+			$('#fold-content').slideUp(500);
+		}
+
+		//监听展开事件
+		$('#open-fold').click(function(){
+			if($('#fold-content').is(':hidden'))
+			{
+				openFold();
+			}
+			else
+			{
+				closeFold();
+			}
+		});
+
+
+		//监听关闭事件
+		$('#close-fold').click(function(){
+			closeFold();
+		});
+
+		// 顶部导航动画效果
+		var initTop=0;
+		$(window).scroll(function(){
+			if($(this).scrollTop()>initTop)
+			{
+				initTop=$(this).scrollTop();
+				$('.top-fixed').addClass('hide-top')
+			}
+			else if($(this).scrollTop()<initTop)
+			{
+				initTop=$(this).scrollTop();
+				$('.top-fixed').removeClass('hide-top')
+			}
+		})
+
+		var id=location.search.match(/&id=\d{1,}/)[0].substring(4);//获取查询串
+
+		$.ajax({
+			url: 'http://www.zxznz.cn/index.php/Api/Doctor/detial',
+			type: 'POST',
+			data: {'id':id},
+			dataType: 'json',
+			success: function(res){
+				if(res.status==true)
+				{
+					$('.jvc-doctor-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+res.info.picture);
+					$('.jvc-name').html(res.info.name);
+					$('.jvc-sex').html(res.info.sex);
+					$('.jvc-hospital').html(res.info.hos_name);
+					$('.jvc-duty').html(res.info.duty);
+					$('.jvc-title').html(res.info.title);
+					$('.jvc-edu').html(res.info.edu);
+					$('.jvc-good').html(res.info.good);
+					$('.jvc-date').html(res.info.start);
+					$('.jvc-intro').html(res.info.intro);
+					var passArr=res.info.pass.split("-----");
+					for(var i=0;i<passArr.length;i++)
+					{
+						$('.jvc-pass').append("<p>"+passArr[i]+"</p>")
+					}
+					$('.jvc-hospital-info').html(res.info.hos_intro);
+				}
+			}
+		})
+	})
+</script>

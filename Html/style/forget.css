@@ -16,6 +16,13 @@ body
 	background-size: 100% 100%;
 	position: relative;
 }
+.retrive-msg
+{
+	color: #fff;
+	font-size: 0.5312rem;
+	text-align: center;
+	padding-top: 1.093rem;
+}
 .avatar
 {
 	width: 2.22rem;
@@ -71,12 +78,25 @@ input:focus::-webkit-input-placeholder{
 }
 .input-group input[type='text']
 {
+	padding-left: 0.8rem;
+}
+.input-group .bottom-e
+{
 	border-bottom: 1px solid #eee;
+}
+.input-user
+{
 	background: url(../images/icon/icon-user.png);
 	background-size: 0.375rem 0.4687rem;
 	background-repeat: no-repeat;
 	background-position: 0.1rem 0.3906rem;
-	padding-left: 0.8rem;
+}
+.input-code
+{
+	background: url(../images/icon/icon-password.png);
+	background-size: 0.375rem 0.4687rem;
+	background-repeat: no-repeat;
+	background-position: 0.1rem 0.3906rem;
 }
 .input-group input[type='password']
 {
@@ -120,7 +140,7 @@ input:focus::-webkit-input-placeholder{
 	text-align: center;
 	line-height: 1.5625rem;
 	background: -webkit-linear-gradient(#1ccc9e, #00c0a3);
-	margin-top: 0.2rem;
+	margin-top: 1rem;
 }
 .register-link
 {

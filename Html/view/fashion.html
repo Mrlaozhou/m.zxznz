@@ -1,6 +1,9 @@
-<?php require_once(HTML_PATH.'public'.DS.'header.html');?>
-
-	
+<!DOCTYPE html>
+<html lang="en">
+<?php require_once(__ROOT__.'/Html/template/head.php');?>
+<?php template_head('前沿发布',array('fashion.css'),array());?>
+<body>
+	<?php require_once(__ROOT__.'/Html/template/header.html')?>
 
 	<!-- full screen banner -->
 
@@ -57,4 +60,54 @@
 			</div>
 		</div>
 	</div>
-<?php require_once(HTML_PATH.'public'.DS.'footer.html');?>
+</body>
+</html>
+<script>
+	$(function(){
+		//定义导航栏展开
+		function openFold()
+		{
+			$('#fold-content').slideDown(500);
+		}
+
+
+		//定义导航栏收起
+		function closeFold()
+		{
+			$('#fold-content').slideUp(500);
+		}
+
+		//监听展开事件
+		$('#open-fold').click(function(){
+			if($('#fold-content').is(':hidden'))
+			{
+				openFold();
+			}
+			else
+			{
+				closeFold();
+			}
+		});
+
+
+		//监听关闭事件
+		$('#close-fold').click(function(){
+			closeFold();
+		});
+
+		// 顶部导航动画效果
+		var initTop=0;
+		$(window).scroll(function(){
+			if($(this).scrollTop()>initTop)
+			{
+				initTop=$(this).scrollTop();
+				$('.top-fixed').addClass('hide-top')
+			}
+			else if($(this).scrollTop()<initTop)
+			{
+				initTop=$(this).scrollTop();
+				$('.top-fixed').removeClass('hide-top')
+			}
+		})
+	})
+</script>
