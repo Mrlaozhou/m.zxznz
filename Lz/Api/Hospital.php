@@ -16,7 +16,7 @@ class Hospital extends Base
 						LIMIT {$start},{$pagesize}";
 		$data = $hospital->All($sql);
 		//dump($data,2);
-		echoJson($data);
+		echoJson(array('status'=>TRUE,'hospital'=>$data));
 	}
 	public function detial()
 	{
