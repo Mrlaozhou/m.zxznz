@@ -1,4 +1,10 @@
-<?php require_once(HTML_PATH.'public'.DS.'header.html');?>
+<!DOCTYPE html>
+<html lang="en">
+<?php require_once(__ROOT__.'/Html/template/head.php');?>
+<?php template_head('首页',['activity-list.css'],[]);?>
+<body>
+	<?php require_once(__ROOT__.'/Html/template/header.html')?>
+
 	
 
 	<!-- full screen banner -->
@@ -57,6 +63,7 @@
 		<img src="/Html/images/title-activity-notice.png" alt="">
 	</div>
 
+
 	<!-- activity progress container -->
 	<div class="container-activity-progress">
 
@@ -110,4 +117,68 @@
 			<p>预告</p>
 		</div>
 	</div>
-<?php require_once(HTML_PATH.'public'.DS.'footer.html');?>
+</body>
+</html>
+<script>
+	$(function(){
+		//定义导航栏展开
+		function openFold()
+		{
+			$('#fold-content').slideDown(500);
+		}
+
+
+		//定义导航栏收起
+		function closeFold()
+		{
+			$('#fold-content').slideUp(500);
+		}
+
+		//监听展开事件
+		$('#open-fold').click(function(){
+			if($('#fold-content').is(':hidden'))
+			{
+				openFold();
+			}
+			else
+			{
+				closeFold();
+			}
+		});
+
+
+		//监听关闭事件
+		$('#close-fold').click(function(){
+			closeFold();
+		});
+
+		// 顶部导航动画效果
+		var initTop=0;
+		$(window).scroll(function(){
+			if($(this).scrollTop()>initTop)
+			{
+				initTop=$(this).scrollTop();
+				$('.top-fixed').addClass('hide-top')
+			}
+			else if($(this).scrollTop()<initTop)
+			{
+				initTop=$(this).scrollTop();
+				$('.top-fixed').removeClass('hide-top')
+			}
+		})
+
+
+		$('.footer-nav-progress').click(function(){
+			var top=$('.img-activity-progress').offset().top;
+			$(document).scrollTop(top-100);
+			$('.top-fixed').addClass('hide-top');
+		})
+		$('.footer-nav-notice').click(function(){
+			var top=$('.img-notice-progress').offset().top;
+			$(document).scrollTop(top-100);
+		})
+
+
+
+	})
+</script>

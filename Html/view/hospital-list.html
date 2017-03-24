@@ -1,6 +1,10 @@
-<?php require_once(HTML_PATH.'public'.DS.'header.html');?>
+<!DOCTYPE html>
+<html lang="en">
+<?php require_once(__ROOT__.'/Html/template/head.php');?>
+<?php template_head('医院专区',['hospital-list.css'],[]);?>
+<body>
 
-
+	<?php require_once(__ROOT__.'/Html/template/header.html')?>
 	
 
 	<!-- hospital list full screen banner -->
@@ -23,4 +27,100 @@
 			
 		</div>
 	</div>
-<?php require_once(HTML_PATH.'public'.DS.'footer.html');?>
+</body>
+</html>
+<script>
+	$(function(){
+
+		$('.template').hide();
+		//定义导航栏展开
+		function openFold()
+		{
+			$('#fold-content').slideDown(500);
+		}
+
+
+		//定义导航栏收起
+		function closeFold()
+		{
+			$('#fold-content').slideUp(500);
+		}
+
+		//监听展开事件
+		$('#open-fold').click(function(){
+			if($('#fold-content').is(':hidden'))
+			{
+				openFold();
+			}
+			else
+			{
+				closeFold();
+			}
+		});
+
+
+		//监听关闭事件
+		$('#close-fold').click(function(){
+			closeFold();
+		});
+
+		// top navbar run animation when window is scroll
+		var initTop=0;
+		$(window).scroll(function(){
+			if($(this).scrollTop()>initTop)
+			{
+				initTop=$(this).scrollTop();
+				$('.top-fixed').addClass('hide-top')
+			}
+			else if($(this).scrollTop()<initTop)
+			{
+				initTop=$(this).scrollTop();
+				$('.top-fixed').removeClass('hide-top')
+			}
+		})
+
+		// load hospital item ajax
+		function load(page){
+			$.ajax({
+				url:'http://www.zxznz.cn/api.php/api/Hospital/index',
+				type: "POST",
+				data: {'page':page},
+				dataType:'json',
+				success: function(res){
+					var result=res;
+					var p=page-1;
+					if(result.status==true)
+					{
+						var hospital=result.hospital;
+						for(var i=0;i<hospital.length;i++)
+						{
+							var p=page-1;
+							var id='hospital-item-'+8*p+i;
+							var item=hospital[i];
+							$('#template-hospital-item').clone().attr('id',id).show().appendTo($('#hospital-list'));
+							$('#'+id).find('.jvc-hospital-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+item.logo);
+							$('#'+id).find('.jvc-hospital-name').html(item.name);
+							$('#'+id).find('.jvc-hospital-link').attr('href','index.php?a=hospital-detail&id='+item.id);
+						}
+					}
+				}
+			})		
+		}
+		
+		// dropload refresh
+		var i=1;
+		load(1);
+		$(document).scroll(function(){
+			var viewH =$(this).height();//可见高度   
+			var scrollTop =$(this).scrollTop();//滚动高度
+			var contentTop=$(window).height();
+		 	if(scrollTop/(viewH-contentTop)>=0.95){
+		 		i++;
+		 		load(i);
+		 	}
+		 	
+		})
+
+
+	})
+</script>

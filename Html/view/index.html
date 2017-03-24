@@ -1,5 +1,10 @@
-<?php require_once(HTML_PATH.'public'.DS.'header.html');?>
-
+<!DOCTYPE html>
+<html lang="en">
+	<?php require_once(__ROOT__.'/Html/template/head.php');?>
+	<?php template_head('首页',['index.css'],['jquery.fullpage.js','jquery.touchSwipe.min.js']);?>
+<body>
+	<?php require_once(__ROOT__.'/Html/template/header.html')?>
+	
 	<div id="fullpage">
 	<!-- section-1 -->
 
@@ -241,6 +246,224 @@
 		</div>
 	</div>
 	</div>
+</body>
+</html>
+<script>
+	$(document).ready(function()
+	{
 
 
-<?php require_once(HTML_PATH.'public'.DS.'footer.html');?>
+		//定义导航栏展开
+		function openFold()
+		{
+			$('#fold-content').slideDown(500);
+		}
+
+
+		//定义导航栏收起
+		function closeFold()
+		{
+			$('#fold-content').slideUp(500);
+		}
+
+		//监听展开事件
+		$('#open-fold').click(function(){
+			if($('#fold-content').is(':hidden'))
+			{
+				openFold();
+			}
+			else
+			{
+				closeFold();
+			}
+		});
+
+
+		//监听关闭事件
+		$('#close-fold').click(function(){
+			closeFold();
+		});
+
+
+		//全屏滚动插件初始化
+		$('#fullpage').fullpage({
+			onLeave:function(index, nextIndex, direction){
+				if(index == 1)
+				{
+					$('.top-fixed').animate({'top':'-80px'},800);
+				}
+				if(index == 2 && direction == 'up')
+				{
+					$('.top-fixed').animate({'top':'0'},800);
+				}
+			}
+		});
+
+		//回到顶部按钮
+		$('#back-top').click(function(){
+			$('#fullpage').fullpage.moveTo(1);
+			$('.top-fixed').animate({'top':'0'},800);
+		});
+
+
+		//翻页
+		//定义一个全局变量，存储当前的轮播图所在的屏数
+		var i='';
+		var w=$('#show-doctor').width();
+		//下一页
+		function next()
+		{
+			if(i==2)
+			{
+				return false;
+			}
+			else
+			{
+				i++;
+				$('#carousel-doctor').animate({'margin-left':-w * i + 'px'},500);
+				$('.dot-item-1 li').eq(i).addClass('active').siblings().removeClass('active');
+			}
+		}
+
+		
+		//上一页
+		function prev()
+		{
+			if(i==0)
+			{
+				return false;
+			}
+			else
+			{
+				i--;
+				$('#carousel-doctor').animate({'margin-left':-w * i + 'px'},500);
+				$('.dot-item-1 li').eq(i).addClass('active').siblings().removeClass('active');
+			}
+		}
+
+		//跳到指定页
+		function jumpIndex(index,obj,objdot)
+		{
+			obj.animate({'margin-left':-w * index + 'px'},500);
+			objdot.eq(index).addClass('active').siblings().removeClass('active');
+		}
+
+		// index dot 绑定事件
+		$('.dot-item-1 li').click(function(){
+			i=$('.dot-item-1 li').index($(this));
+			jumpIndex(i,$('#carousel-doctor'),$('.dot-item-1 li'));
+		})
+		$('.dot-item-2 li').click(function(){
+			i=$('.dot-item-2 li').index($(this));
+			jumpIndex(i,$('#carousel-2'),$('.dot-item-2 li'));
+		})
+		//carousel-doctor左右滑动事件绑定
+		// $('#show-doctor').swipe({
+		// 	swipeLeft:function(){
+		// 		next();
+		// 	},
+		// 	swipeRight:function(){
+		// 		prev();
+		// 	}
+		// 	// excludedElements:"button"
+		// })
+
+		$('#show-doctor').swipe({
+			click: function(event, target) {
+		            window.location.href=$(target).parent().attr('href')
+		        },
+	        swipeLeft:function(){
+				next();
+			},
+			swipeRight:function(){
+				prev();
+			},
+			excludedElements:"",
+			threshold: 75
+		})
+		//carousel-2定义左右滑动事件
+		//下一页
+		function next_2()
+		{
+			if(x==2)
+			{
+				return false;
+			}
+			else
+			{
+				x++;
+				$('#carousel-2').animate({'margin-left':-w * x + 'px'},500);
+				$('.dot-item-2 li').eq(x).addClass('active').siblings().removeClass('active');
+			}
+		}
+
+		var x="";
+		//上一页
+		function prev_2()
+		{
+			if(x==0)
+			{
+				return false;
+			}
+			else
+			{
+				x--;
+				$('#carousel-2').animate({'margin-left':-w * x + 'px'},500);
+				$('.dot-item-2 li').eq(x).addClass('active').siblings().removeClass('active');
+			}
+		}
+		$('#show-2').swipe({
+			click: function(event, target) {
+		            window.location.href=$(target).parent().attr('href')
+		        },
+	        swipeLeft:function(){
+				next_2();
+			},
+			swipeRight:function(){
+				prev_2();
+			},
+			excludedElements:"",
+			threshold: 75
+		})
+		function load()
+		{
+			$.ajax({
+				url:'http://www.zxznz.cn/api.php/api',
+				success:function(data)
+				{
+					var data=$.parseJSON(data);
+					if(data.status==true)
+					{
+						var doctorData=data.doctor;
+						var hospitalData=data.hospital;
+						// 遍历医生数据
+						for(var d=0;d<doctorData.length;d++)
+						{
+							var doctorItem=doctorData[d];
+							for(var f=0;f<doctorItem.length;f++)
+							{
+								var doctor=doctorItem[f];
+								$('#doctorimg-'+d+'-'+f).attr('src','http://www.zxznz.cn/Public/Uploads/'+doctor.picture);
+								$('#doctorname-'+d+'-'+f).html(doctor.name);
+								$('#doctorlink-'+d+'-'+f).attr('href','doctor-detail.html?id='+doctor.id);
+							}
+						}
+
+						// 遍历医院数据
+						for(var h=0;h<hospitalData.length;h++)
+						{
+							var hospitalItem=hospitalData[h];
+							for(var j=0;j<hospitalItem.length;j++)
+							{
+								var hospital=hospitalItem[j];
+								$('#hospital-'+h+'-'+j).attr('src','http://www.zxznz.cn/Public/Uploads/'+hospital.logo);
+								$('#hospital-link-'+h+'-'+j).attr('href','hospital-detail.html?id='+hospital.id)
+							}
+						}
+					}
+				}
+			})
+		}
+		load();
+	})
+</script>

@@ -7,7 +7,10 @@
 header("Content-Type:text/html;Charset=utf-8");
 
 //是否自动创建
-define('CREATE',TRUE);
+define('CREATE',false);
 define('DB_NAME','root');
 
-require_once('/Lz/Html.php');
+// 网站根目录
+define('__ROOT__',__DIR__);
+
+require_once(__ROOT__.'/Lz/Html.php');
