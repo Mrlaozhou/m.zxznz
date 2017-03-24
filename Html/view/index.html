@@ -445,7 +445,7 @@
 								var doctor=doctorItem[f];
 								$('#doctorimg-'+d+'-'+f).attr('src','http://www.zxznz.cn/Public/Uploads/'+doctor.picture);
 								$('#doctorname-'+d+'-'+f).html(doctor.name);
-								$('#doctorlink-'+d+'-'+f).attr('href','doctor-detail.html?id='+doctor.id);
+								$('#doctorlink-'+d+'-'+f).attr('href','index.php?a=doctor-detail&id='+doctor.id);
 							}
 						}
 
@@ -457,7 +457,7 @@
 							{
 								var hospital=hospitalItem[j];
 								$('#hospital-'+h+'-'+j).attr('src','http://www.zxznz.cn/Public/Uploads/'+hospital.logo);
-								$('#hospital-link-'+h+'-'+j).attr('href','hospital-detail.html?id='+hospital.id)
+								$('#hospital-link-'+h+'-'+j).attr('href','index.php?a=hospital-detail&id='+hospital.id)
 							}
 						}
 					}

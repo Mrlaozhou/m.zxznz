@@ -14,13 +14,13 @@
 		<meta name="x5-orientation" content="portrait">
 		<meta name="x5-fullscreen" content="true">
 		<meta name="x5-page-mode" content="app">
-		<title><?=$title?></title>
+		<title><?php echo $title;?></title>
 		<link rel="stylesheet" href="/Html/style/global.css">
 <?php
 		foreach($cssList as $i => $css)
 		{
 ?>
-		<link rel="stylesheet" href="/Html/style/<?=$css?>">
+		<link rel="stylesheet" href="/Html/style/<?php echo $css;?>">
 <?php
 		}
 ?>	
@@ -31,7 +31,7 @@
 		foreach($jsList as $i => $js)
 		{
 ?>
-		<script src="/Html/js/<?=$js?>"></script>
+		<script src="/Html/js/<?php echo $js;?>"></script>
 <?php
 		}
 ?>

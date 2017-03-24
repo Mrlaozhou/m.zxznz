@@ -8,7 +8,7 @@ class Model
 	{
 		self::InitDb();
 		self::InitTable(trim($table));
-		self::InitFields();
+		// self::InitFields();
 	}
 
 	static private function InitDb()
