@@ -103,7 +103,8 @@ class Register extends Check
 		if( $offset > 1800 )
 		{
 			//置空 session
-			S('code_'.$mobile,FALSE);
+			S('code_'.$mobile,null);
+
 			echoJson(array('status'=>FALSE,'info'=>'007'));
 		}
 	}
