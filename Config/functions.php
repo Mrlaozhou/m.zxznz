@@ -36,6 +36,40 @@ function Error($msg)
 	exit;
 }
 
+/**
+ * [getRandStr 随机字符串]
+ * @param  integer $length [长度]
+ * @param  integer $type   [类型]
+ * @return [type]          [str]
+ */
+function getRandStr($length = 6,$type = 1 , $encrypt = false )
+{
+	//判断Type，1. 字母数字混合 2. 纯数字 3. 纯字母
+	switch ( $type )
+	{
+		case 1:
+			$str = '0123456789abcdefghijklmnopqrstuvwxyz';
+			break;
+		case 2:
+			$str = '0123456789';
+			break;
+		case 3:
+			$str = 'abcdefghijklmnopqrstuvwxyz';
+	}
+
+	//打乱顺序
+	$str = str_shuffle($str);
+
+	//根据长度截取,得到原始字符串
+	$result = substr($str,0,$length);
+
+	//判断是否加密
+	if ( $encrypt )
+		return md5(trim($result));
+	else
+		return trim($result);
+}
+
 function XSS($config)
 {
 	return is_array($config) ? array_map('XSS',$config) : htmlspecialchars($config);
@@ -51,8 +85,33 @@ function echoJson($config)
 	exit(json_encode($config));
 }
 
+/**
+ * [Post curl 模拟post提交]
+ * @param [type] $curlPost [参数]
+ * @param [type] $url      [目标路径]
+ */
+function Post($curlPost,$url)
+{
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_HEADER, false);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_NOBODY, true);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
+		$return_str = curl_exec($curl);
+		curl_close($curl);
+		return $return_str;
+}
 
-
+function Unsign($param)
+{
+	$pattern = '/((?=[\x21-\x7e]+)[^A-Za-z0-9])/';
+	$result = preg_match($pattern,$param);
+	if( $result === 0 )
+		return TRUE;
+	return FALSE;
+}
 /*******************************/
 function U($config,$type=1)
 {
@@ -78,4 +137,17 @@ function P($config)
 function A($route)
 {
 	return 'api.php?u='.$route;
+}
+
+function S($k,$v=FALSE,$t=null)
+{
+	//取值
+	if( $v === FALSE )
+		return $_SESSION[$k];
+	//毁值
+	if( $v === null )
+		unset($_SESSION[$k]);
+	//设值
+	$_SESSION[trim($k)] = trim($v);
+	return TRUE;
 }
