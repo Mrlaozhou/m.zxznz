@@ -66,12 +66,12 @@ class Register extends Check
         $post_data = "account={$account}&password={$password}&mobile={$mobile}&content=".rawurlencode("您的验证码是：{$rand}。请不要把验证码泄露给其他人。");
 
         /*|发送验证码|*/
-        //------$result = POST($post_data,$url);
+        $result = POST($post_data,$url);
 
         //处理数据
-        //------$result = simplexml_load_string($result);
+        $result = simplexml_load_string($result);
 
-        if( !$result->code == 2 )
+        if( $result->code == 2 )
         {
         	//发送成功，储存信息
         	S('code_'.$mobile,$rand.'-'.time());
@@ -82,6 +82,30 @@ class Register extends Check
         {
         	echoJson(array('status'=>FALSE,'info'=>'444'));  
         }
+	}
+	public function checkCode()
+	{
+		/*需求介绍*/// 验证密码 cnFiUHhwcnVwXm4mZXJnZnZ0cmVeeg%3D%3D
+		$code = G('code');
+		$mobile = G('mobile');
+
+		//传参出错
+		if( !$code && !$mobile )
+			echoJson(array('status'=>FALSE,'info'=>'001'));
+
+		//未发送过验证码
+		if( !S('code_'.$mobile) )
+			echoJson(array('status'=>FALSE,'info'=>'002&006'));
+		//已发送
+		$msg = explode('-',S('code_'.$mobile));
+		$offset = time()-$msg[1];
+		//验证码超时
+		if( $offset > 1800 )
+		{
+			//置空 session
+			S('code_'.$mobile,FALSE);
+			echoJson(array('status'=>FALSE,'info'=>'007'));
+		}
 	}
 	public function alias()
 	{
@@ -124,8 +148,8 @@ class Register extends Check
 	public function repeat()
 	{
 		/*需求介绍*/// 验证密码 Z25yY3JlXm4mZXJnZnZ0cmVeeg%3D%3D
-		$new = G('new');
-		$old = G('old');
+		$new = P('new');
+		$old = P('old');
 
 		//传参出错
 		if( !$new && !$old )
@@ -138,10 +162,11 @@ class Register extends Check
 			echoJson(array('status'=>FALSE,'info'=>'002'));
 		if( $result === 2 )
 			echoJson(array('status'=>FALSE,'info'=>'005'));
-		
+
 		//验证相等
 		if( $new === $old )
 			echoJson(array('status'=>TRUE));
 		echoJson(array('status'=>FALSE,'info'=>'!003'));
 	}
+
 }
