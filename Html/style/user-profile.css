@@ -1,0 +1,110 @@
+/*
+*	page user profile styles
+*
+*/
+
+/**** header avatar && background ****/
+body
+{
+	background: #f5f5f5;
+	font-family: '微软雅黑';
+}
+.header-bg
+{
+	width: 100%;
+	height: 4.0625rem;
+	background: url(../images/bg-login-header.jpg);
+	background-size: 100% 100%;
+	position: relative;
+}
+.page-info
+{
+	color: #fff;
+	font-size: 0.5312rem;
+	text-align: center;
+	padding-top: 1.093rem;
+}
+.avatar
+{
+	width: 2.22rem;
+	height: 2.22rem;
+	border-radius: 1.11rem;
+	box-sizing: border-box;
+	background: rgba(250,250,250,0.8);
+	position: absolute;
+	bottom: -1.11rem;
+	left: 50%;
+	margin-left: -1.11rem;
+	padding: 0.2rem;
+}
+.avatar img
+{
+	border-radius: 50%;
+}
+
+/***** user profile *****/
+.user-profile-container
+{
+	width: 100%;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	box-sizing: border-box;
+	padding: 0 0.3125rem;
+	margin-top: 1.875rem;
+}
+.profile-title
+{
+	display: inline-block;
+	width: 1.5625rem;
+	font-size: 0.3125rem;
+	color: #333;
+	vertical-align: top;
+}
+.profile-msg
+{
+	display: inline-block;
+	width: 5rem;
+	font-size: 0.3125rem;
+	color: #333;
+	vertical-align: top;
+}
+.user-nick,.user-tel,.last-time
+{
+	line-height: 0.94rem;
+}
+.user-nick,.user-tel
+{
+	border-bottom: 1px solid #ddd;
+}
+.user-nick input
+{
+	width: 5rem;
+	height: 0.5rem;
+	color: #333;
+	vertical-align: top;
+	display: inline-block;
+	margin-top: 0.2rem;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 0.3125rem;
+}
+.user-profile-save
+{
+	text-align: center;
+}
+.user-profile-save a
+{
+	display: inline-block;
+	width: 8.75rem;
+	height: 1.5625rem;
+	border-radius: 0.1875rem;
+	font-size: 0.7rem;
+	color: #fff;
+	text-align: center;
+	line-height: 1.5625rem;
+	background: -webkit-linear-gradient(#ffaa2d, #ff953d);
+	margin: 0.9375rem 0 0;
+}
+
+

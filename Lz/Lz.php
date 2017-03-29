@@ -9,7 +9,7 @@
 /************路由解析************/
 //解析参数
 
-$config = require_once('/Lz/url.php');
+$config = require_once(__ROOT__.'/Lz/url.php');
 
 
 //处理参数 去空格
@@ -30,7 +30,7 @@ defined("COF_PATH") or define("COF_PATH",'./Config'.DS);
 defined("DB_NAME") or define("DB_NAME",'test');
 
 //启动程序
-require_once('Lz/Base/Run.php');
+require_once(__ROOT__.'/Lz/Base/Run.php');
 
 \Base\Run::run();
 

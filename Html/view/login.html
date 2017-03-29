@@ -15,21 +15,43 @@
 	<div class="form-group">
 		<form action="">
 			<div class="input-group">
-				<input type="text" placeholder="手机号或用户名">
-				<input type="password" placeholder="密码">
-				<input type="hidden" name="">
-				<input type="hidden" name="">
+				<input type="text" placeholder="手机号或用户名" id="username">
+				<input type="password" placeholder="密码" id="password">
 			</div>
 			<div class="error-msg">
 				糟糕！密码错了 <a href="javascript:void(0)">修改密码</a>
 			</div>
 			<div class="login-btn">
-				<a href="javascript:void(0)">登陆</a>
+				<a href="javascript:void(0)" id="login">登陆</a>
 			</div>
 			<div class="register-link">
-				<a href="javascript:void(0)">先去注册</a>
+				<a href="/index.php?a=register">先去注册</a>
 			</div>
 		</form>
 	</div>
 </body>
 </html>
+<script>
+	$(function(){
+		$('#login').click(function(){
+			var username=$('#username').val();
+			var password=$('#password').val();
+			$.ajax({
+				url:"<?php echo A('bGVnYXJebiZhdnRieV56');?>",
+				type:'POST',
+				data:{'username':username,'password':password},
+				dataType:'json',
+				success:function(res){
+					if(res.status)
+					{
+						window.location.href="/index.php?a=dashboard";
+					}
+					else
+					{
+						$('.error-msg').show();
+					}
+				}
+			})
+		})
+	})
+</script>

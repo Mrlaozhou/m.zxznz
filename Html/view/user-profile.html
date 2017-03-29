@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php require_once(__ROOT__.'/Html/template/head.php');?>
+<?php template_head('个人信息',array('user-profile.css'),array());?>
+<body>
+	<!-- header avatar && background -->
+	<div class="header-bg">
+		<div class="page-info">个人信息</div>
+		<div class="avatar">
+			<img src="/Html/images/avatar-default.png" alt="">
+		</div>
+	</div>
+
+	<!-- user profile container -->
+	<div class="user-profile-container">
+		<div class="user-nick">
+			<span class="profile-title">昵称</span>
+			<input type="text" name="" value="爱上舞蹈鞋" id="nick">
+		</div>
+		<div class="user-tel">
+			<span class="profile-title">手机号</span>
+			<span class="profile-msg">185****3765</span>
+		</div>
+		<div class="last-time">
+			<span class="profile-title">登陆时间</span>
+			<span class="profile-msg">2017/03/29 13:38:59</span>
+		</div>
+	</div>
+
+	<!-- user profile save button -->
+	<div class="user-profile-save">
+		<a href="javascript:void(0)" title="" id="save">保存</a>
+	</div>
+</body>
+</html>
+<script>
+
+	// 保存
+	// $(function(){
+	// 	$('#save').click(function(){
+	// 		var nick=$('#nick').val();
+	// 		$.ajax({
+	// 			url:'',
+	// 			data:'',
+	// 			dataType:'json',
+	// 			success:function(res){
+	// 				console.log(res);
+	// 			}
+	// 		})
+	// 	})
+	// })
+</script>

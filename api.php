@@ -14,4 +14,4 @@ defined('ALLOW_HOST') or define('ALLOW_HOST','*');
 
 @session_start();
 
-require_once("Lz/lz.php");
+require_once(__ROOT__."/Lz/Lz.php");

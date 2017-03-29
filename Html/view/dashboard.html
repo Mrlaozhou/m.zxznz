@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php require_once(__ROOT__.'/Html/template/head.php');?>
+<?php template_head('用户中心',array('dashboard.css'),array());?>
+<body>
+	<!-- header avatar && background -->
+	<div class="header-bg">
+		<div class="page-info">用户中心</div>
+		<div class="avatar">
+			<img src="/Html/images/avatar-default.png" alt="">
+		</div>
+		<div class="user-name">
+			爱上舞蹈鞋
+		</div>
+	</div>
+
+	<!-- user profile -->
+	<div class="user-profile">
+		<a href="/index.php?a=user-profile" title="">个人信息<span class="icon-arrow-right"></span></a>
+	</div>
+	<div class="user-order">
+		<a href="/index.php?a=user-order" title="">订单查看<span class="icon-arrow-right"></span></a>
+	</div>
+</body>
+</html>

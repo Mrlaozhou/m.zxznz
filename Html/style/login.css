@@ -96,6 +96,7 @@ input:focus::-webkit-input-placeholder{
 	// color: #d11337;
 	box-sizing: border-box;
 	padding-left: 0.8rem;
+	display:none;
 }
 .error-msg a
 {

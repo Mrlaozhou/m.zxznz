@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php require_once(__ROOT__.'/Html/template/head.php');?>
+<?php template_head('订单查看',array('user-order.css'),array());?>
+<body>
+	<!-- header avatar && background -->
+	<div class="header-bg">
+		<div class="page-info">订单查看</div>
+		<div class="avatar">
+			<img src="/Html/images/avatar-default.png" alt="">
+		</div>
+		<div class="user-name">
+			爱上舞蹈鞋
+		</div>
+	</div>
+
+	<!-- user order title -->
+	<div class="user-order-title">
+		<div class="finshed-title active">
+			<span class="icon-finshed"></span>
+			<span>已完成订单</span>
+		</div>
+		<div class="unfinshed-title">
+			<span class="icon-unfinshed"></span>
+			<span>未支付订单</span>
+		</div>
+	</div>
+
+	<!-- finshed order container -->
+	<div class="order-finshed-container">
+		
+		<!-- order finshed item -->
+		<div class="order-finshed-item">
+			<div class="order-item-title">
+				<span class="order-num">订单编号：3144166201156005</span>
+				<span class="order-state">已支付</span>
+			</div>
+			<div class="order-item-info">
+				<div class="product-img">
+					<img src="/Html/images/product-img.jpg" alt="">
+				</div>
+				<div class="product-msg">
+					<div class="product-desc">深层清洁，补水注氧，提亮肤色青春解码是一项能够快速逆转皮肤衰老的皮肤类美容项目</div>
+					<div class="hospital-link"><a href="#" title="">上海华美</a></div>
+					<div class="product-price">特购价：￥450</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- order finshed item -->
+		<div class="order-finshed-item">
+			<div class="order-item-title">
+				<span class="order-num">订单编号：3144166201156005</span>
+				<span class="order-state">已支付</span>
+			</div>
+			<div class="order-item-info">
+				<div class="product-img">
+					<img src="/Html/images/product-img.jpg" alt="">
+				</div>
+				<div class="product-msg">
+					<div class="product-desc">深层清洁，补水注氧，提亮肤色青春解码是一项能够快速逆转皮肤衰老的皮肤类美容项目</div>
+					<div class="hospital-link"><a href="#" title="">上海华美</a></div>
+					<div class="product-price">特购价：￥450</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- unfinshed order container -->
+	<div class="order-unfinshed-container">
+
+		<!-- order unfinshed item -->
+		<div class="order-unfinshed-item">
+			<div class="order-item-title">
+				<span class="order-num">订单编号：3144166201156005</span>
+				<span class="order-state">未支付</span>
+			</div>
+			<div class="order-item-info">
+				<div class="product-img">
+					<img src="/Html/images/product-img.jpg" alt="">
+				</div>
+				<div class="product-msg">
+					<div class="product-desc">深层清洁，补水注氧，提亮肤色青春解码是一项能够快速逆转皮肤衰老的皮肤类美容项目</div>
+					<div class="hospital-link"><a href="#" title="">上海华美</a></div>
+					<div class="product-price">特购价：￥450</div>
+					<div class="pay-btn">
+						<a href="#" title="">立即支付</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- order unfinshed item -->
+		<div class="order-unfinshed-item">
+			<div class="order-item-title">
+				<span class="order-num">订单编号：3144166201156005</span>
+				<span class="order-state">未支付</span>
+			</div>
+			<div class="order-item-info">
+				<div class="product-img">
+					<img src="/Html/images/product-img.jpg" alt="">
+				</div>
+				<div class="product-msg">
+					<div class="product-desc">深层清洁，补水注氧，提亮肤色青春解码是一项能够快速逆转皮肤衰老的皮肤类美容项目</div>
+					<div class="hospital-link"><a href="#" title="">上海华美</a></div>
+					<div class="product-price">特购价：￥450</div>
+					<div class="pay-btn">
+						<a href="#" title="">立即支付</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
+<script>
+	$(function(){
+		$('.finshed-title').click(function(){
+			$('.order-finshed-container').show();
+			$('.order-unfinshed-container').hide();
+			$(this).addClass('active').siblings().removeClass('active');
+		})
+		$('.unfinshed-title').click(function(){
+			$('.order-finshed-container').hide();
+			$('.order-unfinshed-container').show();
+			$(this).addClass('active').siblings().removeClass('active');
+		})
+
+
+
+
+	})
+</script>
