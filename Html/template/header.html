@@ -12,7 +12,11 @@
 					<img src="/Html/images/avatar-default.png" alt="">
 				</div>
 				<div class="user-nick">
-					zhengxingzhinanzhn
+					<?php if( S('USER_ID') ):?>
+						<a href="">个人信息</a> / <a href="">退出</a>
+					<?php else:?>
+						<a href="">登录</a> / <a href="">注册</a>
+					<?php endif;?>
 				</div>
 			</div>
 		</div>
