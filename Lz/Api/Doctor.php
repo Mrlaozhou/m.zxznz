@@ -14,7 +14,7 @@ class Doctor extends Base
 					zxznz_doctor AS d 
 					LEFT JOIN zxznz_hospital AS h 
 					ON d.hos_id = h.id 
-					WHERE d.is_show = '是' 
+					
 					AND h.is_show = '1' 
 					ORDER BY d.id DESC 
 					LIMIT ".$start.",".$pagesize;

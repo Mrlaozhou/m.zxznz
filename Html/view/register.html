@@ -1,28 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
-	<meta name="full-screen" content="yes">
-	<meta name="apple-mobile-web-app-capable" content="yes"/>
-	<meta name="screen-orientation" content="portrait">
-	<meta name="browsermode" content="application">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-	<meta name="x5-orientation" content="portrait">
-	<meta name="x5-fullscreen" content="true">
-	<meta name="x5-page-mode" content="app">
-	<title>注册</title>
-	<link rel="stylesheet" href="../style/global.css">
-	<link rel="stylesheet" href="../style/register.css">
-	<script src="../js/jquery-1.11.3.min.js"></script>
-	<!-- <script src="http://libs.baidu.com/jqueryui/1.8.22/jquery-ui.min.js "></script> -->
-	<!-- <script src="../js/jquery.fullpage.js"></script> -->
-	<!-- <script src="../js/jquery.touchSwipe.min.js"></script> -->
-	<script>
-		$('html').attr('style','font-size:'+$(window).width()/10+'px');
-	</script>
-</head>
+<?php require_once(__ROOT__.'/Html/template/head.php');?>
+<?php template_head('注册',array('register.css'),array());?>
 <body>
 	<div class="dialog">
 		验证码发送失败
@@ -31,7 +10,7 @@
 	<div class="header-bg">
 		<div class="page-info">注册</div>
 		<div class="avatar">
-			<img src="../images/avatar-register.png" alt="">
+			<img src="/Html/images/avatar-register.png" alt="">
 		</div>
 	</div>
 
@@ -80,13 +59,13 @@
 	<!-- register success container -->
 	<div class="form-group register-success">
 		<div class="register-success-img">
-			<img src="../images/register-success-img.png" alt="">
+			<img src="/Html/images/register-success-img.png" alt="">
 		</div>
 		<div class="register-success-msg">
 			恭喜您，注册成功
 		</div>
 		<div class="login-btn">
-			<a href="login.html">立即登录</a>
+			<a href="<?php echo U('login');?>">立即登录</a>
 		</div>
 	</div>
 </body>
@@ -107,9 +86,9 @@
 			if(!isNaN(phone)&&phone.length==11)
 			{
 				$.ajax({
-					url:"http://192.168.0.107/index.php/Home/Index/checkExists",
+					url:"<?php echo A('ZmdmdmtyXm4mZXJnZnZ0cmVeeg%3D%3D');?>",
 					type:"POST",
-					data:{'phone':phone},
+					data:{'mobile':phone},
 					success:function(res){
 						var result=JSON.parse(res);
 						if(result.status==true)
@@ -138,7 +117,7 @@
 		function getCaptcha(phone)
 		{
 			$.ajax({
-				url:"http://192.168.0.107/index.php/Home/Index/sendMsg",
+				url:"<?php echo A('VEZacWFyZl5uJmVyZ2Z2dHJlXno%3D');?>",
 				type:'POST',
 				data:{'mobile':phone},
 				dataType:'json',
@@ -174,7 +153,7 @@
 		function checkCaptcha(captcha,phone)
 		{
 			$.ajax({
-				url:'http://192.168.0.107/index.php/Home/Index/checkCode',
+				url:"<?php echo A('cnFiUHhwcnVwXm4mZXJnZnZ0cmVeeg%3D%3D');?>",
 				type:'POST',
 				data:{'code':captcha,'mobile':phone},
 				dataType:'json',
@@ -214,6 +193,7 @@
 		})
 		$('#register').click(function(){
 			var phone=$('#user-tel').val();
+			alert(phone);
 			var pwd_new=$('#pwd_re').val();
 			var pwd_old=$('#pwd').val();
 			var nick=$('#nick').val();
@@ -224,7 +204,7 @@
 		function checkNick(nick)
 		{
 			$.ajax({
-				url:'http://192.168.0.107/index.php/Home/Index/checkAlias',
+				url:"<?php echo A('Zm52eW5ebiZlcmdmdnRyZV56');?>",
 				type:'POST',
 				data:{'alias':nick},
 				success:function(res)
@@ -246,7 +226,7 @@
 		function checkPwd(pwd)
 		{
 			$.ajax({
-				url:'http://192.168.0.107/index.php/Home/Index/checkPwd',
+				url:"<?php echo A('cWpjXm4mZXJnZnZ0cmVeeg%3D%3D');?>",
 				type:'POST',
 				data:{'pwd':pwd},
 				success:function(res)
@@ -273,7 +253,7 @@
 		function checkConsistency(pwd_new,pwd_old)
 		{
 			$.ajax({
-				url:'http://192.168.0.107/index.php/Home/Index/confirmPwd',
+				url:"<?php echo A('Z25yY3JlXm4mZXJnZnZ0cmVeeg%3D%3D');?>",
 				type:'POST',
 				data:{'new':pwd_new,'old':pwd_old},
 				dataType:'json',
@@ -297,7 +277,7 @@
 		function register(phone,pwd_old,pwd_new,nick)
 		{
 			$.ajax({
-				url:'http://192.168.0.107/index.php/home/index/register_user',
+				url:"<?php echo A('eXliZWFyXm4mZXJnZnZ0cmVeeg%3D%3D');?>",
 				type:'POST',
 				data:{'phone':phone,'old':pwd_old,'new':pwd_new,'alias':nick},
 				dataType:'json',
