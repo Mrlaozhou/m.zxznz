@@ -57,11 +57,5 @@ class Model
 		$ps = self::$_db->query($sql);
 		return $ps->fetchAll(PDO::FETCH_ASSOC);
 	}
-
-	public function insert($config)
-	{
-		$sql = "INSERT INTO `".self::$_table."`";
-	}
-
 	/*****************************************/
 }

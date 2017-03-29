@@ -13,13 +13,14 @@ class Doctor extends Base
 		$sql = "SELECT d.id,d.name,d.picture,(h.name)hos_name FROM
 					zxznz_doctor AS d 
 					LEFT JOIN zxznz_hospital AS h 
-					ON d.hos_id = h.id
+					ON d.hos_id = h.id 
 					WHERE d.is_show = '是' 
-					AND h.is_show = '1'
-					ORDER BY d.id DESC
+					AND h.is_show = '1' 
+					ORDER BY d.id DESC 
 					LIMIT ".$start.",".$pagesize;
-		//dump($doctor);
 		$data = $doctor->All($sql);
+		//echo $sql;
+		//dump($sql);
 		echoJson(array('status'=>TRUE,'doctor'=>$data));
 	}
 	public function detial()
