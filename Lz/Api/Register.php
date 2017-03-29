@@ -6,36 +6,26 @@ class Register extends Check
 		/*需求介绍*/// 用户名是否存在 ZmdmdmtyXm4mZXJnZnZ0cmVeeg%3D%3D
 		$mobile = P('mobile');
 		if( !$mobile )
-			echoJson(array(
-                'status'    =>  FALSE,
-                'info'      =>  '001',
-                ));
-		$result = $this->isExists('18300705320');
+			echoJson(array('status'=>FALSE,'info'=>'001'));
+		$result = $this->isExists($mobile);
 		if( $result === FALSE )
 			echoJson(array('status'=>TRUE));
-		else
-			echoJson(array('status'=>FALSE));
+		echoJson(array('status'=>FALSE,'info'=>'003'));
 	}
 	public function sendMSG()
 	{
-		/*需求介绍*/// 发送短信 ZmdmdmtyXm4mZXJnZnZ0cmVeeg%3D%3D
+		/*需求介绍*/// 发送短信 VEZacWFyZl5uJmVyZ2Z2dHJlXno%3D
 		//接受参数
 		$mobile = P('mobile');
 		if( !$mobile )
-			echoJson(array(
-                'status'    =>  FALSE,
-                'info'      =>  '001',
-                ));
+			echoJson(array('status'=>FALSE,'info'=>'001'));
 
 		/*1.*///验证用户是否注册
 		$is = $this->isExists($mobile);
 		// dump($is);
 		//已注册
 		if( $is !== FALSE )
-			echoJson(array(
-                    'status'    =>  FALSE,
-                    'info'      =>  '003',
-                    ));
+			echoJson(array('status'=>FALSE,'info'=>'003'));
 
 		//未注册,判断是否发送过验证码
 		if( $code = S('code_'.$mobile) )
@@ -85,6 +75,7 @@ class Register extends Check
 	}
 	public function checkCode()
 	{
+		echoJson(array('status'=>TRUE));
 		/*需求介绍*/// 验证密码 cnFiUHhwcnVwXm4mZXJnZnZ0cmVeeg%3D%3D
 		$code = P('code');
 		$mobile = P('mobile');
@@ -217,7 +208,9 @@ class Register extends Check
 		//存储信息
 		$create_time = time();
 		$password = md5($old);
-		$sql = "INSERT INTO `zxznz_user` (username,password,alias,create_time) VALUES('{$phone}','{$password}','{$alias}',{$create_time})";
+		$sql = "INSERT INTO `zxznz_user` 
+						(username,password,alias,create_time) 
+						VALUES('{$phone}','{$password}','{$alias}',{$create_time})";
 		$model = M('User');
 
 		if( $model->exec($sql) === 1 )
