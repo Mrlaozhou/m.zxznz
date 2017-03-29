@@ -86,8 +86,14 @@ class Register extends Check
 	public function checkCode()
 	{
 		/*需求介绍*/// 验证密码 cnFiUHhwcnVwXm4mZXJnZnZ0cmVeeg%3D%3D
-		$code = G('code');
-		$mobile = G('mobile');
+		$code = P('code');
+		$mobile = P('mobile');
+
+		// S('code_'.$mobile,'1234'.'-'.time());
+		// exit;
+		//检验用户是否注册
+		if( $this->isExists($mobile) !== FALSE )
+			echoJson(array('status'=>FALSE,'info'=>'003','remark'=>'此用户已经注册'));
 
 		//传参出错
 		if( !$code && !$mobile )
@@ -99,12 +105,25 @@ class Register extends Check
 		//已发送
 		$msg = explode('-',S('code_'.$mobile));
 		$offset = time()-$msg[1];
-		//验证码超时
-		if( $offset > 1800 )
+		//验证码未超时
+		if( $offset <= 1800 )
 		{
-			//置空 session
+			//判断验证码是否正确
+			//true
+			if( $code == $msg[0] )
+			{
+				//置空 sesison
+				S('code_'.$mobile,null);
+				echoJson(array('status'=>TRUE));
+			}
+			//false
+			echoJson(array('status'=>FALSE,'info'=>'002'));
+		}
+		else
+		{
+			//验证码超时
+			//置空 sesison
 			S('code_'.$mobile,null);
-
 			echoJson(array('status'=>FALSE,'info'=>'007'));
 		}
 	}
@@ -169,5 +188,39 @@ class Register extends Check
 			echoJson(array('status'=>TRUE));
 		echoJson(array('status'=>FALSE,'info'=>'!003'));
 	}
+	public function enroll()
+	{
+		/*需求介绍*/// 用户注册 eXliZWFyXm4mZXJnZnZ0cmVeeg%3D%3D
+		//接收参数
+		$phone = P('phone') ? P('phone') : echoJson(array('status'=>FALSE,'info'=>'001'));
+		$alias = P('alias') ? P('alias') : echoJson(array('status'=>FALSE,'info'=>'001'));
+		$new   = P('new') 	? P('new') 	 : echoJson(array('status'=>FALSE,'info'=>'001'));
+		$old   = P('old') 	? P('old')   : echoJson(array('status'=>FALSE,'info'=>'001'));
 
+		//判断用户名
+		if( $this->isExists($phone) !== FALSE )
+			echoJson(array('status'=>FALSE,'remark'=>'1'));
+
+		//判断别名
+		$len = strlen($alias);
+		if( !Unsign($alias) || ($len<3) || ($len>30) )
+			echoJson(array('status'=>FALSE,'remark'=>'2'));
+
+		//验证密码
+		if( $this->checkPwd($old) !== TRUE )
+			echoJson(array('status'=>FALSE,'remark'=>'3'));
+
+		//确认密码
+		if( $new !== $old )
+			echoJson(array('status'=>FALSE,'remark'=>'4'));
+
+		//存储信息
+		$create_time = time();
+		$password = md5($old);
+		$sql = "INSERT INTO `zxznz_user` (username,password,alias,create_time) VALUES('{$phone}','{$password}','{$alias}',{$create_time})";
+		$model = M('User');
+
+		if( $model->exec($sql) === 1 )
+			echoJson(array('status'=>TRUE));
+	}
 }
