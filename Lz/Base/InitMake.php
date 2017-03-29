@@ -1,6 +1,6 @@
 <?php 
 
-$config = require_once('./Config/configs.php');
+$config = require_once(__ROOT__.'/Config/configs.php');
 
 $dir = scandir(ROOT_PATH);
 
