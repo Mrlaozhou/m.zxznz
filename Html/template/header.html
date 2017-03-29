@@ -3,22 +3,21 @@
 	<div class="top-logo">
 		<img src="/Html/images/logo.png" alt="">
 		<div class="user-option">
-			<!-- <div class="not-login">
-				<a href="login.html" title="" class="login-btn">登录</a>
-				<a href="register.html" title="" class="register-btn">注册</a>
-			</div> -->
+		<?php if( !S('USER_ID') ):?>
+			<div class="not-login">
+				<a href="<?php echo U('login');?>" title="" class="login-btn">登录</a>
+				<a href="<?php echo U('register');?>" title="" class="register-btn">注册</a>
+			</div>
+		<?php else:?>
 			<div class="is-login">
 				<div class="user-avatar">
 					<img src="/Html/images/avatar-default.png" alt="">
 				</div>
 				<div class="user-nick">
-					<?php if( S('USER_ID') ):?>
-						<a href="">个人信息</a> / <a href="">退出</a>
-					<?php else:?>
-						<a href="">登录</a> / <a href="">注册</a>
-					<?php endif;?>
+					<?php echo S('USER_NAME');?>
 				</div>
 			</div>
+		<?php endif;?>
 		</div>
 	</div>
 	<div class="nav">
@@ -40,3 +39,17 @@
 		</div>
 	</div>
 </div>
+<script>
+	$(function(){
+		$('#login-out').click(function(){
+			$.ajax({
+				url:"<?php echo A('Z2hidGJ5Xm4mYXZ0Ynleeg%3D%3D');?>",
+				type:'POST',
+				success:function(res)
+				{
+					location=location;
+				}
+			})
+		})
+	})
+</script>
