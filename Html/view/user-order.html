@@ -26,97 +26,57 @@
 		</div>
 	</div>
 
-	<!-- finshed order container -->
-	<div class="order-finshed-container">
-		
-		<!-- order finshed item -->
-		<div class="order-finshed-item">
+	<!-- order item template-->
+	<div class="jvc-template">
+		<div class="order-finshed-item" id="jvt-finshed-template">
 			<div class="order-item-title">
-				<span class="order-num">订单编号：3144166201156005</span>
+				<span class="order-num">订单编号：<span class="jvc-order-num"></span></span>
 				<span class="order-state">已支付</span>
 			</div>
 			<div class="order-item-info">
 				<div class="product-img">
-					<img src="/Html/images/product-img.jpg" alt="">
+					<img src="" alt="" class="jvc-product-img">
 				</div>
 				<div class="product-msg">
-					<div class="product-desc">深层清洁，补水注氧，提亮肤色青春解码是一项能够快速逆转皮肤衰老的皮肤类美容项目</div>
-					<div class="hospital-link"><a href="#" title="">上海华美</a></div>
-					<div class="product-price">特购价：￥450</div>
+					<div class="product-desc jvc-product-desc"></div>
+					<div class="hospital-link"><a href="javascript:void(0)" title="" class="jvc-hospital"></a></div>
+					<div class="product-price">特购价：￥<span class="jvc-price"></span></div>
 				</div>
 			</div>
 		</div>
 
-		<!-- order finshed item -->
-		<div class="order-finshed-item">
+		<!-- order unfinshed item -->
+		<div class="order-unfinshed-item" id="jvt-unfinshed-template">
 			<div class="order-item-title">
-				<span class="order-num">订单编号：3144166201156005</span>
-				<span class="order-state">已支付</span>
+				<span class="order-num">订单编号：<span class="jvc-order-num"></span></span>
+				<span class="order-state">未支付</span>
 			</div>
 			<div class="order-item-info">
 				<div class="product-img">
-					<img src="/Html/images/product-img.jpg" alt="">
+					<img src="/Html/images/product-img.jpg" alt="" class="jvc-product-img">
 				</div>
 				<div class="product-msg">
-					<div class="product-desc">深层清洁，补水注氧，提亮肤色青春解码是一项能够快速逆转皮肤衰老的皮肤类美容项目</div>
-					<div class="hospital-link"><a href="#" title="">上海华美</a></div>
-					<div class="product-price">特购价：￥450</div>
+					<div class="product-desc jvc-product-desc"></div>
+					<div class="hospital-link"><a href="javascript:void(0)" title="" class="jvc-hospital"></a></div>
+					<div class="product-price">特购价：￥<span class="jvc-price"></span></div>
+					<div class="pay-btn">
+						<a href="#" title="">立即支付</a>
+					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
+	
+	<!-- finshed order container -->
+	<div class="order-finshed-container"></div>
 
 	<!-- unfinshed order container -->
-	<div class="order-unfinshed-container">
-
-		<!-- order unfinshed item -->
-		<div class="order-unfinshed-item">
-			<div class="order-item-title">
-				<span class="order-num">订单编号：3144166201156005</span>
-				<span class="order-state">未支付</span>
-			</div>
-			<div class="order-item-info">
-				<div class="product-img">
-					<img src="/Html/images/product-img.jpg" alt="">
-				</div>
-				<div class="product-msg">
-					<div class="product-desc">深层清洁，补水注氧，提亮肤色青春解码是一项能够快速逆转皮肤衰老的皮肤类美容项目</div>
-					<div class="hospital-link"><a href="#" title="">上海华美</a></div>
-					<div class="product-price">特购价：￥450</div>
-					<div class="pay-btn">
-						<a href="#" title="">立即支付</a>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- order unfinshed item -->
-		<div class="order-unfinshed-item">
-			<div class="order-item-title">
-				<span class="order-num">订单编号：3144166201156005</span>
-				<span class="order-state">未支付</span>
-			</div>
-			<div class="order-item-info">
-				<div class="product-img">
-					<img src="/Html/images/product-img.jpg" alt="">
-				</div>
-				<div class="product-msg">
-					<div class="product-desc">深层清洁，补水注氧，提亮肤色青春解码是一项能够快速逆转皮肤衰老的皮肤类美容项目</div>
-					<div class="hospital-link"><a href="#" title="">上海华美</a></div>
-					<div class="product-price">特购价：￥450</div>
-					<div class="pay-btn">
-						<a href="#" title="">立即支付</a>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
+	<div class="order-unfinshed-container"></div>
 </body>
 </html>
 <script>
 	$(function(){
+		$('.jvc-template').hide();
 		$('.finshed-title').click(function(){
 			$('.order-finshed-container').show();
 			$('.order-unfinshed-container').hide();
@@ -128,7 +88,45 @@
 			$(this).addClass('active').siblings().removeClass('active');
 		})
 
+	
+		$.ajax({
+			url:"<?php echo A('c3lyZl5uJmVycWViXno%3D');?>",
+			type:'POST',
+			dataType:'json',
+			success:function(res){
+				if(res.status)
+				{
+					// 已完成订单
+					var finshed=res.yes;
+					$('.order-finshed-container').empty();
+					for(var i=0;i<finshed.length;i++)
+					{
+						var id='finshed-'+i;
+						$('#jvt-finshed-template').clone().attr('id',id).show().appendTo($('.order-finshed-container'));
+						$('#'+id).find('.jvc-order-num').html(decodeURIComponent(finshed[i].code));
+						$('#'+id).find('.jvc-hospital').html(finshed[i].hospital);
+						$('#'+id).find('.jvc-product-desc').html(finshed[i].intro);
+						$('#'+id).find('.jvc-product-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+finshed[i].pic);
+						$('#'+id).find('.jvc-price').html(finshed[i].need_pay);
+					}
 
+					// 未完成订单
+					var unfinshed=res.no;
+					$('.order-unfinshed-container').empty();
+					for(var x=0;x<unfinshed.length;x++)
+					{
+						var id='unfinshed-'+x;
+						$('#jvt-unfinshed-template').clone().attr('id',id).show().appendTo($('.order-unfinshed-container'));
+						$('#'+id).find('.jvc-order-num').html(decodeURIComponent(unfinshed[x].code));
+						$('#'+id).find('.jvc-hospital').html(unfinshed[x].hospital);
+						$('#'+id).find('.jvc-product-desc').html(unfinshed[x].intro);
+						$('#'+id).find('.jvc-product-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+unfinshed[x].pic);
+						$('#'+id).find('.jvc-price').html(unfinshed[x].need_pay);
+					}
+				}
+			}
+		})
+		
 
 
 	})

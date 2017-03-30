@@ -19,11 +19,11 @@
 		</div>
 		<div class="user-tel">
 			<span class="profile-title">手机号</span>
-			<span class="profile-msg">185****3765</span>
+			<span class="profile-msg" id="tel">185****3765</span>
 		</div>
 		<div class="last-time">
 			<span class="profile-title">登陆时间</span>
-			<span class="profile-msg">2017/03/29 13:38:59</span>
+			<span class="profile-msg" id="last-time">2017/03/29 13:38:59</span>
 		</div>
 	</div>
 
@@ -34,6 +34,24 @@
 </body>
 </html>
 <script>
+	$(function(){
+		$.ajax({
+			url:'',
+			type:'POST',
+			dataType:'json',
+			success:function(res){
+				if(res.status)
+				{
+					$('#nick').val(res.info.alias);
+					$('#tel').html(res.info.username);
+					$('#last-time').html(res.info.last_time);
+				}
+			}
+		})
+	})
+
+
+
 
 	// 保存
 	// $(function(){

@@ -6,11 +6,22 @@
 // +----------------------------------------------------------------------
 header("Content-Type:text/html;Charset=utf-8");
 
-//是否自动创建
-define('CREATE',false);
-define('DB_NAME','root');
+//开启 session
+@session_start();
 
+/*home*///是否自动创建
+define('CREATE',false);
 // 网站根目录
 define('__ROOT__',__DIR__);
 
-require_once(__ROOT__.'/Lz/Html.php');
+/*admin*///
+defined('DB_NAME') or define('DB_NAME','zxznz');
+defined('DB_ROOT') or define('DB_ROOT','root');
+defined('DB_PASS') or define('DB_PASS','laozhou');
+defined('ALLOW_HOST') or define('ALLOW_HOST','*');
+
+if( !isset($_GET['u']) )
+	require_once(__ROOT__.'/Lz/Html.php');
+else
+	require_once("Lz/lz.php");
+

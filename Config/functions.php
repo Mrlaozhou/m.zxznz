@@ -136,7 +136,7 @@ function P($config)
 
 function A($route)
 {
-	return '/api.php?u='.$route;
+	return 'index.php?u='.$route;
 }
 
 function S($k,$v=FALSE,$t=null)

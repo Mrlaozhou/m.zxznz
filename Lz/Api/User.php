@@ -3,7 +3,7 @@ class User extends Allow
 {
 	public function person()
 	{
-		/*需求介绍*/// 提取个人用户信息 
+		/*需求介绍*/// 提取个人用户信息 YWJmZXJjXm4mZXJmaF56
 		$id = S('USER_ID');
 		$model = M('User');
 		$sql = "SELECT id,username,alias,create_time,last_time FROM 
