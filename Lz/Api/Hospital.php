@@ -7,7 +7,7 @@ class Hospital extends Base
 		$hospital = M('hospital');
 		$pagesize = 8;
 		//接受参数
-		$page = P('p') ? P('p') : 1;
+		$page = P('page') ? P('page') : 1;
 		$start = ($page-1)*$pagesize;
 
 		$sql = "SELECT id,name,logo FROM zxznz_hospital 

@@ -11,7 +11,8 @@ class Index extends Base
 					zxznz_doctor d 
 					LEFT JOIN zxznz_hospital AS h 
 					ON d.hos_id=h.id 
-					WHERE ( h.is_show = '1' ) 
+					WHERE h.is_show = '1' 
+					AND d.is_show = '是'
 					ORDER BY d.id desc 
 					LIMIT 12";
 		$doctors = $doctor->All($sql);
