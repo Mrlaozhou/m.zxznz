@@ -107,6 +107,25 @@ body
 	box-sizing: border-box;
 }
 
+.login-out
+{
+	text-align: center;
+}
+.login-out a
+{
+	display: inline-block;
+	width: 8.75rem;
+	height: 1.5625rem;
+	border-radius: 0.1875rem;
+	font-size: 0.7rem;
+	color: #fff;
+	text-align: center;
+	line-height: 1.5625rem;
+	background: -webkit-linear-gradient(#ffaa2d, #ff953d);
+	margin: 0.9375rem 0 0;
+}
+
+
 
 
 

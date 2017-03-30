@@ -75,7 +75,7 @@ class Register extends Check
 	}
 	public function checkCode()
 	{
-		echoJson(array('status'=>TRUE));
+		//echoJson(array('status'=>TRUE));
 		/*需求介绍*/// 验证密码 cnFiUHhwcnVwXm4mZXJnZnZ0cmVeeg%3D%3D
 		$code = P('code');
 		$mobile = P('mobile');

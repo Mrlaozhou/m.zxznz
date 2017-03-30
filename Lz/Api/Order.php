@@ -16,13 +16,15 @@ class Order extends Allow
 		$result = array();
 		foreach( $data as $k => $v )
 		{
+			$v['intro'] = htmlspecialchars_decode($v['intro']);
 			if( $v['status'] == '2' )
-				$result['yes'] = $v;
+				$result['yes'][] = $v;
 			elseif( $v['status'] == '1' )
-				$result['no'] = $v;
+				$result['no'][] = $v;
 			unset($data[$k]);
 		}
+		$result['status'] = TRUE;
+		//dump($result,2);
 		echoJson($result);
 	}
-
 }
