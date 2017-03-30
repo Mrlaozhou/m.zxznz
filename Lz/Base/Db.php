@@ -24,7 +24,7 @@ class Db
 	private function InitLink()
 	{
 		// $this->_link = @mysql_connect($this->_config['host'],"root","laozhou") or Error("数据库连接异常");
-		$this->_link = new PDO('mysql:host=localhost;dbname=zxznz','root', 'laozhou', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')); 
+		$this->_link = new PDO('mysql:host=localhost;dbname='.DB_NAME,''.DB_ROOT, ''.DB_PASS, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')); 
 	}
 	private function InitChoose()
 	{
