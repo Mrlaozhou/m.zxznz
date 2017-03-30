@@ -31,9 +31,16 @@ class Login extends Check
 
 	public function logout()
 	{
+		//跟新登录时间
+		$model = M('User');
+		$time = time();
+		$id = S('USER_ID');
+		$sql = "UPDATE `zxznz_user` SET `last_time` = {$time} WHERE `id` = {$id}";
+		$model->exec($sql);
 		/*需求介绍*/// 用户登录 Z2hidGJ5Xm4mYXZ0Ynleeg%3D%3D
 		S('USER_ID',null);
 		S('USER_NAME',null);
+
 	}
 	public function isLogin()
 	{

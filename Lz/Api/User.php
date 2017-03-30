@@ -9,6 +9,8 @@ class User extends Allow
 		$sql = "SELECT id,username,alias,create_time,last_time FROM 
 								`zxznz_user` WHERE `id` = {$id}";
 		$info = $model->One($sql);
+		$info['last_time'] = date('Y-m-d H:i:s',$info['last_time']);
+		$info['username'] = substr($info['username'],0,3).'****'.substr($info['username'],7);
 		echoJson($info);
 	}
 }
