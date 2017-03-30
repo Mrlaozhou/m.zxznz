@@ -14,7 +14,7 @@ class Check extends Base
 	{
 		//ZmdmdmtyXm4meHBydXBeeg%3D%3D
 		$model = M('User');
-		$sql = "SELECT id,username,password FROM `zxznz_user` WHERE `username` = '{$username}'";
+		$sql = "SELECT id,username,password,alias FROM `zxznz_user` WHERE `username` = '{$username}'";
 
 		$info = $model->One($sql);
 		

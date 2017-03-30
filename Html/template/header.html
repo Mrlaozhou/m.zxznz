@@ -11,10 +11,12 @@
 		<?php else:?>
 			<div class="is-login">
 				<div class="user-avatar">
-					<img src="/Html/images/avatar-default.png" alt="">
+					<a href="<?php echo U('dashboard');?>">
+						<img src="/Html/images/avatar-default.png" alt="">
+					</a>
 				</div>
 				<div class="user-nick">
-					<?php echo S('USER_NAME');?>
+					<a href="javascript:;" title="" id="login-out" class="login-out">退出</a>
 				</div>
 			</div>
 		<?php endif;?>
@@ -51,5 +53,20 @@
 				}
 			})
 		})
+		// function isLogin()
+		// {
+		// 	$.ajax({
+		// 			url:"<?php echo A('YXZ0Ynlmdl5uJmF2dGJ5Xno%3D');?>",
+		// 			type:'POST',
+		// 			success:function(res)
+		// 			{
+		// 				if( res.status )
+		// 				{
+							
+		// 				}
+		// 			}
+		// 	})	
+		// }
+		// isLogin();
 	})
 </script>

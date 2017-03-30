@@ -11,7 +11,6 @@
 
 $config = require_once('/Lz/url.php');
 
-
 //处理参数 去空格
 $config = @array_map('trim',$config) or exit('路由错误！');
 
