@@ -9,8 +9,10 @@ class Active extends Base
 		$sql = "SELECT id,title,pic,intro,hospital FROM `zxznz_active` 
 							WHERE `is_show` = '1'";
 		$data = $model->All($sql);
-
-		echoJson($data);
+		// dump($data);
+		if( $data )
+			echoJson(array('status'=>TRUE,'data'=>$data));
+		echoJson(array('status'=>FALSE));
 	}
 
 	public function detial()
@@ -24,6 +26,8 @@ class Active extends Base
 		$sql = "SELECT * FROM `zxznz_active` WHERE `id` = {$id}";
 
 		$info = $model->One($sql);
-		echoJson($info);
+		if( $info )
+			echoJson(array('status'=>TRUE,'info'=>$info));
+		echoJson(array('status'=>FALSE));
 	}
 }
