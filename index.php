@@ -13,8 +13,6 @@ header("Content-Type:text/html;Charset=utf-8");
 
 /*home*///是否自动创建
 define('CREATE',FALSE);
-// 网站根目录
-define('__ROOT__',__DIR__);
 
 
 
@@ -27,7 +25,7 @@ defined('ALLOW_HOST') or define('ALLOW_HOST','*');
 
 /*判断是页面请求 还是api请求*/
 if( !isset($_GET['u']) )
-	require_once(__ROOT__.'/Lz/Html.php');
+	require_once('/Lz/Html.php');
 else
 	require_once("Lz/lz.php");
 

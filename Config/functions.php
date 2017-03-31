@@ -172,7 +172,7 @@ function S($k,$v=FALSE,$t=null)
 }
 function load($param)
 {
-	require_once($param);
+	return require_once($param);
 }
 function Vendor($plug=null)
 {
@@ -199,6 +199,7 @@ function Vendor($plug=null)
 			$files[] = $path.$v;
 		unset($list[$k]);
 	}
+	
 	//加载目录
 	//加载之前类目录
 	$before = get_declared_classes();
