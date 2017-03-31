@@ -17,11 +17,11 @@ class Active extends Base
 
 	public function detial()
 	{
-		/*需求介绍*///提取单条 http://www.mzxznz.cn/api.php?u=eW52Z3JxXm4mZWJncGJxXno%3D
+		/*需求介绍*///提取单条 http://www.mzxznz.cn/api.php?u=eW52Z3JxXm4mcml2Z3BuXno%3D
 		$model = M('active');
 
 		$id = P('id');
-		if( $id )
+		if( !$id )
 			exit('冇ID.');
 		$sql = "SELECT * FROM `zxznz_active` WHERE `id` = {$id}";
 
