@@ -83,5 +83,20 @@ class Order extends Allow
 	public function aliGet()
 	{
 		/*需求介绍*///阿里回调接口 Z3JUdnluXm4mZXJxZWJeeg%3D%3D
+		//接收参数
+		if( $receive = P() )
+			echoJson(array('status'=>FALSE,'info'=>'001'));
+		define('ALI',VENDOR_PATH.'Alipay'.DS);
+		$config = load(ALI.'config.php');
+		load(ALI.'AlipayTradeService.php');
+
+		$alipaySevice = new AlipayTradeService($config); 
+		$alipaySevice->writeLog(var_export($receive,true));
+		$result = $alipaySevice->check($receive);
+
+		if( $result )
+		{
+
+		}
 	}
 }
