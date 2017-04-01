@@ -27,19 +27,28 @@ class Order extends Allow
 		//dump($result,2);
 		echoJson($result);
 	}
+
 	public function publicPay()
 	{
-		dump(Vendor('wxpay'));;
+		dump(Vendor('wxpay'));
 
 	}
+
 	public function aliPay()
 	{
-		//Vendor('alipay');
-		defined('ALI') or define('ALI',VENDOR_PATH.'Alipay'.DS);
-		load(ALI.'config.php');
-		load(ALI.'AlipayTradeWapPayContentBuilder.php');
-		// if (!empty($_POST['WIDout_trade_no'])&& trim($_POST['WIDout_trade_no'])!="")
-		// {
+		/*需求介绍*///阿里支付接口 bG5DdnluXm4mZXJxZWJeeg%3D%3D
+		
+		if (!empty($_POST['WIDout_trade_no']) && trim($_POST['WIDout_trade_no'])!="")
+		{
+			//定义路径常量
+			define('ALI',VENDOR_PATH.'Alipay'.DS);
+			define('AOP_SDK_WORK_DIR',ALI.'tmp/');
+
+			//手动加载类
+			load(ALI.'AlipayTradeService.php');
+			load(ALI.'AlipayTradeWapPayContentBuilder.php');
+			$config = load(ALI.'config.php');
+			
 		    //商户订单号，商户网站订单系统中唯一订单号，必填
 		    $out_trade_no = $_POST['WIDout_trade_no'];
 
@@ -61,14 +70,18 @@ class Order extends Allow
 		    $payRequestBuilder->setOutTradeNo($out_trade_no);
 		    $payRequestBuilder->setTotalAmount($total_amount);
 		    $payRequestBuilder->setTimeExpress($timeout_express);
-		    dump($config);
+
 		    $payResponse = new AlipayTradeService($config);
 		    $result=$payResponse->wapPay($payRequestBuilder,$config['return_url'],$config['notify_url']);
 
 		    return ;
-		// }
-		// echoJson(array('status'=>FALSE));
+		}
+		//没有传参
+		echoJson(array('status'=>FALSE,'info'=>'001'));
 	}
+
 	public function aliGet()
-	{}
+	{
+		/*需求介绍*///阿里回调接口 Z3JUdnluXm4mZXJxZWJeeg%3D%3D
+	}
 }

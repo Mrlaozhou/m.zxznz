@@ -137,7 +137,7 @@ function G($config=null)
  * [P $_POST]
  * @param [type] $config [description]
  */
-function P($config)
+function P($config=null)
 {
 	if( $config )
 		return $_POST["{$config}"];
@@ -199,13 +199,13 @@ function Vendor($plug=null)
 			$files[] = $path.$v;
 		unset($list[$k]);
 	}
-	
 	//加载目录
 	//加载之前类目录
 	$before = get_declared_classes();
 	$result = array_map('load',$files);
 	//加载之后类目录
 	$back = get_declared_classes();
+	//dump($result,2);
 
 	//判断是否全部加载
 	if( count($result) === count($files) )

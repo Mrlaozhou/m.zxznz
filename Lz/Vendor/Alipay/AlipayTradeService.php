@@ -7,8 +7,9 @@
  * 以下代码只是为了方便商户测试而提供的样例代码，商户可以根据自己网站的需要，按照技术文档编写,并非一定要使用该代码。
  */
 
-
-
+require_once dirname ( __FILE__ ).DIRECTORY_SEPARATOR.'AopSdk.php';
+// require dirname ( __FILE__ ).DIRECTORY_SEPARATOR.'config.php';
+// dump($config);
 class AlipayTradeService {
 
 	//支付宝网关地址
@@ -116,8 +117,98 @@ class AlipayTradeService {
 		return $result;
 	}
 
+	/**
+	 * alipay.trade.query (统一收单线下交易查询)
+	 * @param $builder 业务参数，使用buildmodel中的对象生成。
+	 * @return $response 支付宝返回的信息
+ 	*/
+	function Query($builder){
+		$biz_content=$builder->getBizContent();
+		//打印业务参数
+		$this->writeLog($biz_content);
+		$request = new AlipayTradeQueryRequest();
+		$request->setBizContent ( $biz_content );
 
+		// 首先调用支付api
+		$response = $this->aopclientRequestExecute ($request);
+		$response = $response->alipay_trade_query_response;
+		var_dump($response);
+		return $response;
+	}
+	
+	/**
+	 * alipay.trade.refund (统一收单交易退款接口)
+	 * @param $builder 业务参数，使用buildmodel中的对象生成。
+	 * @return $response 支付宝返回的信息
+	 */
+	function Refund($builder){
+		$biz_content=$builder->getBizContent();
+		//打印业务参数
+		$this->writeLog($biz_content);
+		$request = new AlipayTradeRefundRequest();
+		$request->setBizContent ( $biz_content );
+	
+		// 首先调用支付api
+		$response = $this->aopclientRequestExecute ($request);
+		$response = $response->alipay_trade_refund_response;
+		var_dump($response);
+		return $response;
+	}
 
+	/**
+	 * alipay.trade.close (统一收单交易关闭接口)
+	 * @param $builder 业务参数，使用buildmodel中的对象生成。
+	 * @return $response 支付宝返回的信息
+	 */
+	function Close($builder){
+		$biz_content=$builder->getBizContent();
+		//打印业务参数
+		$this->writeLog($biz_content);
+		$request = new AlipayTradeCloseRequest();
+		$request->setBizContent ( $biz_content );
+	
+		// 首先调用支付api
+		$response = $this->aopclientRequestExecute ($request);
+		$response = $response->alipay_trade_close_response;
+		var_dump($response);
+		return $response;
+	}
+	
+	/**
+	 * 退款查询   alipay.trade.fastpay.refund.query (统一收单交易退款查询)
+	 * @param $builder 业务参数，使用buildmodel中的对象生成。
+	 * @return $response 支付宝返回的信息
+	 */
+	function refundQuery($builder){
+		$biz_content=$builder->getBizContent();
+		//打印业务参数
+		$this->writeLog($biz_content);
+		$request = new AlipayTradeFastpayRefundQueryRequest();
+		$request->setBizContent ( $biz_content );
+	
+		// 首先调用支付api
+		$response = $this->aopclientRequestExecute ($request);
+		var_dump($response);
+		return $response;
+	}
+	/**
+	 * alipay.data.dataservice.bill.downloadurl.query (查询对账单下载地址)
+	 * @param $builder 业务参数，使用buildmodel中的对象生成。
+	 * @return $response 支付宝返回的信息
+	 */
+	function downloadurlQuery($builder){
+		$biz_content=$builder->getBizContent();
+		//打印业务参数
+		$this->writeLog($biz_content);
+		$request = new alipaydatadataservicebilldownloadurlqueryRequest();
+		$request->setBizContent ( $biz_content );
+	
+		// 首先调用支付api
+		$response = $this->aopclientRequestExecute ($request);
+		$response = $response->alipay_data_dataservice_bill_downloadurl_query_response;
+		var_dump($response);
+		return $response;
+	}
 
 	/**
 	 * 验签方法

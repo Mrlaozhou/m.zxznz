@@ -14,7 +14,8 @@ header("Content-Type:text/html;Charset=utf-8");
 /*home*///是否自动创建
 define('CREATE',FALSE);
 
-
+// 网站根目录
+define('__ROOT__',__DIR__);
 
 
 /*admin*///

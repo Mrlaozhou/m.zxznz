@@ -38,8 +38,11 @@ class AlipayTradeWapPayContentBuilder
 
     public function getBizContent()
     {
-        if(!empty($this->bizContentarr)){
-            $this->bizContent = json_encode($this->bizContentarr,JSON_UNESCAPED_UNICODE);
+        if(!empty($this->bizContentarr))
+        {
+            //dump(JSON_UNESCAPED_UNICODE);
+            // $this->bizContent = json_encode($this->bizContentarr,JSON_UNESCAPED_UNICODE);
+            $this->bizContent = json_encode($this->bizContentarr,3);
         }
         return $this->bizContent;
     }
