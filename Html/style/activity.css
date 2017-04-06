@@ -83,7 +83,7 @@
 .activity-date-wrap .day-wrap
 {
 	display: inline-block;
-	width: 1.406rem;
+	width: 2rem;
 	font-size: 0.6rem;
 	text-align: center;
 	line-height: 0.625rem;
@@ -91,7 +91,7 @@
 .activity-date-wrap .icon-line-v
 {
 	display: inline-block;
-	width: 1.406rem;
+	width: 2rem;
 	box-sizing: border-box;
 	height: 1.5px;
 	background: #fff;
@@ -99,8 +99,8 @@
 .activity-date-wrap .year-wrap
 {
 	display: inline-block;
-	width: 1.406rem;
-	font-size: 0.28rem;
+	width: 2rem;
+	font-size: 0.3125rem;
 	text-align: center;
 	line-height: 0.625rem;
 }

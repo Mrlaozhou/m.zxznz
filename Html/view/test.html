@@ -55,14 +55,17 @@
 		var n = $('#new').val();
 
 		$.ajax({
-				url:"http://m.zxznz.cn/index.php?u=bG5DdnluXm4mZXJxZWJeeg%3D%3D",
+				// url:"http://m.zxznz.cn/index.php?u=bG5DdnluXm4mZXJxZWJeeg%3D%3D",
+				url:"http://www.mzxznz.cn/index.php?u=cmducmVwXm4mZXJxZWJeeg%3D%3D",
 				type:"POST",
 				data:
 				{
-					'WIDout_trade_no':'000038',
-					'WIDsubject':'活动1',
-					'WIDtotal_amount':'38',
-					'WIDbody':'哈哈哈'
+					// 'WIDout_trade_no':'000038',
+					// 'WIDsubject':'活动1',
+					// 'WIDtotal_amount':'38',
+					// 'WIDbody':'哈哈哈'
+					'activeId':'7',
+					'count':'3'
 				},
 				dataType:'JSON',
 				success:function(data)
@@ -71,18 +74,5 @@
 				}
 			})
 	})
-	$('#get').click(function(){
-		var n = $('#new').val();
 
-		$.ajax({
-				url:"http://www.mzxznz.cn/api.php?u=Z3J0Xm4mZ2ZyZ156",//get
-				type:"GET",
-				//data:{'phone':n},
-				dataType:'json',
-				success:function(data)
-				{
-					console.log(data);
-				}
-			})
-	})
 </script>
