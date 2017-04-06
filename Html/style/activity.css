@@ -12,23 +12,6 @@
 	position: relative;
 	font-size: 0;
 }
-.entrance-activity-btn
-{
-	display: inline-block;
-	width: 80px;
-	height: 30px;
-	border-radius: 15px;
-	background: #d11337;
-	box-shadow: 2px 2px 2px rgba(143,16,40,1);
-	font-size: 16px;
-	color: #fff;
-	text-align: center;
-	vertical-align: top;
-	line-height: 30px;
-	position: absolute;
-	top: 3.28rem;
-	right: 1.25rem;
-}
 .show-new-activity
 {
 	width: 100%;
@@ -40,74 +23,116 @@
 	line-height: 25px;
 }
 
-/********  activity-sub-banner   **********/
-
-.activity-sub-banner
-{
-	width: 9.7rem;
-	padding: 0.3rem 0.15rem 0;
-}
 
 /*******  activity-item-container  ********/
 
 .activity-item-container
 {
-	width: 9.7rem;
-	padding: 0 0.15rem;
+	width: 9.375rem;
+	margin: -0.2rem auto 0;
 }
 .activity-item
 {
-	margin: 0.15rem 0;
-	height: 3.5rem;
-	overflow: hidden;
+	border-bottom: 1px dashed #999;
+}
+.activity-item:last-child{
+	border-bottom: none;
+}
+.activity-item-info
+{
+	width: 100%;
+	height: 1.875rem;
+	background: #2b2a2f;
+	color: #fff;
+	background: #f55758;
+	text-align: center;
+	margin-top: 0.625rem;
+	font-size: 0;
+	box-sizing: border-box;
+	padding: 0.3125rem 0;
+}
+.activity-date-wrap
+{
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+	box-sizing: border-box;
+	color: #fff;
+	vertical-align: top;
+	text-align: right;
+	padding-right: 0.375rem;
+}
+.activity-date-title
+{
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+	box-sizing: border-box;
+	color: #fff;
+	vertical-align: top;
+	font-size: 0.46875rem;
+	text-align: left;
+	padding-left: 0.3125rem;
+}
+.activity-date-title span
+{
+	display: inline-block;
+	border-left: 1px solid #d74344;
+	padding-left: 0.625rem;
+}
+.activity-date-wrap .day-wrap
+{
+	display: inline-block;
+	width: 1.406rem;
+	font-size: 0.6rem;
+	text-align: center;
+	line-height: 0.625rem;
+}
+.activity-date-wrap .icon-line-v
+{
+	display: inline-block;
+	width: 1.406rem;
+	box-sizing: border-box;
+	height: 1.5px;
+	background: #fff;
+}
+.activity-date-wrap .year-wrap
+{
+	display: inline-block;
+	width: 1.406rem;
+	font-size: 0.28rem;
+	text-align: center;
+	line-height: 0.625rem;
+}
+.activity-item-desc
+{
+	font-size: 0.2812rem;
+	text-align: center;
+	margin: 0.4687rem 0;
+	line-height: 0.6rem;
+	color: #666;
 }
 .activity-item-img
 {
-	width: 6.4rem;
-	height: 3.5rem;
-	display: inline-block;
-	float: left;
+	width: 100%;
+	font-size: 0;
 }
-
-.activity-item-info
+.activity-item-img
 {
-	width: 3.3rem;
-	height: 3.5rem;
-	background: #2b2a2f;
+	width: 100%;
+}
+.appoint-btn a
+{
 	display: inline-block;
-	color: #fff;
+	width: 100%;
+	height: 1.25rem;
+	background: #d11337;
 	text-align: center;
-}
-.info-title
-{
-	font-size: 0.46rem;
-}
-.info-msg,.info-time,.info-date
-{
-	font-size: 0.31rem;
-	line-height: 0.42rem;
-}
-.line-t
-{
-	font-size: 0.05rem;
-}
-.corner-l-t
-{
-	display: inline-block;
-	width: 0.25rem;
-	height: 0.25rem;
-	border-top: 1px solid #fff;
-	border-left: 1px solid #fff;
-	float: left;
-	margin: 0.2rem 0 0 0.2rem;
-}
-.corner-r-b
-{
-	display: inline-block;
-	width: 0.25rem;
-	height: 0.25rem;
-	border-bottom: 1px solid #fff;
-	border-right: 1px solid #fff;
-	float: right;
-	margin: 0.2rem;
+	line-height: 1.25rem;
+	color: #fff;
+	text-decoration: none;
+	font-size: 0.4062rem;
+	margin-bottom: 0.625rem;
+	vertical-align: top;
+	margin-top: 0.16rem;
 }
