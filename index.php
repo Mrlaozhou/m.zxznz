@@ -10,7 +10,6 @@ header("Content-Type:text/html;Charset=utf-8");
 @session_start();
 
 
-
 /*home*///是否自动创建
 define('CREATE',FALSE);
 
