@@ -6,10 +6,11 @@ class Active extends Base
 		/*需求介绍*/// 提取符合的所有信息 a3JxYXZebiZyaXZncG5eeg%3D%3D
 		$model = M('Active');
 
-		$sql = "SELECT id,title,pic,intro,hospital FROM `zxznz_active` 
+		$sql = "SELECT id,title,pic,intro,hospital,start_time FROM `zxznz_active` 
 							WHERE `is_show` = '1'";
 		$data = $model->All($sql);
 		// dump($data);
+		dump($data,2);
 		if( $data )
 			echoJson(array('status'=>TRUE,'data'=>$data));
 		echoJson(array('status'=>FALSE));

@@ -13,15 +13,15 @@
 			</div>
 			<div class="order-item-info">
 				<div class="product-img">
-					<img src="/Html/images//product-img.jpg" alt="">
+					<img src="/Html/images//product-img.jpg" alt="" class="jvc-img">
 				</div>
 				<div class="switch">
 					<div class="product-msg">
-						<div class="product-desc">深层清洁，补水注氧，提亮肤色青春解码是一项能够快速逆转皮肤衰老的皮肤类美容项目</div>
-						<div class="hospital-link"><a href="#" title="">上海华美</a></div>
+						<div class="product-desc jvc-desc"></div>
+						<div class="hospital-link"><a href="javascript:void(0)" title="" class="jvc-hospital">上海华美</a></div>
 						<div class="product-sold">
-							<span class="product-price">特购价：￥450</span>
-							<span class="product-num">x2</span>
+							<span class="product-price">特购价：￥<span class="jvc-price"></span></span>
+							<span class="product-num">x<span class="jvc-num">1</span></span>
 						</div>
 					</div>
 					<div class="product-option">
@@ -36,10 +36,10 @@
 	</div>
 	<div class="order-foot">
 		<div class="order-total">
-			合计：<span class="total-price">￥450</span>
+			合计：<span class="total-price">￥<span class="jvc-total-price"></span></span>
 		</div>
 		<div class="order-submit-btn">
-			<a href="javascript:void(0)" title="">结算</a>
+			<a href="javascript:void(0)" title="结算" class="jvc-submit">结算</a>
 		</div>
 	</div>
 </body>
@@ -98,6 +98,8 @@
 			var num=$(this).prev().val();
 			num++;
 			$(this).prev().val(num);
+			$('.jvc-num').html(num);
+			$('.jvc-total-price').html(num*$('.jvc-price').html());
 		})
 		$('.sub').click(function(){
 			var num=$(this).next().val();
@@ -110,5 +112,39 @@
 				return false;
 			}
 			$(this).next().val(num);
+			$('.jvc-num').html(num);
+			$('.jvc-total-price').html(num*$('.jvc-price').html());
+		})
+		var id=location.search.match(/&id=\d{1,}/)[0].substring(4);//获取查询串
+		
+		// 加载订单
+		$.ajax({
+			url:'<?php echo A('eG5yY2ZycV5uJmVycWViXno%3D');?>',
+			type:'POST',
+			dataType:'json',
+			data:{'activeId':id},
+			success:function(res)
+			{
+				var result=res.info;
+				$('.jvc-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+result.pic);
+				$('.jvc-desc').html(result.intro);
+				$('jvc-hospital').html(result.hospital);
+				$('.jvc-price').html(result.price);
+				$('.jvc-total-price').html(result.price);
+			}
+		})
+
+		$('.jvc-submit').click(function(){
+
+			$.ajax({
+				url:'<?php echo A('cmducmVwXm4mZXJxZWJeeg%3D%3D');?>',
+				type:'POST',
+				dataType:'json',
+				data:{'activeId':id,'count':count},
+				success:function(res)
+				{
+					window.location="<?php echo U('create');?>";
+				}
+			})
 		})
 </script>
