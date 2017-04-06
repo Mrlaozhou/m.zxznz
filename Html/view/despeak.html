@@ -109,7 +109,8 @@
 			$(this).prev().val(num);
 			$('.jvc-num').html(num);
 			$('.jvc-total-price').html(num*$('.jvc-price').html());
-		})
+		});
+
 		$('.sub').click(function(){
 			var num=$(this).next().val();
 			if(num>1)
@@ -124,7 +125,9 @@
 			$('.jvc-num').html(num);
 			$('.jvc-total-price').html(num*$('.jvc-price').html());
 		})
+
 		var id=location.search.match(/&id=\d{1,}/)[0].substring(4);//获取查询串
+
 		// 加载订单
 		$.ajax({
 			url:"<?php echo A('a3JxYXZebiZyaXZncG5eeg%3D%3D');?>",
@@ -147,7 +150,7 @@
 		var count=$('.num').val();
 		$('.jvc-submit').click(function(){
 			$.ajax({
-				url:"<?php echo A('eG5yY2ZycV5uJmVycWViXno%3D');?>",
+				url:'<?php echo A('cmducmVwXm4mZXJxZWJeeg%3D%3D');?>',
 				type:'POST',
 				dataType:'json',
 				data:{'activeId':id,'count':count},
@@ -173,5 +176,7 @@
 
 		$('.cancel-btn').click(function(){
 			$('.mask').fadeOut(500);
-		})
+					window.location="<?php echo U('create');?>";
+				}
+			})
 </script>

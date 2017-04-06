@@ -99,11 +99,11 @@
 
 		// 加载列表
 		$.ajax({
-			url:'<?php echo A(‘a3JxYXZebiZyaXZncG5eeg%3D%3D’);?>',
+			url:'<?php echo A('a3JxYXZebiZyaXZncG5eeg%3D%3D');?>',
 			type:'POST',
 			dataType:'json',
 			success:function(res){
-				var result=res;
+				var result=res.data;
 				for(var i=0;i<result.length;i++)
 				{
 					var activity=result[i];

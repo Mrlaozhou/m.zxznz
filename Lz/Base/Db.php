@@ -46,4 +46,8 @@ class Db
 	{
 		return $this->_link->exec($sql);
 	}
+	public function lastInsertId()
+	{
+		return $this->_link->lastInsertId();
+	}
 }

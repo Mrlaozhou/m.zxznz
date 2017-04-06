@@ -41,6 +41,7 @@ class Order extends Allow
 							LIMIT 1";
 		$model = M('Active');
 		$info = $model->One($sql);
+		// dump($activeId);
 		if( $info )
 			echoJson(array('status'=>TRUE,'info'=>$info));
 		echoJson(array('status'=>FALSE,'info'=>'006'));
@@ -86,11 +87,33 @@ class Order extends Allow
 							`count` 	= {$data['count']}, 
 							`price` 	= {$data['price']}, 
 							`create_time` = {$data['create_time']}";
-		$result = M('order')->exec($sql);
-		dump($sql);
+		$order = M('order');
+		// dump($order);
+		$result = $order->exec($sql);
+		$newId = $order->lastInsertId();
 		if( $result !== FALSE )
-			echoJson(array('status'=>TRUE));
+			echoJson(array('status'=>TRUE,'orderId'=>$newId));
 		echoJson(array('status'=>FALSE,'info'=>'444'));
+	}
+
+	public function pay()
+	{
+		/*需求介绍*///订单支付  bG5jXm4mZXJxZWJeeg%3D%3D 
+		if( !P() )
+			echoJson(array('status'=>FALSE,'info'=>'001'));
+		switch (P('pay_type')) 
+		{
+			case '1':
+				# 支付宝
+				$this->aliPay();
+				break;
+			case '2':
+				# 微信
+				$this->wxPay();
+				break;
+			default:
+				break;
+		}
 	}
 
 	public function aliPay()
@@ -161,7 +184,10 @@ class Order extends Allow
 
 	public function wxPay()
 	{
-
+		/*需求介绍*///微信支付接口 bG5Da2pebiZlcnFlYl56
+		$list = Vendor('wxpay');
+		$config = new \WxPayConfig();
+		dump($config);
 	}
 	public function wxGet()
 	{}
