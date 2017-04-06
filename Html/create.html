@@ -8,7 +8,7 @@
 	<div class="order-container">
 		<div class="order">
 			<div class="order-item-title">
-				<span class="order-num">订单编号：<span class="jvc-code">3144166201156005</span></span>
+				<span class="order-num">订单编号：3144166201156005</span>
 			</div>
 			<div class="order-item-info">
 				<div class="product-img">
@@ -41,16 +41,7 @@
 			合计：<span class="total-price">￥450</span>
 		</div>
 		<div class="order-submit-btn">
-			<a href="javascript:void(0)" title="" class="jvc-submit">结算</a>
-		</div>
-	</div>
-	<div class="mask">
-		<div class="well">
-			<p class="msg">您当前未登录!</p>
-			<div class="option-btn">
-				<a href="<?php echo U('login');?>" title="" class="login-btn">登陆</a>
-				<a href="javascript:void(0)" title="" class="cancel-btn">取消</a>
-			</div>
+			<a href="javascript:void(0)" title="">结算</a>
 		</div>
 	</div>
 </body>
@@ -86,31 +77,4 @@
 		$('#close-fold').click(function(){
 			closeFold();
 		});
-
-		$('.cancel-btn').click(function(){
-			$('.mask').fadeOut(500);
-		})
-
-		var id=location.search.match(/&orderId=\d{1,}/)[0].substring(4);//获取查询串
-
-		$.ajax({
-			url:"<?php echo A('bG5jXm4mZXJxZWJeeg%3D%3D');?>",
-			type:'POST',
-			dataType:'json',
-			data:{'activeId':id},
-			success:function(res){
-				var result=res.data;
-				$('.jvc-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+result.pic);
-				$('.jvc-code').html(result.code);
-				$('.jvc-desc').html(result.intro);
-				$('jvc-hospital').html(result.hospital);
-				$('.jvc-price').html(result.price);
-				$('.jvc-num').html(result.count);
-				$('.jvc-total-price').html(result.need_pay);
-			}
-		})
-
-		$('.jvc-submit').click(function(){
-			$('.mask').fadeIn(500);
-		})
 </script>

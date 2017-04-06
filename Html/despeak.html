@@ -39,16 +39,7 @@
 			合计：<span class="total-price">￥<span class="jvc-total-price"></span></span>
 		</div>
 		<div class="order-submit-btn">
-			<a href="javascript:void(0)" title="创建订单" class="jvc-submit">创建订单</a>
-		</div>
-	</div>
-	<div class="mask">
-		<div class="well">
-			<p class="msg">您当前未登录!</p>
-			<div class="option-btn">
-				<a href="<?php echo U('login');?>" title="" class="login-btn">登陆</a>
-				<a href="javascript:void(0)" title="" class="cancel-btn">取消</a>
-			</div>
+			<a href="javascript:void(0)" title="结算" class="jvc-submit">结算</a>
 		</div>
 	</div>
 </body>
@@ -109,8 +100,7 @@
 			$(this).prev().val(num);
 			$('.jvc-num').html(num);
 			$('.jvc-total-price').html(num*$('.jvc-price').html());
-		});
-
+		})
 		$('.sub').click(function(){
 			var num=$(this).next().val();
 			if(num>1)
@@ -125,30 +115,27 @@
 			$('.jvc-num').html(num);
 			$('.jvc-total-price').html(num*$('.jvc-price').html());
 		})
-
 		var id=location.search.match(/&id=\d{1,}/)[0].substring(4);//获取查询串
-
+		
 		// 加载订单
 		$.ajax({
-			url:"<?php echo A('eG5yY2ZycV5uJmVycWViXno%3D');?>",
+			url:'<?php echo A('eG5yY2ZycV5uJmVycWViXno%3D');?>',
 			type:'POST',
 			dataType:'json',
 			data:{'activeId':id},
-			success:function(res){
-				if(res.status)
-				{
-					var result=res.info;
-					$('.jvc-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+result.pic);
-					$('.jvc-desc').html(result.intro);
-					$('jvc-hospital').html(result.hospital);
-					$('.jvc-price').html(result.price);
-					$('.jvc-total-price').html(result.price);
-				}
+			success:function(res)
+			{
+				var result=res.info;
+				$('.jvc-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+result.pic);
+				$('.jvc-desc').html(result.intro);
+				$('jvc-hospital').html(result.hospital);
+				$('.jvc-price').html(result.price);
+				$('.jvc-total-price').html(result.price);
 			}
 		})
 
-		var count=$('.num').val();
 		$('.jvc-submit').click(function(){
+
 			$.ajax({
 				url:'<?php echo A('cmducmVwXm4mZXJxZWJeeg%3D%3D');?>',
 				type:'POST',
@@ -156,26 +143,8 @@
 				data:{'activeId':id,'count':count},
 				success:function(res)
 				{
-					if(res.status)
-					{
-						if(res.info=='000')
-						{
-							$('.mask').fadeIn(500);
-						}
-						else
-						{
-							var id=res.orderId;
-							window.location="<?php echo U('create');?>&orderId="+id;
-						}
-						
-					}
-					
+					window.location="<?php echo U('create');?>";
 				}
 			})
 		})
-
-		$('.cancel-btn').click(function(){
-			$('.mask').fadeOut(500);
-			window.location="<?php echo U('create');?>";			
-			})
 </script>

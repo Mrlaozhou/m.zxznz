@@ -185,12 +185,28 @@ class Order extends Allow
 	public function wxPay()
 	{
 		/*需求介绍*///微信支付接口 bG5Da2pebiZlcnFlYl56
-		$list = Vendor('wxpay');
-		$config = new \WxPayConfig();
-		dump($config);
+		
+		//定义路径常量
+		define('WX',VENDOR_PATH.'Wxpay'.DS);
+		//加载微信三方插件
+		// $list = Vendor('wxpay');
+		// $input = new \WxPayUnifiedOrder();
+		// $input->SetBody('上海纽珀');
+		// $input->SetAttach();
+		// $input->SetOut_trade_no(\WxPayConfig::MCHID.date("YmdHis"));
+		// $input->SetTotal_fee(*100);
+		// $input->SetTime_start(date("YmdHis"));
+		// $input->SetTime_expire(date("YmdHis", time() + 600));
+		// $input->SetGoods_tag();
+		// $input->SetNotify_url("http://m.zxznz.cn/index.php?u=Z3JUa2pebiZlcnFlYl56");
+		// $input->SetTrade_type("MWEB");
+		// $input->SetProduct_id();
+		// dump($input);
 	}
 	public function wxGet()
-	{}
+	{
+		/*需求介绍*///微信回调接口  Z3JUa2pebiZlcnFlYl56
+	}
 }
 
 /*
