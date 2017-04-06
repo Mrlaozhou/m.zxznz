@@ -39,7 +39,16 @@
 			合计：<span class="total-price">￥<span class="jvc-total-price"></span></span>
 		</div>
 		<div class="order-submit-btn">
-			<a href="javascript:void(0)" title="结算" class="jvc-submit">结算</a>
+			<a href="javascript:void(0)" title="创建订单" class="jvc-submit">创建订单</a>
+		</div>
+	</div>
+	<div class="mask">
+		<div class="well">
+			<p class="msg">您当前未登录!</p>
+			<div class="option-btn">
+				<a href="<?php echo U('login');?>" title="" class="login-btn">登陆</a>
+				<a href="javascript:void(0)" title="" class="cancel-btn">取消</a>
+			</div>
 		</div>
 	</div>
 </body>
@@ -118,30 +127,51 @@
 		var id=location.search.match(/&id=\d{1,}/)[0].substring(4);//获取查询串
 		// 加载订单
 		$.ajax({
-			url:'<?php echo A(‘eG5yY2ZycV5uJmVycWViXno%3D’);?>',
+			url:"<?php echo A('a3JxYXZebiZyaXZncG5eeg%3D%3D');?>",
 			type:'POST',
 			dataType:'json',
 			data:{'activeId':id}
 			success:function(res){
-				var result=res;
-				$('.jvc-img').attr('src',result.pic);
-				$('.jvc-desc').html(result.intro);
-				$('jvc-hospital').html(result.hospital);
-				$('.jvc-price').html(result.price);
-				$('.jvc-total-price').html(result.price);
+				if(res.status)
+				{
+					var result=res.data;
+					$('.jvc-img').attr('src',result.pic);
+					$('.jvc-desc').html(result.intro);
+					$('jvc-hospital').html(result.hospital);
+					$('.jvc-price').html(result.price);
+					$('.jvc-total-price').html(result.price);
+				}
 			}
 		})
 
+		var count=$('.num').val();
 		$('.jvc-submit').click(function(){
 			$.ajax({
-				url:'<?php echo A(‘cmducmVwXm4mZXJxZWJeeg%3D%3D’);?>',
+				url:"<?php echo A('eG5yY2ZycV5uJmVycWViXno%3D');?>",
 				type:'POST',
 				dataType:'json',
 				data:{'activeId':id,'count':count},
 				success:function(res)
 				{
-					window.location='index.php?a=create';
+					if(res.status)
+					{
+						if(res.info==000)
+						{
+							$('.mask').fadeIn(500);
+						}
+						else
+						{
+							var id=res.data.id;
+							window.location='index.php?a=create&id='+id;
+						}
+						
+					}
+					
 				}
 			})
+		})
+
+		$('.cancel-btn').click(function(){
+			$('.mask').fadeOut(500);
 		})
 </script>
