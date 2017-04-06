@@ -135,7 +135,7 @@
 				if(res.status)
 				{
 					var result=res.data;
-					$('.jvc-img').attr('src',result.pic);
+					$('.jvc-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+result.pic);
 					$('.jvc-desc').html(result.intro);
 					$('jvc-hospital').html(result.hospital);
 					$('.jvc-price').html(result.price);
@@ -155,7 +155,7 @@
 				{
 					if(res.status)
 					{
-						if(res.info==000)
+						if(res.info=='000')
 						{
 							$('.mask').fadeIn(500);
 						}
