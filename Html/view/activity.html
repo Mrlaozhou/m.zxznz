@@ -11,69 +11,46 @@
 		<div class="show-new-activity">Show you new activities</div>
 	</div>
 
+	<!-- 活动模板 -->
+	<div class="jvc-template">
+		<div class="activity-item" id="jvt-template">
+			<div class="activity-item-info">
+				<div class="activity-date-wrap">
+					<div>
+						<span class="day-wrap jvc-day"></span>
+					</div>
+					<div>
+						<span class="icon-line-v"></span>
+					</div>
+					<div>
+						<span class="year-wrap"><span class="jvc-year"></span> years</span>
+					</div>
+				</div>
+				<div class="activity-date-title">
+					<span>活动<br>日期</span>
+				</div>
+			</div>
+			<div class="activity-item-desc jvc-desc">
+				
+			</div>
+			<div class="activity-item-img">
+				<img src="" alt="" class="jvc-img">
+			</div>
+			<div class="appoint-btn">
+				<a href="" title="" class="jvc-link">点击预约</a>
+			</div>			
+		</div>
+	</div>
+
 	<!-- 循环迭代数据 -->
 	<div class="activity-item-container">
-		<div class="activity-item">
-			<div class="activity-item-info">
-				<div class="activity-date-wrap">
-					<div>
-						<span class="day-wrap">03</span>
-					</div>
-					<div>
-						<span class="icon-line-v"></span>
-					</div>
-					<div>
-						<span class="year-wrap">2017 years</span>
-					</div>
-				</div>
-				<div class="activity-date-title">
-					<span>活动<br>日期</span>
-				</div>
-			</div>
-			<div class="activity-item-desc">
-				维纳斯整形&海蓝之谜智慧医美品鉴会，武汉首站，E合联盟&整形指南针联合打造全国“100城互联网+智慧医美”机构
-			</div>
-			<div class="activity-item-img">
-				<img src="Html/images/activity-item-1.jpg" alt="">
-			</div>
-			<div class="appoint-btn">
-				<a href="index.php?a=pay-1" title="">点击预约</a>
-			</div>			
-		</div>
-
-		<div class="activity-item">
-			<div class="activity-item-info">
-				<div class="activity-date-wrap">
-					<div>
-						<span class="day-wrap">03</span>
-					</div>
-					<div>
-						<span class="icon-line-v"></span>
-					</div>
-					<div>
-						<span class="year-wrap">2017 years</span>
-					</div>
-				</div>
-				<div class="activity-date-title">
-					<span>活动<br>日期</span>
-				</div>
-			</div>
-			<div class="activity-item-desc">
-				维纳斯整形&海蓝之谜智慧医美品鉴会，武汉首站，E合联盟&整形指南针联合打造全国“100城互联网+智慧医美”机构
-			</div>
-			<div class="activity-item-img">
-				<img src="/Html/images/activity-item-2.jpg" alt="">
-			</div>
-			<div class="appoint-btn">
-				<a href="index.php?a=pay-1" title="">点击预约</a>
-			</div>			
-		</div>
-
+		
 	</div>
 </body>
 </html>
 <script>
 	$(function(){
+		$('.jvc-template').hide();
 		//定义导航栏展开
 		function openFold()
 		{
@@ -119,5 +96,31 @@
 				$('.top-fixed').removeClass('hide-top')
 			}
 		})
+
+		// 加载列表
+		$.ajax({
+			url:'<?php echo A(‘a3JxYXZebiZyaXZncG5eeg%3D%3D’);?>',
+			type:'POST',
+			dataType:'json',
+			success:function(res){
+				var result=res;
+				for(var i=0;i<result.length;i++)
+				{
+					var activity=result[i];
+					var date=new Date(parseInt(activity.start_time));
+					console.log(date)
+					var id='activity_'+i;
+					$('#jvt-template').clone().attr('id',id).show().appendTo($('.activity-item-container'));
+					$('#'+id).find('.jvc-day').html(date.getDate());
+					$('#'+id).find('.jvc-year').html(date.getFullYear());
+					$('#'+id).find('.jvc-desc').html(activity.intro);
+					$('#'+id).find('.jvc-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+activity.pic);
+					$('#'+id).find('.jvc-link').attr('href','index.php?a=despeak&id='+activity.id);
+				}
+			}
+		})
+
+		
+
 	})
 </script>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php require_once(__ROOT__.'/Html/template/head.php');?>
+<?php template_head('预约支付',array('pay.css'),array());?>
+<body>
+	<?php require_once(__ROOT__.'/Html/template/header.html')?>
+
+	<div class="order-container">
+		<div class="order">
+			<div class="order-item-title">
+				<span class="order-num">订单编号：3144166201156005</span>
+			</div>
+			<div class="order-item-info">
+				<div class="product-img">
+					<img src="/Html/images//product-img.jpg" alt="" class="jvc-img">
+				</div>
+				<div class="switch">
+					<div class="product-msg">
+						<div class="product-desc jvc-desc">深层清洁，补水注氧，提亮肤色青春解码是一项能够快速逆转皮肤衰老的皮肤类美容项目</div>
+						<div class="hospital-link"><a href="javascript:void(0)" title="" class="jvc-hospital">上海华美</a></div>
+						<div class="product-sold">
+							<span class="product-price">特购价：￥<span class="jvc-price">450</span></span>
+							<span class="product-num">x<span class="jvc-num">1</span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="pay-method">
+			<span>支付方式</span>
+			<span class="pay-method-wechat">
+				<select name="pays">
+					<option value="wechat">微信支付</option>
+					<option value="alipay">支付宝</option>
+				</select>
+			</span>
+		</div>
+	</div>
+	<div class="order-foot">
+		<div class="order-total">
+			合计：<span class="total-price">￥450</span>
+		</div>
+		<div class="order-submit-btn">
+			<a href="javascript:void(0)" title="">结算</a>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	//定义导航栏展开
+		function openFold()
+		{
+			$('#fold-content').slideDown(500);
+		}
+
+
+		//定义导航栏收起
+		function closeFold()
+		{
+			$('#fold-content').slideUp(500);
+		}
+
+		//监听展开事件
+		$('#open-fold').click(function(){
+			if($('#fold-content').is(':hidden'))
+			{
+				openFold();
+			}
+			else
+			{
+				closeFold();
+			}
+		});
+
+
+		//监听关闭事件
+		$('#close-fold').click(function(){
+			closeFold();
+		});
+</script>
