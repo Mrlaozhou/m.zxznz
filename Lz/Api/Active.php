@@ -7,13 +7,21 @@ class Active extends Base
 		$model = M('Active');
 
 		$sql = "SELECT id,title,pic,intro,hospital,start_time FROM `zxznz_active` 
-							WHERE `is_show` = '1'";
+							WHERE `is_show` = '1' 
+							ORDER BY start_time DESC";
 		$data = $model->All($sql);
 		// dump($data);
-		dump($data,2);
-		if( $data )
-			echoJson(array('status'=>TRUE,'data'=>$data));
-		echoJson(array('status'=>FALSE));
+		//dump($data,2);
+		if( !$data )
+			echoJson(array('status'=>FALSE,'info'=>'006'));
+
+		foreach( $data as $k => $v )
+		{
+			$v['title'] = htmlspecialchars_decode($v['title']);
+			$v['intro'] = htmlspecialchars_decode($v['intro']);
+		}
+
+		echoJson(array('status'=>TRUE,'data'=>$data));
 	}
 
 	public function detial()

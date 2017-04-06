@@ -57,5 +57,9 @@ class Model
 		$ps = self::$_db->query($sql);
 		return $ps->fetchAll(PDO::FETCH_ASSOC);
 	}
+	public function lastInsertId()
+	{
+		return self::$_db->lastInsertId();
+	}
 	/*****************************************/
 }
