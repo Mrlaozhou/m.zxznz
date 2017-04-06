@@ -3,7 +3,7 @@ class Active extends Base
 {
 	public function index()
 	{
-		/*需求介绍*/// 提取符合的所有信息 http://www.mzxznz.cn/api.php?u=a3JxYXZebiZyaXZncG5eeg%3D%3D
+		/*需求介绍*/// 提取符合的所有信息 a3JxYXZebiZyaXZncG5eeg%3D%3D
 		$model = M('Active');
 
 		$sql = "SELECT id,title,pic,intro,hospital FROM `zxznz_active` 

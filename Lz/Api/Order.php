@@ -31,10 +31,10 @@ class Order extends Allow
 	public function despeak()
 	{
 		/*需求介绍*///预约页面  eG5yY2ZycV5uJmVycWViXno%3D 
-		if( !G('activeId') )
+		if( !P('activeId') )
 			echoJson(array('status'=>FALSE,'info'=>'001'));
 		//接收 id（活动）	
-		$activeId 		= G('activeId');
+		$activeId 		= P('activeId');
 		//sql
 		$sql = "SELECT id,title,intro,pic,hospital,price FROM `zxznz_active`
 							WHERE id = {$activeId} 
