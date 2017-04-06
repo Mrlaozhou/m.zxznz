@@ -9,21 +9,25 @@ class Active extends Base
 		$sql = "SELECT id,title,pic,intro,hospital FROM `zxznz_active` 
 							WHERE `is_show` = '1'";
 		$data = $model->All($sql);
-
-		echoJson($data);
+		// dump($data);
+		if( $data )
+			echoJson(array('status'=>TRUE,'data'=>$data));
+		echoJson(array('status'=>FALSE));
 	}
 
 	public function detial()
 	{
-		/*需求介绍*///提取单条 http://www.mzxznz.cn/api.php?u=eW52Z3JxXm4mZWJncGJxXno%3D
+		/*需求介绍*///提取单条 http://www.mzxznz.cn/api.php?u=eW52Z3JxXm4mcml2Z3BuXno%3D
 		$model = M('active');
 
 		$id = P('id');
-		if( $id )
+		if( !$id )
 			exit('冇ID.');
 		$sql = "SELECT * FROM `zxznz_active` WHERE `id` = {$id}";
 
 		$info = $model->One($sql);
-		echoJson($info);
+		if( $info )
+			echoJson(array('status'=>TRUE,'info'=>$info));
+		echoJson(array('status'=>FALSE));
 	}
 }

@@ -32,6 +32,8 @@ class Login extends Check
 	public function logout()
 	{
 		//跟新登录时间
+		if( !S('USER_ID') )
+			echoJson(array('status'=>FALSE));
 		$model = M('User');
 		$time = time();
 		$id = S('USER_ID');
@@ -40,6 +42,7 @@ class Login extends Check
 		/*需求介绍*/// 用户登录 Z2hidGJ5Xm4mYXZ0Ynleeg%3D%3D
 		S('USER_ID',null);
 		S('USER_NAME',null);
+		echoJson(array('status'=>TRUE));
 
 	}
 	public function isLogin()

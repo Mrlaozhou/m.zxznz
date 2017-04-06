@@ -22,7 +22,8 @@ class Run
 		$res1 = opendir(ROOT_PATH); 
 		while( $dir1 = readdir($res1) )
 		{
-			if( is_dir(ROOT_PATH.$dir1) && $dir1!=='.' && $dir1!=='..' )
+			// if( is_dir(ROOT_PATH.$dir1) && $dir1!=='.' && $dir1!=='..' )
+			if( $dir1==='Api' || $dir1==='Base' )
 			{
 				self::$_map[trim($dir1)] = array();
 				$res2 = opendir(ROOT_PATH.$dir1);

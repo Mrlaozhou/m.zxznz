@@ -208,12 +208,11 @@ class Register extends Check
 		//存储信息
 		$create_time = time();
 		$password = md5($old);
-		$sql = "INSERT INTO `zxznz_user` 
-						(username,password,alias,create_time) 
-						VALUES('{$phone}','{$password}','{$alias}',{$create_time})";
+		$sql = "INSERT INTO `zxznz_user` (username,password,alias,create_time) VALUES('{$phone}','{$password}','{$alias}',{$create_time})";
 		$model = M('User');
 
 		if( $model->exec($sql) === 1 )
 			echoJson(array('status'=>TRUE));
+		echoJson(array('status'=>FALSE));
 	}
 }

@@ -22,7 +22,6 @@ function dump($config,$type=1)
 		var_dump($config);
 	else
 		print_r($config);
-
 	exit;
 }
 
@@ -32,8 +31,7 @@ function dump($config,$type=1)
  */
 function Error($msg)
 {
-	echo "<h1 style='font-family:楷体;color:#C40000;'>{$msg}</h1>";
-	exit;
+	exit("<h1 style='font-family:楷体;color:#C40000;'>{$msg}</h1>");
 }
 
 /**
@@ -113,6 +111,11 @@ function Unsign($param)
 	return FALSE;
 }
 /*******************************/
+/**
+ * [U 页面路由生成]
+ * @param [type]  $config [description]
+ * @param integer $type   [description]
+ */
 function U($config,$type=1)
 {
 	if($type === 1)
@@ -120,25 +123,41 @@ function U($config,$type=1)
 	else
 		echo "index.php?c=".$config;
 }
-
+/**
+ * [G $_GET]
+ * @param [type] $config [description]
+ */
 function G($config=null)
 {
 	if( $config )
 		return $_GET["{$config}"];
 	return $_GET;
 }
-function P($config)
+/**
+ * [P $_POST]
+ * @param [type] $config [description]
+ */
+function P($config=null)
 {
 	if( $config )
 		return $_POST["{$config}"];
 	return $_POST;
 }
-
+/**
+ * [A api 路由生成]
+ * @param [type] $route [description]
+ */
 function A($route)
 {
 	return 'index.php?u='.$route;
 }
 
+/**
+ * [S session 操作]
+ * @param [type]  $k [description]
+ * @param boolean $v [description]
+ * @param [type]  $t [description]
+ */
 function S($k,$v=FALSE,$t=null)
 {
 	//取值
@@ -150,4 +169,47 @@ function S($k,$v=FALSE,$t=null)
 	//设值
 	$_SESSION[trim($k)] = trim($v);
 	return TRUE;
+}
+function load($param)
+{
+	return require_once($param);
+}
+function Vendor($plug=null)
+{
+	//必须传参
+	if( $plug === null )
+		Error('vendor1');
+
+	//处理插件名为大写 拼接路径
+	$name = ucwords(trim($plug));
+	$path = VENDOR_PATH.$name.DS;
+	
+	//判断插件是否存在
+	if( !is_dir($path) )
+		Error('vendor2');
+	//获取插件目录
+	$list = scandir($path);
+	array_shift($list);
+	array_shift($list);
+	//文件目录
+	$files = array();
+	foreach( $list as $k => $v )
+	{
+		if( is_file($path.$v) )
+			$files[] = $path.$v;
+		unset($list[$k]);
+	}
+	//加载目录
+	//加载之前类目录
+	$before = get_declared_classes();
+	$result = array_map('load',$files);
+	//加载之后类目录
+	$back = get_declared_classes();
+	//dump($result,2);
+
+	//判断是否全部加载
+	if( count($result) === count($files) )
+		//返回加载目录
+		return array_diff($back,$before);
+	return FALSE;
 }
