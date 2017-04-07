@@ -185,7 +185,7 @@ class Order extends Allow
 
 	    $payResponse = new AlipayTradeService($config);
 	    $result=$payResponse->wapPay($payRequestBuilder,$config['return_url'],$config['notify_url']);
-	    dump($result,2);
+	    echoJosn(array('status'=>TRUE,'info'=>$result));
 	}
 
 	public function aliGet($info=null)
