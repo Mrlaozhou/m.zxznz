@@ -122,69 +122,73 @@ class Order extends Allow
 		/*需求介绍*///订单支付  bG5jXm4mZXJxZWJeeg%3D%3D 
 		if( !P('pay_type') || !P('orderId') )
 			echoJson(array('status'=>FALSE,'info'=>'001'));
-		dump(P());
+		//取出订单信息
+		$orderId = P('orderId');
+		$sql = "SELECT o.id,o.need_pay,o.code,a.title FROM `zxznz_order` AS o 
+								LEFT JOIN `zxznz_active` AS a 
+								ON a.id = o.active_id 
+								WHERE o.id = {$orderId} 
+								LIMIT 1";
+		$info = M('order')->One($sql);
+
+		if( !$info )
+			echoJson(array('status'=>FALSE,'info'=>'006'));
+
 		switch (P('pay_type')) 
 		{
 			case '1':
 				# 支付宝
-				$this->aliPay();
+				$this->aliPay($info);
 				break;
 			case '2':
 				# 微信
-				$this->wxPay();
+				$this->wxPay($info);
 				break;
 			default:
 				break;
 		}
 	}
 
-	public function aliPay()
+	public function aliPay($info=null)
 	{
 		/*需求介绍*///阿里支付接口 bG5DdnluXm4mZXJxZWJeeg%3D%3D
-		
-		if (!empty($_POST['WIDout_trade_no']) && trim($_POST['WIDout_trade_no'])!="")
-		{
-			//定义路径常量
-			define('ALI',VENDOR_PATH.'Alipay'.DS);
-			define('AOP_SDK_WORK_DIR',ALI.'tmp/');
+		//定义路径常量
+		define('ALI',VENDOR_PATH.'Alipay'.DS);
+		define('AOP_SDK_WORK_DIR',ALI.'tmp/');
 
-			//手动加载类
-			load(ALI.'AlipayTradeService.php');
-			load(ALI.'AlipayTradeWapPayContentBuilder.php');
-			$config = load(ALI.'config.php');
-			
-		    //商户订单号，商户网站订单系统中唯一订单号，必填
-		    $out_trade_no = $_POST['WIDout_trade_no'];
+		//手动加载类
+		load(ALI.'AlipayTradeService.php');
+		load(ALI.'AlipayTradeWapPayContentBuilder.php');
+		$config = load(ALI.'config.php');
 
-		    //订单名称，必填
-		    $subject = $_POST['WIDsubject'];
+	    //商户订单号，商户网站订单系统中唯一订单号，必填
+	    $out_trade_no = $info['id'];
 
-		    //付款金额，必填
-		    $total_amount = $_POST['WIDtotal_amount'];
+	    //订单名称，必填
+	    $subject = $info['title'];
 
-		    //商品描述，可空
-		    $body = $_POST['WIDbody'];
+	    //付款金额，必填
+	    $total_amount = $info['need_pay'];
 
-		    //超时时间
-		    $timeout_express="1m";
+	    //商品描述，可空
+	    $body = $info['code'];
 
-		    $payRequestBuilder = new AlipayTradeWapPayContentBuilder();
-		    $payRequestBuilder->setBody($body);
-		    $payRequestBuilder->setSubject($subject);
-		    $payRequestBuilder->setOutTradeNo($out_trade_no);
-		    $payRequestBuilder->setTotalAmount($total_amount);
-		    $payRequestBuilder->setTimeExpress($timeout_express);
+	    //超时时间
+	    $timeout_express="1m";
 
-		    $payResponse = new AlipayTradeService($config);
-		    $result=$payResponse->wapPay($payRequestBuilder,$config['return_url'],$config['notify_url']);
+	    $payRequestBuilder = new AlipayTradeWapPayContentBuilder();
+	    $payRequestBuilder->setBody($body);
+	    $payRequestBuilder->setSubject($subject);
+	    $payRequestBuilder->setOutTradeNo($out_trade_no);
+	    $payRequestBuilder->setTotalAmount($total_amount);
+	    $payRequestBuilder->setTimeExpress($timeout_express);
 
-		    return ;
-		}
-		//没有传参
-		echoJson(array('status'=>FALSE,'info'=>'001'));
+	    $payResponse = new AlipayTradeService($config);
+	    $result=$payResponse->wapPay($payRequestBuilder,$config['return_url'],$config['notify_url']);
+	    dump($result,2);
 	}
 
-	public function aliGet()
+	public function aliGet($info=null)
 	{
 		/*需求介绍*///阿里回调接口 Z3JUdnluXm4mZXJxZWJeeg%3D%3D
 		//接收参数

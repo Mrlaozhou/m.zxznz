@@ -11,55 +11,75 @@
 .full-screen-banner
 {
 	margin-top: 112px;
+	font-size: 0;
 }
 
 
 /****** fashion item css  **********/
 .fashion-item-container
 {
+	width: 9.6875rem;
 	font-size: 0;
-	padding: 0 12px;
+	margin: 0 auto;
+	margin-top: 0.3125rem;
 }
 .fashion-item
 {
-	width: 47%;
+	width: 4.78rem;
+	height: 6.3425rem;
 	display: inline-block;
-	margin-bottom: 10px;
+	margin-bottom: 0.3125rem;
+	position: relative;
+}
+.fashion-item img
+{
+	width: 100%;
+	height: 4.78rem;
 }
 .fashion-item:nth-child(odd)
 {
 	float: left;
 }
+.fashion-item:nth-child(odd) .fashion-item-msg
+{
+	bottom: 0;
+}
+.fashion-item:nth-child(odd) .fashion-img
+{
+	position: absolute;
+	top: 0;
+}
 .fashion-item:nth-child(even)
 {
 	float: right;
 }
+.fashion-item:nth-child(even) .fashion-item-msg
+{
+	top: 0;
+}
+.fashion-item:nth-child(even) .fashion-img
+{
+	position: absolute;
+	bottom: 0;
+}
 .fashion-item-msg
 {
-	width: 3.2rem;
-	height: 4.2rem;
-	background: #2b2a2f;
-	margin: -25px auto 0;
-	position: relative;
-	z-index: 90;
+	width: 100%;
+	height: 1.5625rem;
+	background: #d11337;
 	color: #fff;
 	text-align: center;
-	padding: 0.62rem 0 0;
 	box-sizing: border-box;
+	padding-top: 0.26rem;
+	position: absolute;
 }
-.fashion-item-msg .date-year
+.fashion-item-msg .date
 {
-	font-size: 0.93rem;
+	font-size: 0.625rem;
+	line-height: 0.7rem;
 }
-.fashion-item-msg .date-date
+.fashion-item-msg .desc
 {
-	font-size: 0.37rem;
-}
-.fashion-item-msg .line-v
-{
-	font-size: 0.37rem;
-}
-.fashion-item-msg .mark
-{
-	font-size: 0.37rem;
+	font-size: 0.3125rem;
+	line-height: 0.4rem;
 }

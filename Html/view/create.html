@@ -6,7 +6,7 @@
 	<?php require_once(__ROOT__.'/Html/template/header.html')?>
 
 	<div class="order-container">
-		<div class="order">
+		<div class="order jvc-order">
 			<div class="order-item-title">
 				<span class="order-num">订单编号：<span class="jvc-code">3144166201156005</span></span>
 			</div>
@@ -29,9 +29,9 @@
 		<div class="pay-method">
 			<span>支付方式</span>
 			<span class="pay-method-wechat">
-				<select name="pays">
-					<option value="wechat">微信支付</option>
-					<option value="alipay">支付宝</option>
+				<select name="pays" class="jvc-type">
+					<option value="2">微信支付</option>
+					<option value="1">支付宝</option>
 				</select>
 			</span>
 		</div>
@@ -112,7 +112,7 @@
 					$('jvc-hospital').html(result.hospital);
 					$('.jvc-price').html(result.price);
 					$('.jvc-num').html(result.count);
-					$('.jvc-total-price').html(result.need_pay);	
+					$('.jvc-total-price').html(result.need_pay);
 				}
 				else
 				{
@@ -126,5 +126,15 @@
 
 		$('.jvc-submit').click(function(){
 			//$('.mask').fadeIn(500);
+			var type=$('.jvc-type').val();
+			$.ajax({
+				url:'<?php echo A('bG5jXm4mZXJxZWJeeg%3D%3D');?>',
+				type:'POST',
+				dataType:'json',
+				data:{'orderId':id,'pay_type':type},
+				success:function(res){
+
+				}
+			})
 		})
 </script>
