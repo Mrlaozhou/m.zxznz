@@ -60,7 +60,7 @@
 					<div class="hospital-link"><a href="javascript:void(0)" title="" class="jvc-hospital"></a></div>
 					<div class="product-price">特购价：￥<span class="jvc-price"></span></div>
 					<div class="pay-btn">
-						<a href="#" title="">立即支付</a>
+						<a href="" title="" class="jvc-link">立即支付</a>
 					</div>
 				</div>
 			</div>
@@ -122,6 +122,7 @@
 						$('#'+id).find('.jvc-product-desc').html(unfinshed[x].intro);
 						$('#'+id).find('.jvc-product-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+unfinshed[x].pic);
 						$('#'+id).find('.jvc-price').html(unfinshed[x].need_pay);
+						$('#'+id).find('.jvc-link').attr('href',"<?php echo U('create');?>&orderId="+unfinshed[x].id);
 					}
 				}
 			}
