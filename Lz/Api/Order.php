@@ -104,7 +104,7 @@ class Order extends Allow
 		if( !P('orderId') )
 			echoJson(array('status'=>FALSE,'info'=>'001'));
 		$orderId = P('orderId');
-		$sql = "SELECT o.id,o.code,o.price,o.count,o.need_pay,a.title,a.intro,a.hospital 
+		$sql = "SELECT o.id,o.code,o.price,o.count,o.need_pay,a.title,a.intro,a.hospital,a.pic
 							FROM `zxznz_order` AS o
 							LEFT JOIN `zxznz_active` AS a ON o.active_id = a.id
 							WHERE o.id = {$orderId} 
@@ -120,8 +120,9 @@ class Order extends Allow
 	public function pay()
 	{
 		/*需求介绍*///订单支付  bG5jXm4mZXJxZWJeeg%3D%3D 
-		if( !P() )
+		if( !P('pay_type') || !P('orderId') )
 			echoJson(array('status'=>FALSE,'info'=>'001'));
+		dump(P());
 		switch (P('pay_type')) 
 		{
 			case '1':
@@ -230,25 +231,3 @@ class Order extends Allow
 	}
 }
 
-/*
-
-| zxznz_order | CREATE TABLE `zxznz_order` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(60) NOT NULL DEFAULT '' COMMENT '订单编号',
-  `from` enum('3','2','1') NOT NULL COMMENT '1.PC端2.手机端3.其他',
-  `status` enum('7','2','1','0') NOT NULL DEFAULT '0' COMMENT '0.无状态1.未支付挂起2.已支付7.已取消',
-  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户ID',
-  `active_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '活动ID',
-  `create_time` varchar(30) NOT NULL DEFAULT '' COMMENT '订单生成时间',
-  `cancel_time` varchar(30) NOT NULL DEFAULT '' COMMENT '订单取消时间',
-  `pay_time` varchar(30) NOT NULL DEFAULT '' COMMENT '客户付款时间',
-  `need_pay` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '此订单的金额',
-  `true_pay` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '客户实付款',
-  `pay_type` enum('4','3','2','1','0') NOT NULL DEFAULT '0' COMMENT '0.无状态1.支付宝2.微信3.现金4.其他',
-  `count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '订单产品数量',
-  `price` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '产品单价',
-  `ali_no` varchar(28) NOT NULL DEFAULT '' COMMENT '支付宝交易编号',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 |
-
- */
