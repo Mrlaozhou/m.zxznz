@@ -98,6 +98,25 @@ class Order extends Allow
 		echoJson(array('status'=>FALSE,'info'=>'444'));
 	}
 
+	public function orderInfo()
+	{
+		/*需求介绍*///获取当前订单信息  YnNhVmVycWViXm4mZXJxZWJeeg%3D%3D 
+		if( !P('orderId') )
+			echoJson(array('status'=>FALSE,'info'=>'001'));
+		$orderId = P('orderId');
+		$sql = "SELECT o.id,o.code,o.price,o.count,o.need_pay,a.title,a.intro,a.hospital 
+							FROM `zxznz_order` AS o
+							LEFT JOIN `zxznz_active` AS a ON o.active_id = a.id
+							WHERE o.id = {$orderId} 
+							LIMIT 1";
+		$info = M('order')->One($sql);
+		if( !$info )
+			echoJosn(array('status'=>FALSE,'info'=>'006')); 
+		$info['title'] = htmlspecialchars_decode($info['title']);
+		$info['intro'] = htmlspecialchars_decode($info['intro']);
+		echoJson(array('status'=>TRUE,'info'=>$info));
+	}
+
 	public function pay()
 	{
 		/*需求介绍*///订单支付  bG5jXm4mZXJxZWJeeg%3D%3D 

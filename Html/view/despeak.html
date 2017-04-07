@@ -154,30 +154,29 @@
 			}
 		})
 		//创建订单
-		var count=$('.num').val();
 		$('.jvc-submit').click(function(){
+			var count=$('.num').val();
 			if( id )
 			{
 				$.ajax({
-					url:'<?php echo A('cmducmVwXm4mZXJxZWJeeg%3D%3D');?>',
+					url:"<?php echo A('cmducmVwXm4mZXJxZWJeeg%3D%3D');?>",
 					type:'POST',
 					dataType:'json',
 					data:{'activeId':id,'count':count},
 					success:function(res)
 					{
-						console.log(res);
-						// if( res.status )
-						// {
-						// 	var id=res.orderId;
-						// 	window.location="<?php echo U('create');?>&orderId="+id;	
-						// }
-						// else
-						// {
-						// 	if( res.info=='000' )
-						// 	{
-						// 		$('.mask').fadeIn(500);
-						// 	}
-						// }
+						if( res.status )
+						{
+							var id=res.orderId;
+							window.location="<?php echo U('create');?>&orderId="+id;	
+						}
+						else
+						{
+							if( res.info=='000' )
+							{
+								$('.mask').fadeIn(500);
+							}
+						}
 					}
 				})				
 			}

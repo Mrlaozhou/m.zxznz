@@ -38,7 +38,10 @@
 	</div>
 	<div class="order-foot">
 		<div class="order-total">
-			合计：<span class="total-price">￥450</span>
+			合计：<span class="total-price">
+					￥
+					<span class="jvc-total-price">450</span>
+				  </span>
 		</div>
 		<div class="order-submit-btn">
 			<a href="javascript:void(0)" title="" class="jvc-submit">结算</a>
@@ -91,18 +94,18 @@
 			$('.mask').fadeOut(500);
 		})
 
-		var id=location.search.match(/&orderId=\d{1,}/)[0].substring(4);//获取查询串
+		var id=location.search.match(/&orderId=\d{1,}/)[0].substring(9);//获取查询串
 
 		$.ajax({
-			url:"<?php echo A('bG5jXm4mZXJxZWJeeg%3D%3D');?>",
+			url:"<?php echo A('YnNhVmVycWViXm4mZXJxZWJeeg%3D%3D');?>",
 			type:'POST',
 			dataType:'json',
-			data:{'activeId':id},
+			data:{'orderId':id},
 			success:function(res)
 			{
 				if( res.status )
 				{
-					var result=res.data;
+					var result=res.info;
 					$('.jvc-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+result.pic);
 					$('.jvc-code').html(result.code);
 					$('.jvc-desc').html(result.intro);
