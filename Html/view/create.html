@@ -98,15 +98,26 @@
 			type:'POST',
 			dataType:'json',
 			data:{'activeId':id},
-			success:function(res){
-				var result=res.data;
-				$('.jvc-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+result.pic);
-				$('.jvc-code').html(result.code);
-				$('.jvc-desc').html(result.intro);
-				$('jvc-hospital').html(result.hospital);
-				$('.jvc-price').html(result.price);
-				$('.jvc-num').html(result.count);
-				$('.jvc-total-price').html(result.need_pay);
+			success:function(res)
+			{
+				if( res.status )
+				{
+					var result=res.data;
+					$('.jvc-img').attr('src','http://www.zxznz.cn/Public/Uploads/'+result.pic);
+					$('.jvc-code').html(result.code);
+					$('.jvc-desc').html(result.intro);
+					$('jvc-hospital').html(result.hospital);
+					$('.jvc-price').html(result.price);
+					$('.jvc-num').html(result.count);
+					$('.jvc-total-price').html(result.need_pay);	
+				}
+				else
+				{
+					if( res.info=='000' )
+					{
+						$('.mask').fadeIn(500);
+					}
+				}	
 			}
 		})
 

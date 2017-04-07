@@ -52,6 +52,8 @@ class Order extends Allow
 		/*需求介绍*///订单生成  cmducmVwXm4mZXJxZWJeeg%3D%3D 
 		if( !P('activeId') )
 			echoJson(array('status'=>FALSE,'info'=>'001'));
+		if( !P('count') )
+			echoJson(array('status'=>FALSE,'info'=>'001'));
 		//接收 id（活动）	
 		$data['activeId'] 		= P('activeId');
 		//获取活动信息
