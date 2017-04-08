@@ -205,21 +205,61 @@ class Order extends Allow
 
 	public function aliGet()
 	{
+		if( !G() )
+			echoJson(array('status'=>FALSE));
 		// /*需求介绍*///阿里回调接口 Z3JUdnluXm4mZXJxZWJeeg%3D%3D
-		// define('ALI',VENDOR_PATH.'Alipay'.DS);
-		// $alipay_config = load(ALI.'alipay.config.php');
-		// load(ALI.'alipay_notify.class.php');
+		define('ALI',VENDOR_PATH.'Alipay'.DS);
+		$alipay_config = load(ALI.'alipay.config.php');
+		load(ALI.'alipay_notify.class.php');
 
-		// //计算得出通知验证结果
-		// $alipayNotify = new AlipayNotify($alipay_config);
-		// $verify_result = $alipayNotify->verifyNotify();
-		echo 'OK';
+		//计算得出通知验证结果
+		$alipayNotify = new AlipayNotify($alipay_config);
+		$verify_result = $alipayNotify->verifyReturn();
+		if($verify_result)
+		{
+			//支付宝交易号
+			$trade_no = $_GET['trade_no'];
+
+		    if($_GET['trade_status'] == 'TRADE_FINISHED' || $_GET['trade_status'] == 'TRADE_SUCCESS') 
+			{
+				$id = $_GET['out_trade_no'];
+				$true_pay = $_GET['total_fee'];
+				$pay_time = strtotime(trim($_GET['notify_time']));
+
+				$sql = "UPDATE `zxznz_order` SET 
+										`status` 		= '2',
+										`ali_no` 		= {$trade_no},
+										`pay_time` 		= {$pay_time},
+										`pay_type` 		= '1', 
+										`true_pay` 		= {$true_pay}
+										WHERE `id` 		= {$id}";
+
+				$result = M('order')->exec($sql);
+				dump($result);
+				if( $result !== FALSE )
+				{
+					header('Location:http://m.zxznz.cn/index.php?a=payok&orderId='.$id);
+				}
+				else
+				{
+					dump($sql);
+				}
+		    }
+		    else 
+			{
+		      	header('Location:http://m.zxznz.cn/index.php?a=404');
+		    }
+		}
+		else 
+		{
+			//header('Location:http://m.zxznz.cn/index.php?a=404');
+		}
 	}
 
 	public function wxPay($info=null)
 	{
 		/*需求介绍*///微信支付接口 bG5Da2pebiZlcnFlYl56
-		
+		dump($info,2);
 		//定义路径常量
 		define('WX',VENDOR_PATH.'Wxpay'.DS);
 		//加载微信三方插件

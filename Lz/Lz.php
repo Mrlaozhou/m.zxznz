@@ -26,8 +26,7 @@ defined("API_PATH") or define("API_PATH",ROOT_PATH.'Api'.DS);
 defined("VENDOR_PATH") or define("VENDOR_PATH",ROOT_PATH.'Vendor'.DS);
 defined("COF_PATH") or define("COF_PATH",'./Config'.DS);
 
-/************定义路径常量************/
-defined("DB_NAME") or define("DB_NAME",'test');
+
 
 //启动程序
 require_once('Lz/Base/Run.php');
