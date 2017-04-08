@@ -10,6 +10,7 @@
 //解析参数
 
 $config = require_once('/Lz/url.php');
+// print_r($config);
 //处理参数 去空格
 $config = @array_map('trim',$config) or exit('路由错误！');
 

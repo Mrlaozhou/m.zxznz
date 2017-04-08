@@ -149,7 +149,7 @@ function P($config=null)
  */
 function A($route)
 {
-	return 'index.php?u='.$route;
+	return 'index.php/'.$route;
 }
 
 /**

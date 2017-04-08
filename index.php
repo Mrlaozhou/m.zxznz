@@ -24,8 +24,12 @@ defined('DB_PASS') or define('DB_PASS','laozhou');
 defined('ALLOW_HOST') or define('ALLOW_HOST','*');
 
 
+
+
 /*判断是页面请求 还是api请求*/
-if( !isset($_GET['u']) )
+
+
+if( !isset($_SERVER['PATH_INFO']) )
 	require_once('/Lz/Html.php');
 else
 	require_once("Lz/lz.php");

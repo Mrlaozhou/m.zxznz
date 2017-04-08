@@ -125,13 +125,13 @@ class Order extends Allow
 			echoJson(array('status'=>FALSE,'info'=>'001'));
 		//取出订单信息
 		$orderId = P('orderId');
-		$sql = "SELECT o.id,o.need_pay,o.code,a.title FROM `zxznz_order` AS o 
+		$sql = "SELECT o.id,o.need_pay,o.code,o.active_id,a.title FROM `zxznz_order` AS o 
 								LEFT JOIN `zxznz_active` AS a 
 								ON a.id = o.active_id 
 								WHERE o.id = {$orderId} 
 								LIMIT 1";
 		$info = M('order')->One($sql);
-		
+
 		if( !$info )
 			echoJson(array('status'=>FALSE,'info'=>'006'));
 		// dump(P('pay_type'));
@@ -139,7 +139,6 @@ class Order extends Allow
 		{
 			case '1':
 				# 支付宝
-				echo 1;
 				$this->aliPay($info);
 				break;
 			case '2':
@@ -153,6 +152,7 @@ class Order extends Allow
 
 	public function aliPay($info=null)
 	{
+		header("Content-Type:text/html;charset=utf-8");
 		/*需求介绍*///阿里支付接口 bG5DdnluXm4mZXJxZWJeeg%3D%3D
 		//定义路径常量
 		define('ALI',VENDOR_PATH.'Alipay'.DS);
@@ -160,14 +160,12 @@ class Order extends Allow
 		$alipay_config = load(ALI.'alipay.config.php');
 		load(ALI.'alipay_submit.class.php');
 
-
-
 		/**请求参数**/
         //商户订单号，商户网站订单系统中唯一订单号，必填
         $out_trade_no = $info['id'];
 
         //订单名称，必填
-        $subject = $info['title'];
+        $subject = $info['active_id'];
 
         //付款金额，必填
         $total_fee = $info['need_pay'];
@@ -205,14 +203,20 @@ class Order extends Allow
 		// dump($html_text);
 	}
 
-	public function aliGet($info=null)
+	public function aliGet()
 	{
-		/*需求介绍*///阿里回调接口 Z3JUdnluXm4mZXJxZWJeeg%3D%3D
-		//接收参数
-		
+		// /*需求介绍*///阿里回调接口 Z3JUdnluXm4mZXJxZWJeeg%3D%3D
+		// define('ALI',VENDOR_PATH.'Alipay'.DS);
+		// $alipay_config = load(ALI.'alipay.config.php');
+		// load(ALI.'alipay_notify.class.php');
+
+		// //计算得出通知验证结果
+		// $alipayNotify = new AlipayNotify($alipay_config);
+		// $verify_result = $alipayNotify->verifyNotify();
+		echo 'OK';
 	}
 
-	public function wxPay()
+	public function wxPay($info=null)
 	{
 		/*需求介绍*///微信支付接口 bG5Da2pebiZlcnFlYl56
 		
@@ -236,6 +240,8 @@ class Order extends Allow
 	public function wxGet()
 	{
 		/*需求介绍*///微信回调接口  Z3JUa2pebiZlcnFlYl56
+		echo 'wxOK';
 	}
 }
+
 
