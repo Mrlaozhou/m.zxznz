@@ -1,5 +1,4 @@
 <?php
-require_once "WxPay.Api.php";
 
 /**
  * 
@@ -22,7 +21,7 @@ class NativePay
 		$url = "weixin://wxpay/bizpayurl?" . $this->ToUrlParams($values);
 		return $url;
 	}
-	
+
 	/**
 	 * 
 	 * 参数数组转换为url参数
@@ -52,5 +51,14 @@ class NativePay
 			$result = WxPayApi::unifiedOrder($input);
 			return $result;
 		}
+	}
+
+	public function GetH5PayUrl($productId)
+	{
+		$biz = new WxPayBizPayUrl();
+		$biz->SetProduct_id($productId);
+		$values = WxpayApi::bizpayurl($biz);
+		$url = "weixin://wap/pay?" . $this->ToUrlParams($values);
+		return $url;
 	}
 }

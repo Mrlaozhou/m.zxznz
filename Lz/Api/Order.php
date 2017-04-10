@@ -264,7 +264,7 @@ class Order extends Allow
 		define('WX',VENDOR_PATH.'Wxpay'.DS);
 		//加载微信三方插件
 		$list = Vendor('wxpay');
-		dump($list);
+		
 		$input = new \WxPayUnifiedOrder();
 		$input->SetBody('上海纽珀');
 		$input->SetAttach($info['id']);
@@ -276,12 +276,45 @@ class Order extends Allow
 		$input->SetNotify_url("http://m.zxznz.cn/index.php/Z3JUa2pebiZlcnFlYl56");
 		$input->SetTrade_type("MWEB");
 		$input->SetProduct_id($info['id']);
-		dump($input,2);
+		$order = WxPayApi::unifiedOrder($input);
+		dump($order);
 	}
+
 	public function wxGet()
 	{
 		/*需求介绍*///微信回调接口  Z3JUa2pebiZlcnFlYl56
 		echo 'wxOK';
+	}
+
+	public function wxJsPay($info=null)
+	{
+		/*需求介绍*///微信jsapi  bG5DZldral5uJmVycWViXno%3D 
+		if( $info === null )
+			echoJson(array('status'=>FALSE,'info'=>'006'));
+		$list = Vendor('wxpay');
+		//dump($list,2);
+		//
+		//①、获取用户openid
+		$tools = new JsApiPay();
+		$openId = $tools->GetOpenid();
+
+		$input = new \WxPayUnifiedOrder();
+		$input->SetBody('上海纽珀');
+		$input->SetAttach($info['if']);
+		$input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
+		$input->SetTotal_fee($info['need_pay']*100);
+		$input->SetTime_start(date("YmdHis"));
+		$input->SetTime_expire(date("YmdHis", time() + 600));
+		$input->SetGoods_tag($info['title']);
+		$input->SetNotify_url("http://m.zxznz.cn/index.php/Z3JUZldral5uJmVycWViXno%3D");
+		$input->SetTrade_type("JSAPI");
+		$input->SetOpenid($openId);
+		dump($input,2);
+		$order = WxPayApi::unifiedOrder($input);
+	}
+	public function wxJsGet()
+	{
+		/*需求介绍*///微信jsapi回调  Z3JUZldral5uJmVycWViXno%3D 
 	}
 }
 
