@@ -213,3 +213,13 @@ function Vendor($plug=null)
 		return array_diff($back,$before);
 	return FALSE;
 }
+
+/************************/
+function is_weixin()
+{
+	if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) 
+	{
+		return true;
+	}	
+	return false;
+}

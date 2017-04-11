@@ -286,35 +286,30 @@ class Order extends Allow
 	}
 	public function wxJsPay()
 	{
-		/*需求介绍*///微信jsapi  bG5DZldral5uJmVycWViXno%3D 
-		if( !$id=G('orderId') )
-			echoJson(array('status'=>FALSE,'info'=>'001'));
+		/*需求介绍*///微信公众号支付中转  bG5DZldral5uJmVycWViXno%3D 
+		/**///判断是否是微信浏览器请求
+$MSG=<<<STR
+<!DOCTYPE html>
+	<html>
+	    <head>
+	        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	    </head>
+	    <body>
+	        <script type="text/javascript">      
+	                document.head.innerHTML = '<title>抱歉，出错了</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/0.4.1/weui.css">';
+	                document.body.innerHTML = '<div class="weui_msg"><div class="weui_icon_area"><i class="weui_icon_info weui_icon_msg"></i></div><div class="weui_text_area"><h4 class="weui_msg_title">请在微信客户端打开链接</h4></div></div>';
+	        </script>
+	    </body>
+	</html>
+STR;
+		if( ! is_weixin() )
+			exit($MSG);
+		//接收参数
+		if( ! $id = G('orderId') )
+			ERROR('非法请求！');
+		/**///提取活动信息
 		$info = self::getInfo($id);
-		if( $info === FALSE )
-			echoJson(array('status'=>FALSE,'info'=>'006'));
-		//dump($info,2);
-		$list = Vendor('wxpay');
-		//dump($list,2);
-		//①、获取用户openid
-		$tools = new JsApiPay();
-		//dump($tools);
-		$openId = $tools->GetOpenid();
-		
-		//dump($openId);
-		$input = new \WxPayUnifiedOrder();
-		$input->SetBody('上海纽珀');
-		$input->SetAttach($info['id']);
-		$input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
-		$input->SetTotal_fee($info['need_pay']*100);
-		$input->SetTime_start(date("YmdHis"));
-		//$input->SetTime_expire(date("YmdHis", time() + 1800));
-		$input->SetGoods_tag($info['title']);
-		$input->SetNotify_url("http://m.zxznz.cn/index.php/Z3JUZldral5uJmVycWViXno%3D");
-		$input->SetTrade_type("JSAPI");
-		$input->SetOpenid($openId);
-		//dump($input,2);
-		$order = WxPayApi::unifiedOrder($input);
-		dump($order,2);
+		dump($info,2);
 	}
 	public function wxJsGet()
 	{
