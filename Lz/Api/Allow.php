@@ -7,10 +7,9 @@ class Allow extends Base
 		// S('USER_ID',13);
 		
 		/*访问权限控制*///
-
 		#定义开放路由列表#
 		$ALLOW = array(
-				'Order'=>array('aliGet','wxGet'),
+				'Order'=>array('aliGet','wxGet','wxJsPay','wxJsGet'),
 				);
 
 		// dump(__MODULE__,2);

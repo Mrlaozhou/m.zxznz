@@ -104,16 +104,9 @@ class Order extends Allow
 		if( !P('orderId') )
 			echoJson(array('status'=>FALSE,'info'=>'001'));
 		$orderId = P('orderId');
-		$sql = "SELECT o.id,o.code,o.price,o.count,o.need_pay,a.title,a.intro,a.hospital,a.pic
-							FROM `zxznz_order` AS o
-							LEFT JOIN `zxznz_active` AS a ON o.active_id = a.id
-							WHERE o.id = {$orderId} 
-							LIMIT 1";
-		$info = M('order')->One($sql);
+		$info = self::getInfo($orderId);
 		if( !$info )
-			echoJosn(array('status'=>FALSE,'info'=>'006')); 
-		$info['title'] = htmlspecialchars_decode($info['title']);
-		$info['intro'] = htmlspecialchars_decode($info['intro']);
+			echoJson(array('status'=>FALSE,'info'=>'006')); 
 		echoJson(array('status'=>TRUE,'info'=>$info));
 	}
 
@@ -286,12 +279,15 @@ class Order extends Allow
 		echo 'wxOK';
 	}
 
-	public function wxJsPay($info=null)
+	public function wxJsPay()
 	{
 		/*需求介绍*///微信jsapi  bG5DZldral5uJmVycWViXno%3D 
-		if( $info === null )
-			echoJson(array('status'=>FALSE,'info'=>'006'));
 		$list = Vendor('wxpay');
+		//取出订单信息
+		if( !$id = G('orderId') )
+			echoJson(array('status'=>FALSE,'info'=>'001'));
+		$info = self::getInfo($id);
+		dump($info,2);
 		//dump($list,2);
 		//
 		//①、获取用户openid
@@ -300,7 +296,7 @@ class Order extends Allow
 
 		$input = new \WxPayUnifiedOrder();
 		$input->SetBody('上海纽珀');
-		$input->SetAttach($info['if']);
+		$input->SetAttach($info['id']);
 		$input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
 		$input->SetTotal_fee($info['need_pay']*100);
 		$input->SetTime_start(date("YmdHis"));
@@ -312,9 +308,27 @@ class Order extends Allow
 		dump($input,2);
 		$order = WxPayApi::unifiedOrder($input);
 	}
+	
 	public function wxJsGet()
 	{
 		/*需求介绍*///微信jsapi回调  Z3JUZldral5uJmVycWViXno%3D 
+	}
+
+
+	/******************************/
+	private static function getInfo($id=null)
+	{
+		$sql = "SELECT o.id,o.code,o.price,o.count,o.need_pay,a.title,a.intro,a.hospital,a.pic
+							FROM `zxznz_order` AS o
+							LEFT JOIN `zxznz_active` AS a ON o.active_id = a.id
+							WHERE o.id = {$id} 
+							LIMIT 1";
+		$info = M('order')->One($sql);
+		if( !$info )
+			return FALSE;
+		$info['title'] = htmlspecialchars_decode($info['title']);
+		$info['intro'] = htmlspecialchars_decode($info['intro']);
+		return $info;
 	}
 }
 

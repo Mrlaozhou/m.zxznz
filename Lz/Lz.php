@@ -30,6 +30,9 @@ defined("COF_PATH") or define("COF_PATH",'./Config'.DS);
 
 //启动程序
 require_once('Lz/Base/Run.php');
+echo '<pre>';
+print_r($_SERVER);
+exit;
 
 \Base\Run::run();
 
