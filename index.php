@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // +----------------------------------------------------------------------
 // |  	入口文件
 // +----------------------------------------------------------------------
@@ -23,10 +23,11 @@ defined('DB_ROOT') or define('DB_ROOT','root');
 defined('DB_PASS') or define('DB_PASS','laozhou');
 defined('ALLOW_HOST') or define('ALLOW_HOST','*');
 
-
+//print_r($_SERVER['PATH_INFO']);
 
 
 /*判断是页面请求 还是api请求*/
+
 
 
 if( !isset($_SERVER['PATH_INFO']) )

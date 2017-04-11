@@ -106,14 +106,14 @@ class Order extends Allow
 		$orderId = P('orderId');
 		$info = self::getInfo($orderId);
 		if( !$info )
-			echoJson(array('status'=>FALSE,'info'=>'006')); 
+			echoJosn(array('status'=>FALSE,'info'=>'006')); 
 		echoJson(array('status'=>TRUE,'info'=>$info));
 	}
 
 	public function pay()
 	{
 		/*需求介绍*///订单支付  bG5jXm4mZXJxZWJeeg%3D%3D 
-
+		
 		if( !P('pay_type') || !P('orderId') )
 			echoJson(array('status'=>FALSE,'info'=>'001'));
 		//取出订单信息
@@ -124,7 +124,7 @@ class Order extends Allow
 								WHERE o.id = {$orderId} 
 								LIMIT 1";
 		$info = M('order')->One($sql);
-
+		
 		if( !$info )
 			echoJson(array('status'=>FALSE,'info'=>'006'));
 		// dump(P('pay_type'));
@@ -136,7 +136,9 @@ class Order extends Allow
 				break;
 			case '2':
 				# 微信
-				$this->wxPay($info);
+				//$this->wxPay($info);
+				//$this->wxJsPay($info);
+				echo '敬请期待~';
 				break;
 			default:
 				break;
@@ -158,7 +160,8 @@ class Order extends Allow
         $out_trade_no = $info['id'];
 
         //订单名称，必填
-        $subject = $info['active_id'];
+        //$subject = $info['active_id'];
+		$subject = $info['title'];
 
         //付款金额，必填
         $total_fee = $info['need_pay'];
@@ -198,9 +201,10 @@ class Order extends Allow
 
 	public function aliGet()
 	{
+		/*需求介绍*///阿里回调接口 Z3JUdnluXm4mZXJxZWJeeg%3D%3D
 		if( !G() )
 			echoJson(array('status'=>FALSE));
-		// /*需求介绍*///阿里回调接口 Z3JUdnluXm4mZXJxZWJeeg%3D%3D
+		//接收参数
 		define('ALI',VENDOR_PATH.'Alipay'.DS);
 		$alipay_config = load(ALI.'alipay.config.php');
 		load(ALI.'alipay_notify.class.php');
@@ -208,6 +212,7 @@ class Order extends Allow
 		//计算得出通知验证结果
 		$alipayNotify = new AlipayNotify($alipay_config);
 		$verify_result = $alipayNotify->verifyReturn();
+		//dump(P());
 		if($verify_result)
 		{
 			//支付宝交易号
@@ -228,14 +233,13 @@ class Order extends Allow
 										WHERE `id` 		= {$id}";
 
 				$result = M('order')->exec($sql);
-				dump($result);
 				if( $result !== FALSE )
 				{
 					header('Location:http://m.zxznz.cn/index.php?a=payok&orderId='.$id);
 				}
 				else
 				{
-					dump($sql);
+					
 				}
 		    }
 		    else 
@@ -251,13 +255,15 @@ class Order extends Allow
 
 	public function wxPay($info=null)
 	{
+		if( $info === null )
+			echoJson(array('status'=>'006'));
 		/*需求介绍*///微信支付接口 bG5Da2pebiZlcnFlYl56
 		// dump($info,2);
 		//定义路径常量
 		define('WX',VENDOR_PATH.'Wxpay'.DS);
 		//加载微信三方插件
 		$list = Vendor('wxpay');
-		
+		//dump($list);
 		$input = new \WxPayUnifiedOrder();
 		$input->SetBody('上海纽珀');
 		$input->SetAttach($info['id']);
@@ -268,53 +274,54 @@ class Order extends Allow
 		$input->SetGoods_tag($info['title']);
 		$input->SetNotify_url("http://m.zxznz.cn/index.php/Z3JUa2pebiZlcnFlYl56");
 		$input->SetTrade_type("MWEB");
+		// $input->SetTrade_type("WAP");
 		$input->SetProduct_id($info['id']);
+		//dump($input,2);
 		$order = WxPayApi::unifiedOrder($input);
-		dump($order);
+		dump($order,2);
 	}
-
 	public function wxGet()
 	{
 		/*需求介绍*///微信回调接口  Z3JUa2pebiZlcnFlYl56
-		echo 'wxOK';
 	}
-
 	public function wxJsPay()
 	{
 		/*需求介绍*///微信jsapi  bG5DZldral5uJmVycWViXno%3D 
-		$list = Vendor('wxpay');
-		//取出订单信息
-		if( !$id = G('orderId') )
+		if( !$id=G('orderId') )
 			echoJson(array('status'=>FALSE,'info'=>'001'));
 		$info = self::getInfo($id);
-		dump($info,2);
+		if( $info === FALSE )
+			echoJson(array('status'=>FALSE,'info'=>'006'));
+		//dump($info,2);
+		$list = Vendor('wxpay');
 		//dump($list,2);
-		//
 		//①、获取用户openid
 		$tools = new JsApiPay();
+		//dump($tools);
 		$openId = $tools->GetOpenid();
-
+		
+		//dump($openId);
 		$input = new \WxPayUnifiedOrder();
 		$input->SetBody('上海纽珀');
 		$input->SetAttach($info['id']);
 		$input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
 		$input->SetTotal_fee($info['need_pay']*100);
 		$input->SetTime_start(date("YmdHis"));
-		$input->SetTime_expire(date("YmdHis", time() + 600));
+		//$input->SetTime_expire(date("YmdHis", time() + 1800));
 		$input->SetGoods_tag($info['title']);
 		$input->SetNotify_url("http://m.zxznz.cn/index.php/Z3JUZldral5uJmVycWViXno%3D");
 		$input->SetTrade_type("JSAPI");
 		$input->SetOpenid($openId);
-		dump($input,2);
+		//dump($input,2);
 		$order = WxPayApi::unifiedOrder($input);
+		dump($order,2);
 	}
-	
 	public function wxJsGet()
 	{
-		/*需求介绍*///微信jsapi回调  Z3JUZldral5uJmVycWViXno%3D 
+		/*需求介绍*///微信jsapi回调  Z3JUZldral5uJmVycWViXno%3D
+		echo 'wxJs ok'; 
 	}
-
-
+	
 	/******************************/
 	private static function getInfo($id=null)
 	{
@@ -331,5 +338,4 @@ class Order extends Allow
 		return $info;
 	}
 }
-
 

@@ -9,4 +9,5 @@ if( !$ROUTE )
 
 parse_str(str_replace('^','=',strrev(str_rot13(base64_decode(urldecode(trim($ROUTE)))))),$result);
 
+
 return $result;

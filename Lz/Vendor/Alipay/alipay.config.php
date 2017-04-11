@@ -27,7 +27,7 @@ $alipay_config['key']			= '9n8k10m6jboh827dccnswcie09fg9w6o';
 $alipay_config['notify_url'] = "http://商户网址/create_direct_pay_by_user-PHP-UTF-8/notify_url.php";
 
 // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-$alipay_config['return_url'] = "http://m.zxznz.cn/";
+$alipay_config['return_url'] = "http://m.zxznz.cn/index.php/Z3JUdnluXm4mZXJxZWJeeg%3D%3D";
 
 //签名方式
 $alipay_config['sign_type']    = strtoupper('MD5');
@@ -60,8 +60,6 @@ $alipay_config['anti_phishing_key'] = "";
 $alipay_config['exter_invoke_ip'] = "";
 		
 //↑↑↑↑↑↑↑↑↑↑请在这里配置防钓鱼信息，如果没开通防钓鱼功能，为空即可 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-
-
 
 
 return $alipay_config;

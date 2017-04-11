@@ -58,5 +58,15 @@ $('#open-fold').click(function(){
 $('#close-fold').click(function(){
 	closeFold();
 });
-
+var id=location.search.match(/&orderId=\d{1,}/)[0].substring(9);//获取查询串
+$.ajax({
+	url:"<?php echo A('YnNhVmVycWViXm4mZXJxZWJeeg%3D%3D');?>",
+	type:'POST',
+	dataType:'json',
+	data:{'orderId':id},
+	success:function(res)
+	{
+		console.log(res);	
+	}
+})
 </script>

@@ -10,7 +10,7 @@
 //解析参数
 
 $config = require_once('/Lz/url.php');
-// print_r($config);
+
 //处理参数 去空格
 $config = @array_map('trim',$config) or exit('路由错误！');
 
@@ -27,12 +27,8 @@ defined("VENDOR_PATH") or define("VENDOR_PATH",ROOT_PATH.'Vendor'.DS);
 defined("COF_PATH") or define("COF_PATH",'./Config'.DS);
 
 
-
 //启动程序
 require_once('Lz/Base/Run.php');
-echo '<pre>';
-print_r($_SERVER);
-exit;
 
 \Base\Run::run();
 

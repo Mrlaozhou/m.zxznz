@@ -4,12 +4,12 @@ class Allow extends Base
 	public function __construct()
 	{
 		parent::__construct();
-		// S('USER_ID',13);
 		
+		// S('USER_ID',13);
 		/*访问权限控制*///
 		#定义开放路由列表#
 		$ALLOW = array(
-				'Order'=>array('aliGet','wxGet','wxJsPay','wxJsGet'),
+				'Order'=>array('aliGet','wxGet','wxJsGet','wxJsPay'),
 				);
 
 		// dump(__MODULE__,2);
@@ -17,6 +17,7 @@ class Allow extends Base
 		//判断是否在列表中
 		if( isset( $ALLOW[__MODULE__] ) )
 		{
+			//dump(__ACTION__);
 			if( in_array(__ACTION__,$ALLOW[__MODULE__]) === FALSE )
 			{
 				if( !S('USER_ID') )
