@@ -18,7 +18,7 @@ class Check extends Base
 
 		$info = $model->One($sql);
 		
-		if( $info )
+		if( $info['username'] == $username )
 			return $info;
 		else
 			return FALSE;

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once(__ROOT__.'/Html/template/head.php');?>
-<?php template_head('登陆',array('login.css'),array());?>
+<?php template_head('登陆',array('forget.css'),array());?>
 <body>
+	<div class="dialog">
+		验证码发送失败
+	</div>
 	<!-- header avatar && background -->
 	<div class="header-bg">
 		<div class="retrive-msg">找回密码</div>
@@ -12,38 +15,32 @@
 	</div>
 
 	<!-- retrive password form group that  -->
-	<div class="form-group">
+	<div class="form-group active">
 		<div class="input-group">
-			<input type="text" placeholder="手机号" class="bottom-e input-user">
-			<a href="javascript:void(0)">获取</a>
-			<input type="text" placeholder="验证码" class="input-code">
+			<input type="text" placeholder="手机号" class="bottom-e input-user" id="tel">
+			<a href="javascript:void(0)" class="get-captcha" id="get-captcha">获取</a>
+			<input type="text" placeholder="验证码" class="input-code" id='captcha'>
 		</div>
 		<div class="next-btn">
-			<a href="javascript:void(0)">下一步</a>
+			<a href="javascript:void(0)" id="next">下一步</a>
 		</div>
 	</div>
 
 
-<!-- 
+
 	<div class="form-group">
 		<div class="input-group">
-			<input type="text" placeholder="手机号">
-			<input type="text" placeholder="验证码" class="no-bottom">
-		</div>
-		<div class="agree-msg">
-			注册即代表同意 <a href="javascript:void(0)">《用户协议》</a>
+			<input id="pwd_1" type="password" placeholder="新密码">
+			<input id="pwd_2" type="password" placeholder="确认密码">
 		</div>
 		<div class="next-btn">
-			<a href="javascript:void(0)">下一步</a>
+			<a href="javascript:void(0)" id="second">下一步</a>
 		</div>
-		<div class="register-link">
-			<a href="javascript:void(0)">直接登录</a>
-		</div>
-	</div> -->
+	</div>
 
 
 
-	<!-- <div class="form-group register-success">
+	<div class="form-group register-success">
 		<div class="register-success-img">
 			<img src="/Html/images/retrive-success.png" alt="">
 		</div>
@@ -51,8 +48,114 @@
 			新密码设置成功
 		</div>
 		<div class="login-btn">
-			<a href="index.html">返回首页</a>
+			<a href="index.php?a=index">返回首页</a>
 		</div>
-	</div> -->
+	</div>
 </body>
 </html>
+<script>
+	// 获取手机验证码
+	$('#get-captcha').click(function(){
+		var tel=$('#tel').val();
+		$.ajax({
+			url:"<?php echo A('VEZacWFyZl5uJmdydGViU156');?>",
+			type:'POST',
+			dataType:'json',
+			data:{'phone':tel},
+			success:function(res){
+				if(res.status)
+				{
+					// 验证码发送成功
+					$('.dialog').html('验证码发送成功').fadeIn(500);
+					setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+
+				}
+				else
+				{
+					if ( res.info == '!003' )
+					{
+						$('.dialog').html('此用户未注册').fadeIn(500);
+						setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+					}
+					else if ( res.info == '003&!007' )
+					{
+						$('.dialog').html('已发送过,请查收短信').fadeIn(500);
+						setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+					}
+				}
+			}
+
+		})
+	})
+
+	// 验证验证码是否正确&&跳转到下一步
+	$('#next').click(function(){
+		var tel=$('#tel').val();
+		var captcha=$('#captcha').val();
+		$.ajax({
+			url:"<?php echo A('cnFiUHhwcnVwXm4mZ3J0ZWJTXno%3D');?>",
+			type:'POST',
+			dataType:'json',
+			data:{'phone':tel,'code':captcha},
+			success:function(res){
+				// 验证通过跳到下一步
+				if ( res.status )
+				{
+					$('.form-group').eq(0).removeClass('active');
+					$('.form-group').eq(1).addClass('active');	
+				}
+				else
+				{
+					$('.dialog').html('验证码错误').fadeIn(500);
+					setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+				}
+				
+			}
+		});
+	})
+	// 修改密码&&跳转
+	$('#second').click(function(){
+		var pwd_1=$('#pwd_1').val();
+		var pwd_2=$('#pwd_2').val();
+		var tel=$('#tel').val();
+		var captcha=$('#captcha').val();
+		$.ajax({
+			url:"<?php echo A('Z3JmcmVebiZncnRlYlNeeg%3D%3D');?>",
+			type:'POST',
+			dataType:'json',
+			data:{'username':tel,'code':captcha,'pwd_1':pwd_1,'pwd_2':pwd_2},
+			success:function(res){
+				if( res.status )
+				{
+					// 密码修改成功跳转
+					$('.form-group').eq(1).removeClass('active');
+					$('.form-group').eq(2).addClass('active');
+				}
+				else if ( res.info == '001' )
+				{
+					// 密码修改失败错误提示
+					$('.dialog').html('请认真填写密码').fadeIn(500);
+					setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+				}
+				else if ( res.info == '400' )
+				{
+					// 密码修改失败错误提示
+					$('.dialog').html('验证码验证未通过').fadeIn(500);
+					setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+				}
+				else if ( res.info == '002' )
+				{
+					$('.dialog').html(res.remark).fadeIn(500);
+					setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+				}
+				else if ( res.info == '444' )
+				{
+					$('.dialog').html('正在维护，请稍后再试').fadeIn(500);
+					setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+				}
+			}
+		})
+	})
+		
+	
+</script>

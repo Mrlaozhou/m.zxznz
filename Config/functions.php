@@ -165,7 +165,10 @@ function S($k,$v=FALSE,$t=null)
 		return $_SESSION[$k];
 	//毁值
 	if( $v === null )
+	{
 		unset($_SESSION[$k]);
+		return ;
+	}
 	//设值
 	$_SESSION[trim($k)] = trim($v);
 	return TRUE;

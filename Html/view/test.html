@@ -34,7 +34,9 @@
 <div class="box">
 <div style="">
 <pre>
-<input id="new" type="text" />
+<input id="user" type="text" />
+<input id="pass" type="text" />
+<input id="code" type="text" />
 
 	<input id="send" type="button" value="Send">	
 	<!-- <input id="get" type="button" value="Send">	 -->
@@ -52,20 +54,21 @@
 </script>
 <script type="text/javascript">
 	$('#send').click(function(){
-		var n = $('#new').val();
+		var user = $('#user').val();
+		var pass = $('#pass').val();
+		var code = $('#code').val();
 
 		$.ajax({
 				// url:"http://m.zxznz.cn/index.php?u=bG5DdnluXm4mZXJxZWJeeg%3D%3D",
-				url:"http://m.zxznz.cn/index.php?u=bG5jXm4mZXJxZWJeeg%3D%3D",
+				url:"/index.php/VEZacWFyZl5uJmdydGViU156 ",
+				// url:"/index.php/Z3JmcmVebiZncnRlYlNeeg%3D%3D ",
 				type:"POST",
 				data:
 				{
-					// 'WIDout_trade_no':'000038',
-					// 'WIDsubject':'活动1',
-					// 'WIDtotal_amount':'38',
-					// 'WIDbody':'哈哈哈'
-					'orderId':'15',
-					'pay_type':'1'
+					// 'username':user,
+					// 'password':pass,
+					// 'code':code,
+					'phone':user,
 				},
 				dataType:'JSON',
 				success:function(data)

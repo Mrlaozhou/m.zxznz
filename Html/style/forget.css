@@ -48,6 +48,11 @@ body
 {
 	width: 8.8125rem;
 	margin: 1.7187rem auto 0;
+	display: none;
+}
+.form-group.active
+{
+	display: block;
 }
 .input-group
 {
@@ -58,6 +63,7 @@ body
 	padding: 0.4687rem;
 	box-sizing: border-box;
 	font-size: 0;
+	position: relative;
 }
 .input-group-register
 {
@@ -107,7 +113,7 @@ input:focus::-webkit-input-placeholder{
 	padding-left: 0.8rem;
 	border-bottom: 1px solid #eee;
 }
-.input-group .no-bottom
+body .input-group .no-bottom
 {
 	border: none;
 }
@@ -175,4 +181,28 @@ input:focus::-webkit-input-placeholder{
 	background: -webkit-linear-gradient(#ffaa2d, #ff953d);
 	border-radius: 6px;
 	font-size: 0.4rem;
+}
+.get-captcha
+{
+	position: absolute;
+	font-size: 0.5rem;
+	top: 0.7rem;
+	right: 0.4687rem;
+	color: #999;
+}
+.dialog
+{
+	width: 3.2rem;
+	background: rgba(0,0,0,0.8);
+	border-radius: 6px;
+	text-align: center;
+	color: #fff;
+	line-height: 1.4rem;
+	font-size: 0.4rem;
+	position: fixed;
+	z-index: 100;
+	top: 170px;
+	left: 50%;
+	margin-left: -50px;
+	display: none;
 }
