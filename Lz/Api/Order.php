@@ -309,12 +309,84 @@ STR;
 			ERROR('非法请求！');
 		/**///提取活动信息
 		$info = self::getInfo($id);
-		dump($info,2);
+
+		//①、获取用户openid
+		$tools = new JsApiPay();
+		$openId = $tools->GetOpenid();
+
+		//②、统一下单
+		$input = new WxPayUnifiedOrder();
+		$input->SetBody($info['title']);
+		$input->SetAttach($info['active_id']);
+		$input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
+		$input->SetTotal_fee($info['need_pay']*100);
+		$input->SetTime_start(date("YmdHis"));
+		$input->SetGoods_tag($info['title']);
+		$input->SetNotify_url("http://m.zxznz/index.php/Z3JUZldral5uJmVycWViXno%3D");
+		$input->SetTrade_type("JSAPI");
+		$input->SetOpenid($openId);
+		$order = WxPayApi::unifiedOrder($input);
+		$jsApiParameters = $tools->GetJsApiParameters($order);
+		//获取共享收货地址js函数参数
+		$editAddress = $tools->GetEditAddressParameters();
 	}
 	public function wxJsGet()
 	{
 		/*需求介绍*///微信jsapi回调  Z3JUZldral5uJmVycWViXno%3D
-		echo 'wxJs ok'; 
+		$xml = $GLOBALS['HTTP_RAW_POST_DATA'];
+		define('WX',VENDOR_PATH.'Wxpay'.DS);
+
+		//为接收到数据
+		if( !$xml )
+			exit('FAIL');
+
+		/**///记录日志 （交易信息）
+		$time .= "【".date('Y-m-d H:i:s')."】\n";
+		$log = $time.$xml;
+		$log .= "\n\n";	
+		$filename = WX.'logs/JS'.date('Y').'-'.date('m').'-'.date('d').'.txt';
+		file_put_contents($filename, $log,FILE_APPEND);
+
+		/**///形成订单信息
+		$xmlArr=json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+
+		//判断结果
+		$result_code 	= 	$xmlArr['result_code'];
+		if( $result_code != 'SUCCESS' )
+			exit('FAIL');
+
+		//提取信息
+		$active_id 		= 	$xmlArr['attach'];
+		$ali_no 		=	$xmlArr['transaction_id'];
+		$true_pay		=	$xmlArr['total_fee']/100;
+		$openId 		=	$xmlArr['openid'];
+
+		//组装数据
+		$code 			=	'';
+		$from 			=	'3';			//1.PC端2.手机端3.公众号4.其他
+		$status 		=	'2';			//0.无状态1.未支付挂起2.已支付7.已取消
+		$create_time	=	time();
+		$pay_time		=	time();
+		$pay_type 		=	'3';			//0.无状态1.支付宝2.微信3.公众号4.现金5.其他
+		$count			=	'1';			//公众号支付没有选择数量机制  默认 1
+
+		$sql = "INSERT INTO `zxznz_order`
+					(`code` ,`from` ,`status` ,`create_time` ,`active_id` ,`pay_time` ,`true_pay` ,`pay_type` ,`count` ,`ali_no` )  
+					VALUES
+					('{$code}','{$from}','{$status}','{$create_time}',{$active_id},'{$pay_time}','{$true_pay}','{$pay_type}',$count,'{$ali_no}')";
+		//储存订单信息
+		$model = M('Order');
+		$info = $model->exec($sql);
+
+		if( $info === FALSE )
+			exit('FAIL');
+
+		//储存openid
+		$lastId = $model->lastInsertId();
+		$sql = "INSERT INTO `zxznz_open` VALUES(null,$lastId,'{$openId}')";
+		M('Open')->exec($sql);
+
+		exit('SUCCESS');
 	}
 	
 	/******************************/

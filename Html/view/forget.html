@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once(__ROOT__.'/Html/template/head.php');?>
-<?php template_head('登陆',array('forget.css'),array());?>
+<?php template_head('修改密码',array('forget.css'),array());?>
 <body>
 	<div class="dialog">
 		验证码发送失败
@@ -75,6 +75,11 @@
 					if ( res.info == '!003' )
 					{
 						$('.dialog').html('此用户未注册').fadeIn(500);
+						setTimeout(function(){$('.dialog').fadeOut(500)},2000)
+					}
+					else if ( res.info == '001' )
+					{
+						$('.dialog').html('请输入手机号').fadeIn(500);
 						setTimeout(function(){$('.dialog').fadeOut(500)},2000)
 					}
 					else if ( res.info == '003&!007' )
