@@ -329,23 +329,44 @@ STR;
 		$jsApiParameters = $tools->GetJsApiParameters($order);
 		//获取共享收货地址js函数参数
 		$editAddress = $tools->GetEditAddressParameters();
+
+		load(WX.'confirmPay.html');
 	}
 	public function wxJsGet()
 	{
-		/*需求介绍*///微信jsapi回调  Z3JUZldral5uJmVycWViXno%3D
-		$xml = $GLOBALS['HTTP_RAW_POST_DATA'];
-		define('WX',VENDOR_PATH.'Wxpay'.DS);
+		// /*需求介绍*///微信jsapi回调  Z3JUZldral5uJmVycWViXno%3D
+		// $xml = $GLOBALS['HTTP_RAW_POST_DATA'];
+		// define('WX',VENDOR_PATH.'Wxpay'.DS);
 
-		//为接收到数据
-		if( !$xml )
-			exit('FAIL');
+		// //为接收到数据
+		// if( !$xml )
+		// 	exit('FAIL');
 
-		/**///记录日志 （交易信息）
-		$time .= "【".date('Y-m-d H:i:s')."】\n";
-		$log = $time.$xml;
-		$log .= "\n\n";	
-		$filename = WX.'logs/JS'.date('Y').'-'.date('m').'-'.date('d').'.txt';
-		file_put_contents($filename, $log,FILE_APPEND);
+		// /**///记录日志 （交易信息）
+		// $time .= "【".date('Y-m-d H:i:s')."】\n";
+		// $log = $time.$xml;
+		// $log .= "\n\n";	
+		// $filename = WX.'logs/JS'.date('Y').'-'.date('m').'-'.date('d').'.txt';
+		// file_put_contents($filename, $log,FILE_APPEND);
+
+		$xml = '<xml><appid><![CDATA[wxd6e9c8bc3130a666]]></appid>
+<attach><![CDATA[test]]></attach>
+<bank_type><![CDATA[CFT]]></bank_type>
+<cash_fee><![CDATA[1]]></cash_fee>
+<fee_type><![CDATA[CNY]]></fee_type>
+<is_subscribe><![CDATA[Y]]></is_subscribe>
+<mch_id><![CDATA[1448286702]]></mch_id>
+<nonce_str><![CDATA[yenn8af4msuss3dhnw7tolzhpd3ew9go]]></nonce_str>
+<openid><![CDATA[owt34v86zgSTrvdjHwSzHcwl2CNU]]></openid>
+<out_trade_no><![CDATA[144828670220170413072617]]></out_trade_no>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<sign><![CDATA[D5BC1CBAEF5B5D51024391FD924E1237]]></sign>
+<time_end><![CDATA[20170413152628]]></time_end>
+<total_fee>1</total_fee>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+<transaction_id><![CDATA[4000462001201704136852145794]]></transaction_id>
+</xml>';
 
 		/**///形成订单信息
 		$xmlArr=json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
@@ -377,9 +398,9 @@ STR;
 		//储存订单信息
 		$model = M('Order');
 		$info = $model->exec($sql);
-
+		dump($sql);
 		if( $info === FALSE )
-			exit('FAIL');
+			exit('FAIL1');
 
 		//储存openid
 		$lastId = $model->lastInsertId();

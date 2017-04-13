@@ -1,0 +1,66 @@
+html,body
+{
+	background: #ddd;
+}
+.success-container
+{
+	width: 100%;
+	height: 5.06rem;
+	background: #fff;
+	text-align: center;
+	font-size: 0;
+	box-sizing: border-box;
+	padding-top: 1.656rem;
+}
+.success-img
+{
+	display: inline-block;
+	width: 1.5625rem;
+	height: 1.5625rem;
+	vertical-align: top;
+}
+.success-img img
+{
+	width: 100%;
+}
+.success-desc
+{
+	display: inline-block;
+	width: 6.25rem;
+	vertical-align: top;
+	text-align: left;
+	box-sizing: border-box;
+	padding-left: 0.3125rem;
+	padding-top: 0.28rem;
+}
+.success-msg
+{
+	font-size: 0.4687rem;
+	color: #da1e34;
+	line-height: 0.656rem;
+}
+.order-msg
+{
+	font-size: 0.3125rem;
+	color: #666;
+	line-height: 0.5rem;
+}
+.mark
+{
+	font-size: 0.3125rem;
+	box-sizing: border-box;
+	padding: 0.875rem 0.78rem 0;
+	color: #333;
+	line-height: 0.54rem;
+}
+.mark a
+{
+	color: #457982;
+	text-decoration: underline;
+}
+.mark .tips
+{
+	color: #999;
+	margin-top: 0.75rem;
+	line-height: 0.5rem;
+}
