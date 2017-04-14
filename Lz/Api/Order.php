@@ -305,32 +305,36 @@ STR;
 		if( ! is_weixin() )
 			exit($MSG);
 		//接收参数
-		if( ! $id = G('orderId') )
+		if( ! $id = G('activeId') )
 			ERROR('非法请求！');
 		/**///提取活动信息
-		$info = self::getInfo($id);
-
+		$info = M('Active')->One("SELECT id,title,price FROM `zxznz_active` WHERE `id` = {$id}");
+		
+		$list = Vendor('wxpay');
+		
 		//①、获取用户openid
 		$tools = new JsApiPay();
 		$openId = $tools->GetOpenid();
-
+		
 		//②、统一下单
 		$input = new WxPayUnifiedOrder();
+		
 		$input->SetBody($info['title']);
-		$input->SetAttach($info['active_id']);
+		$input->SetAttach($info['id']);
 		$input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
-		$input->SetTotal_fee($info['need_pay']*100);
+		$input->SetTotal_fee($info['price']*100);
 		$input->SetTime_start(date("YmdHis"));
 		$input->SetGoods_tag($info['title']);
 		$input->SetNotify_url("http://m.zxznz/index.php/Z3JUZldral5uJmVycWViXno%3D");
 		$input->SetTrade_type("JSAPI");
 		$input->SetOpenid($openId);
+		
 		$order = WxPayApi::unifiedOrder($input);
 		$jsApiParameters = $tools->GetJsApiParameters($order);
 		//获取共享收货地址js函数参数
 		$editAddress = $tools->GetEditAddressParameters();
-
-		load(WX.'confirmPay.html');
+		
+		require_once(VENDOR_PATH.'confirmPay.html');
 	}
 	public function wxJsGet()
 	{
