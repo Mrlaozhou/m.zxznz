@@ -9,6 +9,7 @@ defined('ROOT_PATH') or define('ROOT_PATH','.'.DS);
 defined('HTML_PATH') or define('HTML_PATH',ROOT_PATH.'Html'.DS);
 defined('SRC_PATH') or define('SRC_PATH',HTML_PATH.'src'.DS);
 defined('VIEW_PATH') or define('VIEW_PATH',HTML_PATH.'view'.DS);
+defined('UPLOADS') or define('UPLOADS',ROOT_PATH.'upload'.DS);
 
 //定义路由常量
 defined('CONTROLLER') or define('CONTROLLER',isset($_GET['c']) ? ucwords(trim($_GET['c'])) : null);
